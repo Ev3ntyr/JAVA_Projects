@@ -8,7 +8,7 @@ public class User {
 	private int idUser;
 	private String alias;
 	private String surname;
-	private String firstname;
+	private String firstName;
 	private String email;
 	private String phone;
 	private String street;
@@ -50,11 +50,11 @@ public class User {
 	}
 
 	public String getFirstsurname() {
-		return firstname;
+		return firstName;
 	}
 
 	public void setFirstsurname(String firstsurname) {
-		this.firstname = firstsurname;
+		this.firstName = firstsurname;
 	}
 
 	public String getEmail() {
@@ -123,7 +123,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [idUser=" + idUser + ", alias=" + alias + ", surname=" + surname + ", firstsurname=" + firstname
+		return "User [idUser=" + idUser + ", alias=" + alias + ", surname=" + surname + ", firstsurname=" + firstName
 				+ ", email=" + email + ", phone=" + phone + ", street=" + street + ", zipCode=" + zipCode
 				+ ", city=" + city + ", passwordUser=" + passwordUser + ", credit=" + credit + ", isAdmin=" + isAdmin + "]";
 	}

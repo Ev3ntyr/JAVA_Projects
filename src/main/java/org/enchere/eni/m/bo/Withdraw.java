@@ -3,7 +3,7 @@ package org.enchere.eni.m.bo;
 public class Withdraw {
 
 	private String street;
-	private int postalCode;
+	private String zipCode;
 	private String city;
 	
 
@@ -20,12 +20,12 @@ public class Withdraw {
 		this.street = street;
 	}
 
-	public int getPostalCode() {
-		return postalCode;
+	public String getzipCode() {
+		return zipCode;
 	}
 
-	public void setPostalCode(int postalCode) {
-		this.postalCode = postalCode;
+	public void setzipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 
 	public String getCity() {
@@ -38,7 +38,7 @@ public class Withdraw {
 
 	@Override
 	public String toString() {
-		return "Withdraw [street=" + street + ", postalCode=" + postalCode + ", city=" + city + "]";
+		return "Withdraw [street=" + street + ", zipCode=" + zipCode + ", city=" + city + "]";
 	}
 	
 	

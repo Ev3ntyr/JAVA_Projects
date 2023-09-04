@@ -5,33 +5,33 @@ import java.util.List;
 
 public class Category {
 
-	public int noCategory;
-	public String libelle;
+	public int idCategory;
+	public String wording;
 	private List <ItemSold> itemSold = new ArrayList <ItemSold>();
 
 	public Category() {
 		super();
 	}
 
-	public int getNoCategory() {
-		return noCategory;
+	public int getidCategory() {
+		return idCategory;
 	}
 
-	public void setNoCategory(int noCategory) {
-		this.noCategory = noCategory;
+	public void setidCategory(int idCategory) {
+		this.idCategory = idCategory;
 	}
 
 	public String getLibelle() {
-		return libelle;
+		return wording;
 	}
 
 	public void setLibelle(String libelle) {
-		this.libelle = libelle;
+		this.wording = libelle;
 	}
 
 	@Override
 	public String toString() {
-		return "Category [noCategory=" + noCategory + ", libelle=" + libelle + "]";
+		return "Category [idCategory=" + idCategory + ", libelle=" + wording + "]";
 	}
 	
 	

@@ -4,34 +4,34 @@ import java.time.LocalDate;
 
 public class ItemSold {
 
-	private int noArticle;
-	private String nameArticle;
+	private int idItem;
+	private String nameItem;
 	private String description;
 	private LocalDate bidStartDate;
 	private LocalDate bidEndDate;
-	private int pricing;
-	private int soldPrice;
-	private String statePrice;
+	private int initialPrice;
+	private int sellingPrice;
+	private String statePrice; // est ce que c'est pour etatVente du diagramme ? Est ce que je l'ajoute sur SQL ?
 
 
 	public ItemSold() {
 		super();
 	}
 
-	public int getNoArticle() {
-		return noArticle;
+	public int getidItem() {
+		return idItem;
 	}
 
-	public void setNoArticle(int noArticle) {
-		this.noArticle = noArticle;
+	public void setidItem(int idItem) {
+		this.idItem = idItem;
 	}
 
-	public String getNameArticle() {
-		return nameArticle;
+	public String getnameItem() {
+		return nameItem;
 	}
 
-	public void setNameArticle(String nameArticle) {
-		this.nameArticle = nameArticle;
+	public void setnameItem(String nameItem) {
+		this.nameItem = nameItem;
 	}
 
 	public String getDescription() {
@@ -58,20 +58,20 @@ public class ItemSold {
 		this.bidEndDate = bidEndDate;
 	}
 
-	public int getPricing() {
-		return pricing;
+	public int getinitialPrice() {
+		return initialPrice;
 	}
 
-	public void setPricing(int pricing) {
-		this.pricing = pricing;
+	public void setinitialPrice(int initialPrice) {
+		this.initialPrice = initialPrice;
 	}
 
-	public int getSoldPrice() {
-		return soldPrice;
+	public int getsellingPrice() {
+		return sellingPrice;
 	}
 
-	public void setSoldPrice(int soldPrice) {
-		this.soldPrice = soldPrice;
+	public void setsellingPrice(int sellingPrice) {
+		this.sellingPrice = sellingPrice;
 	}
 
 	public String getStatePrice() {
@@ -84,9 +84,9 @@ public class ItemSold {
 
 	@Override
 	public String toString() {
-		return "ItemSold [noArticle=" + noArticle + ", nameArticle=" + nameArticle + ", description=" + description
-				+ ", bidStartDate=" + bidStartDate + ", bidEndDate=" + bidEndDate + ", pricing=" + pricing
-				+ ", soldPrice=" + soldPrice + ", statePrice=" + statePrice + "]";
+		return "ItemSold [idItem=" + idItem + ", nameItem=" + nameItem + ", description=" + description
+				+ ", bidStartDate=" + bidStartDate + ", bidEndDate=" + bidEndDate + ", initialPrice=" + initialPrice
+				+ ", sellingPrice=" + sellingPrice + ", statePrice=" + statePrice + "]";
 	}
 	
 	
