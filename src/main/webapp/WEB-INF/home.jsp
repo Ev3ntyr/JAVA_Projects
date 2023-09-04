@@ -10,7 +10,29 @@
 
 	<h1>Accueil - liste enchères</h1>
 	
-	<a href="connection">S'inscrire/Se connecter</a>
+	<ul>
+		<li>
+			<a href="connection">S'inscrire/Se connecter</a>
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<a href="">Enchères</a>
+		</li>
+		<li>
+			<a href="auctionNew">Vendre un article</a>
+		</li>
+		<li>
+			<a href="userProfile">Mon profil</a>
+		</li>
+		<li>
+			<a href="">Déconnexion</a>
+		</li>
+	</ul>
+	
+	<br>
+	
+	<a href="auctionDetails">Consulter l'enchère</a>
 
 </body>
 </html>
