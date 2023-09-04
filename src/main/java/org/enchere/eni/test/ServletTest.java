@@ -24,7 +24,8 @@ public class ServletTest extends HttpServlet {
 		try (Connection cnx = ConnectionProvider.getConnection()){
 			System.out.println("Connexion ok ");
 		} catch (SQLException e) {
-System.out.println("echec");		}
+			System.out.println("echec");		
+		}
 		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSPTest.jsp");
