@@ -6,6 +6,7 @@ public class ObjectTest {
 	
 	private String nom;
 
+
 	public ObjectTest(int id, String nom) {
 		super();
 		this.id = id;
@@ -13,5 +14,13 @@ public class ObjectTest {
 	}
 	
 	
+
+
+	public int getId() {
+		return id;
+	}
+	public String getNom() {
+		return nom;
+	}
 
 }
