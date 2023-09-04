@@ -5,6 +5,9 @@ public class ObjectTest {
 	private int id;
 	
 	private String nom;
+	
+	private String currentBook = "Le Parfum";
+	
 
 
 	public ObjectTest(int id, String nom) {
