@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Accueil</title>
+<title>Création de Compte</title>
 </head>
 <body>
-
-	<h1>Accueil - liste enchères</h1>
+	<h1>Créer mon compte</h1>
 	
-	<a href="connection">S'inscrire/Se connecter</a>
+	<a href="home">Créer</a>
+	<a href="home">Annuler</a>
 
 </body>
 </html>
