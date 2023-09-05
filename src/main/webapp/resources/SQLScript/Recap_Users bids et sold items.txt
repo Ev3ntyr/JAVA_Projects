@@ -1,0 +1,31 @@
+﻿INITIALIZATION : Users + Sold items + Bids
+
+User 1 Roger
+ordi portable en cours (1) (2 - Alice) 
+Canapé en cours (5) (pas d'enchère)
+tablette à venir (2)
+Enchères : 
+A remporté le vélo (7) avec une enchère à 370
+Manteau (9) à 32 
+
+User 2 Alice 
+Items : 
+Moniteur DELL à venir (4)
+Enchères : 
+Ordinateur (1) à 620
+
+User 3 David 
+Items : 
+1 imprimante déjà vendue (3) 
+la raquette à venir (8) 
+Enchères :
+RAS
+
+User 4 Soso
+Items :
+un velo déjà vendu (7) (1 - Roger)
+table à manger en cours (6),
+un manteau en cours (9) (1 - Roger)
+
+Enchères : 
+RAS

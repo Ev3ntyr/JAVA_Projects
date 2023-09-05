@@ -74,4 +74,14 @@
     <servlet-name>BidDetails</servlet-name>
     <url-pattern>/bidDetails</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletTestDAL</display-name>
+    <servlet-name>ServletTestDAL</servlet-name>
+    <servlet-class>org.enchere.eni.test.ServletTestDAL</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletTestDAL</servlet-name>
+    <url-pattern>/ServletTestDAL</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -20,11 +20,12 @@ public class UserDAOJdbcImpl implements UserDAO {
 	
 	private static final int ADMIN = 1;
 	private static final int STD_USER = 0;
+	private static final int INITIAL_CREDIT = 100;
 	
-	private static final String createUser = """
+	private static final String CREATE_USER = """
 			INSERT INTO USERS VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 			""";
-	private static final String selectById = """
+	private static final String SELECT_BY_ID = """
 			SELECT alias, surname, firstName, email, phone, street, zipCode,
 			city, passwordUser, credit, isAdmin
 			FROM USERS WHERE idUser = ?;
@@ -50,7 +51,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 		/*
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			
-			PreparedStatement pStmt = cnx.prepareStatement(createUser, PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement pStmt = cnx.prepareStatement(CREATE_USER, PreparedStatement.RETURN_GENERATED_KEYS);
 			pStmt.setString(1, newUser.getAlias());
 			pStmt.setString(2, newUser.getSurname());
 			pStmt.setString(3,  newUser.getFirstName());
@@ -72,7 +73,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 			
 			pStmt.setString(9, encryptedPassword);
 	
-			pStmt.setInt(10, newUser.getCredit());
+			pStmt.setInt(10, INITIAL_CREDIT);
 			pStmt.setInt(11, STD_USER);
 			
 			pStmt.executeUpdate();
@@ -121,6 +122,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 		
 	}
 	
+	@Override
 	public boolean checkPassword(String password, String encryptedPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		String subPassword = password.substring(0, password.length() - 14);
 		String salt = password.substring(password.length() - 14, password.length());
@@ -133,7 +135,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 		
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			
-			PreparedStatement pStmt = cnx.prepareStatement(selectById);
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_ID);
 			pStmt.setInt(1, idUser);
 			
 			ResultSet rs = pStmt.executeQuery();
