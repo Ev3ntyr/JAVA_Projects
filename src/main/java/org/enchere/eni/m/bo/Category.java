@@ -34,6 +34,4 @@ public class Category {
 		return "Category [idCategory=" + idCategory + ", libelle=" + wording + "]";
 	}
 	
-	
-	
 }

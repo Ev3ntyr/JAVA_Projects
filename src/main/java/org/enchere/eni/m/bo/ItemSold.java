@@ -6,7 +6,7 @@ public class ItemSold {
 
 	private int idItem;
 	private String nameItem;
-	private String description;
+	private String descriptionItem;
 	private LocalDate bidStartDate;
 	private LocalDate bidEndDate;
 	private int initialPrice;
@@ -34,12 +34,12 @@ public class ItemSold {
 		this.nameItem = nameItem;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getdescriptionItem() {
+		return descriptionItem;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setdescriptionItem(String descriptionItem) {
+		this.descriptionItem = descriptionItem;
 	}
 
 	public LocalDate getBidStartDate() {
@@ -84,7 +84,7 @@ public class ItemSold {
 
 	@Override
 	public String toString() {
-		return "ItemSold [idItem=" + idItem + ", nameItem=" + nameItem + ", description=" + description
+		return "ItemSold [idItem=" + idItem + ", nameItem=" + nameItem + ", descriptionItem=" + descriptionItem
 				+ ", bidStartDate=" + bidStartDate + ", bidEndDate=" + bidEndDate + ", initialPrice=" + initialPrice
 				+ ", sellingPrice=" + sellingPrice + ", statePrice=" + statePrice + "]";
 	}
