@@ -5,5 +5,6 @@ import org.enchere.eni.m.bo.User;
 public interface UserDAO {
 	
 	void createUser(User newUser);
+	User selectById(int idUser);
 
 }

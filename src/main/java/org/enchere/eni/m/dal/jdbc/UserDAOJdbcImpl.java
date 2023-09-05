@@ -19,6 +19,11 @@ public class UserDAOJdbcImpl implements UserDAO {
 	private static final int ADMIN = 1;
 	private static final int STD_USER = 0;
 	private static final String createUser = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+	private static final String selectById = """
+			SELECT * FROM Users WHERE idUser = ?
+			JOIN Bids ON idUser = user
+			JOIN ItemsSold ON idUser = user;
+			""";
 
 	@Override
 	public void createUser(User newUser) {
@@ -91,6 +96,29 @@ public class UserDAOJdbcImpl implements UserDAO {
 		return encryptedPassword.equals(encryptPassword(subPassword, salt));
 	}
 	
-	
+	public User selectById(int idUser) {
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(selectById);
+			pStmt.setInt(1, idUser);
+			
+			ResultSet rs = pStmt.executeQuery();
+			
+			if (rs.next()) {
+				
+			}
+			
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		
+		
+		User user = null;
+		
+		
+		
+		return user;
+	}
 
 }
