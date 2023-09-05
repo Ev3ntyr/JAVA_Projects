@@ -4,15 +4,22 @@ import java.time.LocalDate;
 
 public class Bid {
 
+	private int idBid;
 	private LocalDate bidDate;
 	private int bidAmount;
 	private User user;
 	private ItemSold itemSold;
 
 	public Bid() {
-		super();
 	}
 
+	public int getIdBid() {
+		return idBid;
+	}
+	public void setIdBid(int idBid) {
+		this.idBid = idBid;
+	}
+	
 	public User getUser() {
 		return user;
 	}
