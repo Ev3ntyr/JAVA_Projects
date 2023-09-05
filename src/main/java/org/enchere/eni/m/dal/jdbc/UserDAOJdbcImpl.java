@@ -18,11 +18,14 @@ public class UserDAOJdbcImpl implements UserDAO {
 	
 	private static final int ADMIN = 1;
 	private static final int STD_USER = 0;
-	private static final String createUser = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+	
+	private static final String createUser = """
+			INSERT INTO USERS VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+			""";
 	private static final String selectById = """
-			SELECT * FROM Users WHERE idUser = ?
-			JOIN Bids ON idUser = user
-			JOIN ItemsSold ON idUser = user;
+			SELECT alias, surname, firstName, email, phone, street, zipCode,
+			city, passwordUser, credit, isAdmin
+			FROM USERS WHERE idUser = ?;
 			""";
 
 	@Override
@@ -98,6 +101,8 @@ public class UserDAOJdbcImpl implements UserDAO {
 	
 	public User selectById(int idUser) {
 		
+		User user = null;
+		
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			
 			PreparedStatement pStmt = cnx.prepareStatement(selectById);
@@ -106,7 +111,18 @@ public class UserDAOJdbcImpl implements UserDAO {
 			ResultSet rs = pStmt.executeQuery();
 			
 			if (rs.next()) {
-				
+				String alias = rs.getString("alias");
+				String surname = rs.getString("surname");
+				String firstName = rs.getString("firstName");
+				String email = rs.getString("email");
+				String phone = rs.getString("phone");
+				String street = rs.getString("street");
+				String zipCode = rs.getString("zipCode");
+				String city = rs.getString("city");
+				String passwordUser = rs.getString("passwordUser");
+				int credit = rs.getInt("credit");
+				boolean isAdmin = rs.getBoolean("isAdmin");
+				user = new User(idUser, alias, surname, firstName, email, phone, street, zipCode, city, passwordUser, credit, isAdmin);
 			}
 			
 		} catch (SQLException sqle) {
@@ -114,7 +130,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 		}
 		
 		
-		User user = null;
+		
 		
 		
 		
