@@ -41,6 +41,12 @@ public class Category implements Serializable {
 	public Category() {}
 	
 	
+	
+	public Category(int idCategory, String wording) {
+		super();
+		this.idCategory = idCategory;
+		this.wording = wording;
+	}
 	// OVERRIDEN METHODS
 	@Override
 	public String toString() {
