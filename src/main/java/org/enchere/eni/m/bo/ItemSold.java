@@ -104,6 +104,18 @@ public class ItemSold implements Serializable {
 	public ItemSold() {}
 	
 	
+	public ItemSold(int idItem, String nameItem, String descriptionItem, LocalDate bidStartDate, LocalDate bidEndDate,
+			int initialPrice, int sellingPrice, int stateItem) {
+		super();
+		this.idItem = idItem;
+		this.nameItem = nameItem;
+		this.descriptionItem = descriptionItem;
+		this.bidStartDate = bidStartDate;
+		this.bidEndDate = bidEndDate;
+		this.initialPrice = initialPrice;
+		this.sellingPrice = sellingPrice;
+		this.stateItem = stateItem;
+	}
 	// OVERRIDEN METHODS
 	@Override
 	public String toString() {

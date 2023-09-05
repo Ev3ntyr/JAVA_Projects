@@ -48,6 +48,13 @@ public class Bid implements Serializable {
 	public Bid() {}
 	
 	
+	
+	public Bid(int idBid, LocalDate bidDate, int bidAmount) {
+		super();
+		this.idBid = idBid;
+		this.bidDate = bidDate;
+		this.bidAmount = bidAmount;
+	}
 	// OVERRIDEN METHODS
 	@Override
 	public String toString() {

@@ -10,6 +10,7 @@ public class Withdraw implements Serializable {
 	private String zipCode;
 	private String city;
 	
+	
 	// GETTERS AND SETTERS
 	public ItemSold getItemSold() {
 		return itemSold;
@@ -39,6 +40,13 @@ public class Withdraw implements Serializable {
 	// CONSTRUCTORS
 	public Withdraw() {}
 	
+	
+	public Withdraw(String street, String zipCode, String city) {
+		super();
+		this.street = street;
+		this.zipCode = zipCode;
+		this.city = city;
+	}
 	// OVERRRIDEN METHODS
 	@Override
 	public String toString() {
