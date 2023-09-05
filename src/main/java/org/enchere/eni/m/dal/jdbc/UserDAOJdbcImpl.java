@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.dal.UserDAO;
+import org.enchere.eni.m.security.BCrypt;
 
 public class UserDAOJdbcImpl implements UserDAO {
 	
@@ -31,19 +32,6 @@ public class UserDAOJdbcImpl implements UserDAO {
 	@Override
 	public void createUser(User newUser) {
 		
-		String password = newUser.getPasswordUser();
-		System.out.println("PWD : " + password);
-//		String encrypt = "";
-//		try {
-//			encrypt = encryptPassword(password, "");
-//		} catch (NoSuchAlgorithmException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (NoSuchProviderException npe) {
-//			npe.printStackTrace();
-//		}
-//		newUser.setPasswordUser(encrypt);
-		
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			
 			PreparedStatement pStmt = cnx.prepareStatement(CREATE_USER, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -55,21 +43,11 @@ public class UserDAOJdbcImpl implements UserDAO {
 			pStmt.setString(6,  newUser.getStreet());
 			pStmt.setString(7,  newUser.getZipCode());
 			pStmt.setString(8, newUser.getCity());
-//			String encryptedPassword = "";
-//			try {
-//				encryptedPassword = encryptPassword(newUser.getPasswordUser(), "");
-//			} catch (NoSuchAlgorithmException e) {
-//				System.out.println("Algorithm error when encrypting password");
-//				e.printStackTrace();
-//			} catch (InvalidKeySpecException e) {
-//				System.out.println("KeySpec error when encrypting password");
-//				e.printStackTrace();
-//			}
 			
-//			pStmt.setString(9, encryptedPassword);
-			
-			pStmt.setString(9, newUser.getPasswordUser());
-	
+			String password = newUser.getPasswordUser();
+			String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
+			pStmt.setString(9, hashedPassword);
+		
 			pStmt.setInt(10, INITIAL_CREDIT);
 			pStmt.setInt(11, STD_USER);
 			

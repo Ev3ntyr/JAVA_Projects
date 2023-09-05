@@ -29,15 +29,8 @@ public class ServletTest extends HttpServlet {
 			System.out.println("Connexion ok ");
 		} catch (SQLException e) {
 			System.out.println("echec");		
-		}
+		}	
 		
-		
-		User u = new User(0, "alias", "surname", "firstname", "email", "0232", "street", "zip", "city", "admin", 0, false);
-		System.out.println("u avt create : " + u.getPasswordUser());
-		UserManager.getInstance().createUser(u);
-		String pwd = u.getPasswordUser();
-		
-
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSPTest.jsp");
 		rd.forward(request, response);
 	}
