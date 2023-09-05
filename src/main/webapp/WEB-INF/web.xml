@@ -46,13 +46,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>AuctionNew</display-name>
-    <servlet-name>AuctionNew</servlet-name>
-    <servlet-class>org.enchere.eni.c.AuctionNew</servlet-class>
+    <display-name>BidNew</display-name>
+    <servlet-name>BidNew</servlet-name>
+    <servlet-class>org.enchere.eni.c.BidNew</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AuctionNew</servlet-name>
-    <url-pattern>/auctionNew</url-pattern>
+    <servlet-name>BidNew</servlet-name>
+    <url-pattern>/bidNew</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -66,12 +66,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>AuctionDetails</display-name>
-    <servlet-name>AuctionDetails</servlet-name>
-    <servlet-class>org.enchere.eni.c.AuctionDetails</servlet-class>
+    <display-name>BidDetails</display-name>
+    <servlet-name>BidDetails</servlet-name>
+    <servlet-class>org.enchere.eni.c.BidDetails</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AuctionDetails</servlet-name>
-    <url-pattern>/auctionDetails</url-pattern>
+    <servlet-name>BidDetails</servlet-name>
+    <url-pattern>/bidDetails</url-pattern>
   </servlet-mapping>
 </web-app>

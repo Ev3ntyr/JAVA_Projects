@@ -20,7 +20,7 @@
 			<a href="">Enchères</a>
 		</li>
 		<li>
-			<a href="auctionNew">Vendre un article</a>
+			<a href="bidNew">Vendre un article</a>
 		</li>
 		<li>
 			<a href="userProfile">Mon profil</a>
@@ -32,7 +32,7 @@
 	
 	<br>
 	
-	<a href="auctionDetails">Consulter l'enchère</a>
+	<a href="bidDetails">Consulter l'enchère</a>
 
 </body>
 </html>
