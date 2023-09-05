@@ -15,7 +15,6 @@ public class ItemSold {
 
 
 	public ItemSold() {
-		super();
 	}
 
 	public int getidItem() {

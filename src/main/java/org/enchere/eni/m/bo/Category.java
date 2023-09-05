@@ -7,10 +7,9 @@ public class Category {
 
 	public int idCategory;
 	public String wording;
-	private List <ItemSold> itemSold = new ArrayList <ItemSold>();
+	private List <ItemSold> itemsSold = new ArrayList <ItemSold>();
 
 	public Category() {
-		super();
 	}
 
 	public int getidCategory() {

@@ -17,7 +17,7 @@ public class User {
 	private String passwordUser;
 	private int credit;
 	private boolean isAdmin;
-	private List <ItemSold> itemSold = new ArrayList <ItemSold>();
+	private List <ItemSold> itemsSold = new ArrayList <ItemSold>();
 	
 	
 	

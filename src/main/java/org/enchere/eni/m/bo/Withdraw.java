@@ -2,6 +2,7 @@ package org.enchere.eni.m.bo;
 
 public class Withdraw {
 
+	private int idWithdraw;
 	private String street;
 	private String zipCode;
 	private String city;
@@ -9,9 +10,16 @@ public class Withdraw {
 
 
 	public Withdraw() {
-		super();
 	}
 
+	public int getIdWithdraw() {
+		return idWithdraw;
+	}
+	
+	public void setIdWithdraw(int idWithdraw) {
+		this.idWithdraw = idWithdraw;
+	}
+	
 	public String getStreet() {
 		return street;
 	}
