@@ -1,5 +1,8 @@
 package org.enchere.eni.m.bll;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+
 import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.dal.DAOFactory;
 
@@ -22,5 +25,9 @@ public class UserManager {
 	
 	public User selectById(int idUser) {
 		return DAOFactory.getUserDAO().selectById(idUser);
+	}
+	
+	public boolean checkPassword(String password, String hashedPassword) throws NoSuchAlgorithmException, NoSuchProviderException {
+		return DAOFactory.getUserDAO().checkPassword(password, hashedPassword);
 	}
 }

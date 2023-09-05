@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -34,11 +36,8 @@ public class ServletTest extends HttpServlet {
 		System.out.println("u avt create : " + u.getPasswordUser());
 		UserManager.getInstance().createUser(u);
 		String pwd = u.getPasswordUser();
-		System.out.println("u aft create : " + u.getPasswordUser());
-		System.out.println("HASH : " + pwd.substring(0, pwd.length() - 24));
-		System.out.println("SALT : " + pwd.substring(pwd.length() - 24, pwd.length()));
-//		System.out.println("Check pwd : " + UserManager.getInstance().); // TRUE
-//		System.out.println("Check pwd : " + ); // FALSE
+		
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSPTest.jsp");
 		rd.forward(request, response);
 	}

@@ -1,17 +1,14 @@
 package org.enchere.eni.m.dal.jdbc;
 
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Base64;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 
 import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.dal.UserDAO;
@@ -36,19 +33,17 @@ public class UserDAOJdbcImpl implements UserDAO {
 		
 		String password = newUser.getPasswordUser();
 		System.out.println("PWD : " + password);
-		String encrypt = "";
-		try {
-			encrypt = encryptPassword(password, "");
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidKeySpecException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		newUser.setPasswordUser(encrypt);
-		System.out.println(encrypt);
-		/*
+//		String encrypt = "";
+//		try {
+//			encrypt = encryptPassword(password, "");
+//		} catch (NoSuchAlgorithmException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (NoSuchProviderException npe) {
+//			npe.printStackTrace();
+//		}
+//		newUser.setPasswordUser(encrypt);
+		
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			
 			PreparedStatement pStmt = cnx.prepareStatement(CREATE_USER, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -60,18 +55,20 @@ public class UserDAOJdbcImpl implements UserDAO {
 			pStmt.setString(6,  newUser.getStreet());
 			pStmt.setString(7,  newUser.getZipCode());
 			pStmt.setString(8, newUser.getCity());
-			String encryptedPassword = "";
-			try {
-				encryptedPassword = encryptPassword(newUser.getPasswordUser(), "");
-			} catch (NoSuchAlgorithmException e) {
-				System.out.println("Algorithm error when encrypting password");
-				e.printStackTrace();
-			} catch (InvalidKeySpecException e) {
-				System.out.println("KeySpec error when encrypting password");
-				e.printStackTrace();
-			}
+//			String encryptedPassword = "";
+//			try {
+//				encryptedPassword = encryptPassword(newUser.getPasswordUser(), "");
+//			} catch (NoSuchAlgorithmException e) {
+//				System.out.println("Algorithm error when encrypting password");
+//				e.printStackTrace();
+//			} catch (InvalidKeySpecException e) {
+//				System.out.println("KeySpec error when encrypting password");
+//				e.printStackTrace();
+//			}
 			
-			pStmt.setString(9, encryptedPassword);
+//			pStmt.setString(9, encryptedPassword);
+			
+			pStmt.setString(9, newUser.getPasswordUser());
 	
 			pStmt.setInt(10, INITIAL_CREDIT);
 			pStmt.setInt(11, STD_USER);
@@ -86,48 +83,10 @@ public class UserDAOJdbcImpl implements UserDAO {
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-		*/
-	}
-	
-	private String encryptPassword(String password, String wantedSalt) throws NoSuchAlgorithmException, InvalidKeySpecException {	
-		
-		String hashedPassword = "";
-		
-		SecureRandom random = new SecureRandom();
-		byte[] salt = new byte[16];
-		if (wantedSalt.equals("")) {
-			random.nextBytes(salt);
-		} else {
-			for (int i = 0; i < wantedSalt.length(); i++) {
-				salt[i] = Byte.valueOf(String.valueOf(wantedSalt.charAt(i)));
-			}
-		}
-		System.out.println("salt : " + Arrays.toString(salt));
-		
-		PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 112);
-		SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-		byte[] hash = factory.generateSecret(spec).getEncoded();
-		
-		hashedPassword = Base64.getEncoder().encodeToString(hash);
-		String stringSalt = Base64.getEncoder().encodeToString(salt);
-		System.out.println("SALT : " + stringSalt);
-		System.out.println("HASHED PWD : " + hashedPassword);
-		
-		System.out.println("hash : " + Arrays.toString(hash));
-		StringBuilder encryptedPassword = new StringBuilder();
-		encryptedPassword.append(hashedPassword);
-		encryptedPassword.append(stringSalt);
-		
-		return encryptedPassword.toString();
 		
 	}
 	
-	@Override
-	public boolean checkPassword(String password, String encryptedPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
-		String subPassword = password.substring(0, password.length() - 14);
-		String salt = password.substring(password.length() - 14, password.length());
-		return encryptedPassword.equals(encryptPassword(subPassword, salt));
-	}
+	
 	
 	public User selectById(int idUser) {
 		
@@ -165,6 +124,15 @@ public class UserDAOJdbcImpl implements UserDAO {
 		
 		
 		return user;
+	}
+
+
+
+	@Override
+	public boolean checkPassword(String password, String encryptedPassword)
+			throws NoSuchAlgorithmException, NoSuchProviderException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
