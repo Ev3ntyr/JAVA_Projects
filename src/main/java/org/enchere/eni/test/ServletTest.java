@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.enchere.eni.m.bll.UserManager;
+import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.dal.jdbc.ConnectionProvider;
 
 /**
@@ -28,6 +30,15 @@ public class ServletTest extends HttpServlet {
 		}
 		
 		
+		User u = new User(0, "alias", "surname", "firstname", "email", "0232", "street", "zip", "city", "admin", 0, false);
+		System.out.println("u avt create : " + u.getPasswordUser());
+		UserManager.getInstance().createUser(u);
+		String pwd = u.getPasswordUser();
+		System.out.println("u aft create : " + u.getPasswordUser());
+		System.out.println("HASH : " + pwd.substring(0, pwd.length() - 24));
+		System.out.println("SALT : " + pwd.substring(pwd.length() - 24, pwd.length()));
+//		System.out.println("Check pwd : " + UserManager.getInstance().); // TRUE
+//		System.out.println("Check pwd : " + ); // FALSE
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSPTest.jsp");
 		rd.forward(request, response);
 	}

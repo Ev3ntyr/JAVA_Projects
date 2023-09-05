@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Base64;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -31,6 +33,21 @@ public class UserDAOJdbcImpl implements UserDAO {
 	@Override
 	public void createUser(User newUser) {
 		
+		String password = newUser.getPasswordUser();
+		System.out.println("PWD : " + password);
+		String encrypt = "";
+		try {
+			encrypt = encryptPassword(password, "");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidKeySpecException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		newUser.setPasswordUser(encrypt);
+		System.out.println(encrypt);
+		/*
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			
 			PreparedStatement pStmt = cnx.prepareStatement(createUser, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -68,10 +85,13 @@ public class UserDAOJdbcImpl implements UserDAO {
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-		
+		*/
 	}
 	
-	private String encryptPassword(String password, String wantedSalt) throws NoSuchAlgorithmException, InvalidKeySpecException {		
+	private String encryptPassword(String password, String wantedSalt) throws NoSuchAlgorithmException, InvalidKeySpecException {	
+		
+		String hashedPassword = "";
+		
 		SecureRandom random = new SecureRandom();
 		byte[] salt = new byte[16];
 		if (wantedSalt.equals("")) {
@@ -81,16 +101,24 @@ public class UserDAOJdbcImpl implements UserDAO {
 				salt[i] = Byte.valueOf(String.valueOf(wantedSalt.charAt(i)));
 			}
 		}
+		System.out.println("salt : " + Arrays.toString(salt));
 		
 		PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 112);
 		SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
 		byte[] hash = factory.generateSecret(spec).getEncoded();
 		
+		hashedPassword = Base64.getEncoder().encodeToString(hash);
+		String stringSalt = Base64.getEncoder().encodeToString(salt);
+		System.out.println("SALT : " + stringSalt);
+		System.out.println("HASHED PWD : " + hashedPassword);
+		
+		System.out.println("hash : " + Arrays.toString(hash));
 		StringBuilder encryptedPassword = new StringBuilder();
-		encryptedPassword.append(hash.toString());
-		encryptedPassword.append(salt.toString());
+		encryptedPassword.append(hashedPassword);
+		encryptedPassword.append(stringSalt);
 		
 		return encryptedPassword.toString();
+		
 	}
 	
 	public boolean checkPassword(String password, String encryptedPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
