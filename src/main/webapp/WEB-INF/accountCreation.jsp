@@ -29,17 +29,17 @@
 	<br>
 	<br>
 
-	<form action="CreateAccount" method="POST">
+	<form action="create" method="POST">
 
 		<div class="form-row ">
 			<div class="form-group mx-auto col-md-5">
 				<label for="email">Adresse mail</label> <input type="email"
-					maxlength="50" class="form-control" id="email"
+					maxlength="50" class="form-control" id="email" name="email"
 					aria-describedby="emailHelp" placeholder="Entrez votre email">
 			</div>
 			<div class="form-group mx-auto col-md-5">
 				<label for="alias">Pseudo</label> <input type="text" maxlength="30"
-					class="form-control" id="alias"
+					class="form-control" id="alias" name="alias"
 					placeholder="Sans caractère spécial ou ponctuation">
 			</div>
 		</div>
@@ -48,12 +48,12 @@
 		<div class="form-row">
 			<div class="form-group mx-auto col-md-5">
 				<label for="passwordUser">Mot de passe</label> <input
-					type="password" maxlength="128" class="form-control"
+					type="password" maxlength="128" class="form-control" name="passwordUser"
 					id="passwordUser" placeholder="Soyez créatif !">
 			</div>
 			<div class="form-group mx-auto col-md-5">
 				<label for="passwordUserCheck">Confirmation mot de passe</label> <input
-					type="password" maxlength="128" class="form-control"
+					type="password" maxlength="128" class="form-control" name="passwordUserCheck"
 					id="passwordUserCheck">
 			</div>
 		</div>
@@ -62,11 +62,11 @@
 		<div class="form-row">
 			<div class="form-group mx-auto col-md-5">
 				<label for="surname">Nom</label> <input type="text" maxlength="30"
-					class="form-control" id="surname">
+					class="form-control" id="surname" name="surname">
 			</div>
 			<div class="form-group mx-auto col-md-5">
 				<label for="firstName">Prénom</label> <input type="text"
-					maxlength="30" class="form-control" id="firstName">
+					maxlength="30" class="form-control" id="firstName" name="firstName">
 			</div>
 		</div>
 		<br>
@@ -74,11 +74,11 @@
 		<div class="form-row">
 			<div class="form-group mx-auto col-md-5">
 				<label for="zipCode">Code postal</label> <input type="text"
-					maxlength="10" class="form-control" id="zipCode">
+					maxlength="10" class="form-control" id="zipCode" name="zipCode">
 			</div>
 			<div class="form-group mx-auto col-md-5">
 				<label for="city">Ville</label> <input type="text" maxlength="50"
-					class="form-control" id="city">
+					class="form-control" id="city" name="city">
 			</div>
 		</div>
 		<br>
@@ -87,15 +87,15 @@
 			<div class="form-group mx-auto col-md-5">
 				<label for="street">Rue</label> <input type="text" maxlength="30"
 					class="form-control" id="street"
-					placeholder="7 rue des bonnes affaires">
+					placeholder="7 rue des bonnes affaires" name="street">
 			</div>
 			<div class="form-group mx-auto col-md-5">
 				<label for="phone">Téléphone</label> <input type=tel maxlength="15"
-					class="form-control" id="phone" pattern="[0-9]{15}">
+					class="form-control" id="phone"  name="phone">
 			</div>
 		</div>	
 		<br>
-		<a href="home" class="btn btn-info " role="button" type="submit ">Créer</a>
+		<input class="btn btn-info" type="submit" value="créer">
 		
 	</form>
 <br><br>

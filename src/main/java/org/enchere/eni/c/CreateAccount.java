@@ -25,7 +25,6 @@ public class CreateAccount extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1. on récupère les valeurs du formulaire (paramètres)
 		String enteredEmail = request.getParameter("email");
-		System.out.println();
 		String enteredAlias = request.getParameter("alias");
 		String enteredPassword = request.getParameter("passwordUser");
 		String enteredPasswordCheck = request.getParameter("passwordUserCheck");
@@ -41,6 +40,8 @@ public class CreateAccount extends HttpServlet {
 		User newUser = new User(enteredAlias,enteredSurname, enteredFirstName, enteredEmail,enteredPhone, enteredStreet, enteredZipCode, enteredCity, enteredPassword);
 		System.out.println(newUser);
 		UserManager.getInstance().createUser(newUser);
+		RequestDispatcher rd = request.getRequestDispatcher("home");
+		rd.forward(request, response);
 	}
 
 }
