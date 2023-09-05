@@ -6,6 +6,9 @@ USE AUCTION_DB
 --   type :      SQL Server 2012
 --
 
+
+-- Creating Table Categories
+
 CREATE TABLE CATEGORIES (
     idCategory   INTEGER IDENTITY(1,1) NOT NULL,
     wording        VARCHAR(30) NOT NULL
@@ -14,6 +17,7 @@ CREATE TABLE CATEGORIES (
 ALTER TABLE CATEGORIES ADD constraint category_pk PRIMARY KEY (idCategory)
 
   
+ -- Creating Table Users
 
 CREATE TABLE USERS (
     idUser   INTEGER IDENTITY(1,1) NOT NULL,
@@ -32,6 +36,7 @@ CREATE TABLE USERS (
 
 ALTER TABLE USERS ADD constraint user_pk PRIMARY KEY (idUser)
 
+-- Creating Table Sold_Items
 
 CREATE TABLE SOLD_ITEMS (
     idItem                    INTEGER IDENTITY(1,1) NOT NULL,
@@ -49,6 +54,8 @@ CREATE TABLE SOLD_ITEMS (
 ALTER TABLE SOLD_ITEMS ADD constraint sold_items_pk PRIMARY KEY (idItem)
 ALTER TABLE SOLD_ITEMS ADD constraint ck_state_item CHECK (stateItem BETWEEN 0 AND 2)
 
+-- Creating Table Withdraw
+
 CREATE TABLE WITHDRAW (
 	idItem        INTEGER NOT NULL,
     street              VARCHAR(30) NOT NULL,
@@ -62,6 +69,7 @@ ALTER TABLE WITHDRAW
 ON DELETE NO ACTION 
     ON UPDATE no action 
 
+-- Creating Table Bids
 
 CREATE TABLE BIDS(	
 	idBid  INTEGER IDENTITY(1,1) NOT NULL,
@@ -83,6 +91,7 @@ ALTER TABLE BIDS
 ON DELETE NO ACTION 
     ON UPDATE no action 
 	
+-- Finally adding Foreign Keys
 
 ALTER TABLE SOLD_ITEMS
     ADD CONSTRAINT sold_items_categories_fk FOREIGN KEY (idCategory)

@@ -122,6 +122,22 @@ public class User implements Serializable {
 	public User() {}
 	
 	
+	public User(int idUser, String alias, String surname, String firstName, String email, String phone, String street,
+			String zipCode, String city, String passwordUser, int credit, boolean isAdmin) {
+		this();
+		this.idUser = idUser;
+		this.alias = alias;
+		this.surname = surname;
+		this.firstName = firstName;
+		this.email = email;
+		this.phone = phone;
+		this.street = street;
+		this.zipCode = zipCode;
+		this.city = city;
+		this.passwordUser = passwordUser;
+		this.credit = credit;
+		this.isAdmin = isAdmin;
+	}
 	// OVVERRIDEN METHODS
 	@Override
 	public String toString() {

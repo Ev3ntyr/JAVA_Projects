@@ -1,5 +1,7 @@
 package org.enchere.eni.m.bll;
 
+import org.enchere.eni.m.bo.User;
+import org.enchere.eni.m.dal.DAOFactory;
 
 public class UserManager {
 	
@@ -12,5 +14,13 @@ public class UserManager {
 			instance = new UserManager();
 		}
 		return instance;
+	}
+	
+	public void createUser(User newUser) {
+		DAOFactory.getUserDAO().createUser(newUser);
+	}
+	
+	public User selectById(int idUser) {
+		return DAOFactory.getUserDAO().selectById(idUser);
 	}
 }
