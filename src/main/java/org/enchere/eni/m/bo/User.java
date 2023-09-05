@@ -18,115 +18,192 @@ public class User {
 	private int credit;
 	private boolean isAdmin;
 	private List <ItemSold> itemsSold = new ArrayList <ItemSold>();
+	private List <Bid> bids = new ArrayList <Bid>();
 	
 	
-	
+	public List<Bid> getBids() {
+		return bids;
+	}
+
+
+	public void setBids(List<Bid> bids) {
+		this.bids = bids;
+	}
+
+
 	public User() {
 	}
 
 
-	public int getidUser() {
+	public int getIdUser() {
 		return idUser;
 	}
 
-	public void setidUser(int idUser) {
+
+
+	public void setIdUser(int idUser) {
 		this.idUser = idUser;
 	}
 
-	public String getalias() {
+
+
+	public String getAlias() {
 		return alias;
 	}
 
-	public void setalias(String alias) {
+
+
+	public void setAlias(String alias) {
 		this.alias = alias;
 	}
 
-	public String getsurname() {
+
+
+	public String getSurname() {
 		return surname;
 	}
 
-	public void setsurname(String surname) {
+
+
+	public void setSurname(String surname) {
 		this.surname = surname;
 	}
 
-	public String getFirstsurname() {
+
+
+	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setFirstsurname(String firstsurname) {
-		this.firstName = firstsurname;
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
+
+
 
 	public String getEmail() {
 		return email;
 	}
 
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
 
 	public String getPhone() {
 		return phone;
 	}
 
+
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+
 
 	public String getStreet() {
 		return street;
 	}
 
+
+
 	public void setStreet(String street) {
 		this.street = street;
 	}
 
-	public String getzipCode() {
+
+
+	public String getZipCode() {
 		return zipCode;
 	}
 
-	public void setzipCode(String zipCode) {
+
+
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
+
+
 
 	public String getCity() {
 		return city;
 	}
 
+
+
 	public void setCity(String city) {
 		this.city = city;
 	}
 
-	public String getpasswordUser() {
+
+
+	public String getPasswordUser() {
 		return passwordUser;
 	}
 
-	public void setpasswordUser(String passwordUser) {
+
+
+	public void setPasswordUser(String passwordUser) {
 		this.passwordUser = passwordUser;
 	}
+
+
 
 	public int getCredit() {
 		return credit;
 	}
 
+
+
 	public void setCredit(int credit) {
 		this.credit = credit;
 	}
 
-	public boolean isisAdmin() {
+
+
+	public boolean isAdmin() {
 		return isAdmin;
 	}
 
-	public void setisAdmin(boolean isAdmin) {
+
+
+	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 
+
+
+	public List<ItemSold> getItemsSold() {
+		return itemsSold;
+	}
+
+
+
+	public void setItemsSold(List<ItemSold> itemsSold) {
+		this.itemsSold = itemsSold;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "User [idUser=" + idUser + ", alias=" + alias + ", surname=" + surname + ", firstsurname=" + firstName
-				+ ", email=" + email + ", phone=" + phone + ", street=" + street + ", zipCode=" + zipCode
-				+ ", city=" + city + ", passwordUser=" + passwordUser + ", credit=" + credit + ", isAdmin=" + isAdmin + "]";
+		return "User [idUser=" + idUser + ", alias=" + alias + ", surname=" + surname + ", firstName=" + firstName
+				+ ", email=" + email + ", phone=" + phone + ", street=" + street + ", zipCode=" + zipCode + ", city="
+				+ city + ", passwordUser=" + passwordUser + ", credit=" + credit + ", isAdmin=" + isAdmin
+				+ ", itemsSold=" + itemsSold + ", bids=" + bids + "]";
 	}
+
+
+
+
+
+
 	
 	
 }

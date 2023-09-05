@@ -1,6 +1,8 @@
 package org.enchere.eni.m.bo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemSold {
 
@@ -11,33 +13,69 @@ public class ItemSold {
 	private LocalDate bidEndDate;
 	private int initialPrice;
 	private int sellingPrice;
-	private String statePrice; // est ce que c'est pour etatVente du diagramme ? Est ce que je l'ajoute sur SQL ?
+	private int stateItem;
+	private User user;
+	private Withdraw withdraw;
+	private Category category;
+	private List <Bid> bids = new ArrayList <Bid>();
 
+	
+	public Withdraw getWithdraw() {
+		return withdraw;
+	}
+
+	public void setWithdraw(Withdraw withdraw) {
+		this.withdraw = withdraw;
+	}
+
+	public List<Bid> getBids() {
+		return bids;
+	}
+
+	public void setBids(List<Bid> bids) {
+		this.bids = bids;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public ItemSold() {
 	}
 
-	public int getidItem() {
+	public int getIdItem() {
 		return idItem;
 	}
 
-	public void setidItem(int idItem) {
+	public int getStateItem() {
+		return stateItem;
+	}
+
+	public void setStateItem(int stateItem) {
+		this.stateItem = stateItem;
+	}
+
+	public void setIdItem(int idItem) {
 		this.idItem = idItem;
 	}
 
-	public String getnameItem() {
+	public String getNameItem() {
 		return nameItem;
 	}
 
-	public void setnameItem(String nameItem) {
+	public void setNameItem(String nameItem) {
 		this.nameItem = nameItem;
 	}
 
-	public String getdescriptionItem() {
+	public String getDescriptionItem() {
 		return descriptionItem;
 	}
 
-	public void setdescriptionItem(String descriptionItem) {
+	public void setDescriptionItem(String descriptionItem) {
 		this.descriptionItem = descriptionItem;
 	}
 
@@ -57,36 +95,38 @@ public class ItemSold {
 		this.bidEndDate = bidEndDate;
 	}
 
-	public int getinitialPrice() {
+	public int getInitialPrice() {
 		return initialPrice;
 	}
 
-	public void setinitialPrice(int initialPrice) {
+	public void setInitialPrice(int initialPrice) {
 		this.initialPrice = initialPrice;
 	}
 
-	public int getsellingPrice() {
+	public int getSellingPrice() {
 		return sellingPrice;
 	}
 
-	public void setsellingPrice(int sellingPrice) {
+	public void setSellingPrice(int sellingPrice) {
 		this.sellingPrice = sellingPrice;
 	}
 
-	public String getStatePrice() {
-		return statePrice;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setStatePrice(String statePrice) {
-		this.statePrice = statePrice;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	@Override
 	public String toString() {
 		return "ItemSold [idItem=" + idItem + ", nameItem=" + nameItem + ", descriptionItem=" + descriptionItem
 				+ ", bidStartDate=" + bidStartDate + ", bidEndDate=" + bidEndDate + ", initialPrice=" + initialPrice
-				+ ", sellingPrice=" + sellingPrice + ", statePrice=" + statePrice + "]";
+				+ ", sellingPrice=" + sellingPrice + ", stateItem=" + stateItem + ", user=" + user + ", withdraw="
+				+ withdraw + ", category=" + category + ", bids=" + bids + "]";
 	}
+
 	
-	
+
 }

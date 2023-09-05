@@ -16,10 +16,27 @@ public class Bid {
 	public int getIdBid() {
 		return idBid;
 	}
+
 	public void setIdBid(int idBid) {
 		this.idBid = idBid;
 	}
-	
+
+	public LocalDate getBidDate() {
+		return bidDate;
+	}
+
+	public void setBidDate(LocalDate bidDate) {
+		this.bidDate = bidDate;
+	}
+
+	public int getBidAmount() {
+		return bidAmount;
+	}
+
+	public void setBidAmount(int bidAmount) {
+		this.bidAmount = bidAmount;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -36,25 +53,12 @@ public class Bid {
 		this.itemSold = itemSold;
 	}
 
-	public LocalDate getbidDate() {
-		return bidDate;
-	}
-
-	public void setbidDate(LocalDate bidDate) {
-		this.bidDate = bidDate;
-	}
-
-	public int getBidAmount() {
-		return bidAmount;
-	}
-
-	public void setBidAmount(int bidAmount) {
-		this.bidAmount = bidAmount;
-	}
-
 	@Override
 	public String toString() {
-		return "Bid [bidDate=" + bidDate + ", bidAmount=" + bidAmount + "]";
+		return "Bid [idBid=" + idBid + ", bidDate=" + bidDate + ", bidAmount=" + bidAmount + ", user=" + user
+				+ ", itemSold=" + itemSold + "]";
 	}
+
+
 
 }
