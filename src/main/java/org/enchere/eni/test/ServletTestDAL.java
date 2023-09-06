@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import org.enchere.eni.c.BusinessException;
 import org.enchere.eni.m.bll.UserManager;
 import org.enchere.eni.m.bo.User;
 
@@ -30,7 +31,12 @@ public class ServletTestDAL extends HttpServlet {
         quentin.setPasswordUser("MotDePasseTest"); 
 
         // Appelle la méthode createUser pour ajouter l'utilisateur à la base de données
-        UserManager.getInstance().createUser(quentin);
+        try {
+			UserManager.getInstance().createUser(quentin);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
         System.out.println(quentin);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
