@@ -11,5 +11,6 @@ public interface UserDAO {
 	void createUser(User newUser);
 	User selectById(int idUser);
 	boolean checkPassword (String password, String encryptedPassword) throws NoSuchAlgorithmException, NoSuchProviderException;
-
+	boolean checkEmail (String email);
+	boolean checkAlias (String alias);
 }
