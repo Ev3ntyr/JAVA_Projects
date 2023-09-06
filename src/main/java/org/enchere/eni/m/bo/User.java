@@ -120,23 +120,12 @@ public class User implements Serializable {
 	
 	// CONSTRUCTORS
 	public User() {}
+	
 	public User(String alias, String surname, String firstName, String email, String phone, String street,
 			String zipCode, String city, String passwordUser) {
-		super();
-		this.alias = alias;
-		this.surname = surname;
-		this.firstName = firstName;
-		this.email = email;
-		this.phone = phone;
-		this.street = street;
-		this.zipCode = zipCode;
-		this.city = city;
-		this.passwordUser = passwordUser;
-	}
-	public User(int idUser, String alias, String surname, String firstName, String email, String phone, String street,
-			String zipCode, String city, String passwordUser, int credit, boolean isAdmin) {
+		
 		this();
-		this.idUser = idUser;
+		
 		this.alias = alias;
 		this.surname = surname;
 		this.firstName = firstName;
@@ -146,9 +135,31 @@ public class User implements Serializable {
 		this.zipCode = zipCode;
 		this.city = city;
 		this.passwordUser = passwordUser;
+		this.credit = 0;
+		this.isAdmin = false;
+		
+	}
+	
+	public User(String alias, String surname, String firstName, String email, String phone, String street,
+			String zipCode, String city, String passwordUser, int credit, boolean isAdmin) {
+		
+		this(alias, surname, firstName, email, phone, street, zipCode, city, passwordUser);
+		
 		this.credit = credit;
 		this.isAdmin = isAdmin;
+		
 	}
+	
+	public User(int idUser, String alias, String surname, String firstName, String email, String phone, String street,
+			String zipCode, String city, String passwordUser, int credit, boolean isAdmin) {
+		
+		this(alias, surname, firstName, email, phone, street, zipCode, city, passwordUser, credit, isAdmin);
+		
+		this.idUser = idUser;
+		
+	}
+	
+	
 	// OVVERRIDEN METHODS
 	@Override
 	public String toString() {

@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.sql.Statement;
 
 import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.dal.UserDAO;
@@ -20,6 +20,26 @@ public class UserDAOJdbcImpl implements UserDAO {
 	private static final int STD_USER = 0;
 	private static final int INITIAL_CREDIT = 100;
 	
+	private static final String INIT_TABLE = """
+			DROP TABLE IF EXISTS Users;
+			
+			CREATE TABLE Users (
+			    idUser INTEGER IDENTITY(1,1) NOT NULL,
+			    alias VARCHAR(30) NOT NULL,
+			    surname VARCHAR(30) NOT NULL,
+			    firstName VARCHAR(30) NOT NULL,
+			    email VARCHAR(50) NOT NULL,
+			    phone VARCHAR(15),
+			    street VARCHAR(30) NOT NULL,
+			    zipCode VARCHAR(10) NOT NULL,
+			    city VARCHAR(50) NOT NULL,
+			    passwordUser VARCHAR(128) NOT NULL,
+			    credit INTEGER NOT NULL,
+			    isAdmin bit NOT NULL
+			);
+			ALTER TABLE Users ADD constraint user_pk PRIMARY KEY (idUser);
+			""";
+	
 	private static final String CREATE_USER = """
 			INSERT INTO USERS VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 			""";
@@ -29,6 +49,33 @@ public class UserDAOJdbcImpl implements UserDAO {
 			FROM USERS WHERE idUser = ?;
 			""";
 
+	@Override
+	public void initDataset() {
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			Statement stmt = cnx.createStatement();
+			stmt.executeUpdate(INIT_TABLE);
+			
+		} catch(SQLException sqle) {
+			System.out.println("ERROR WHEN CREATING TABLE Users");
+			sqle.printStackTrace();
+		}
+		
+		User u1 = new User("RogerTheRoro", "Smith", "Roger", "roger.smith@email.com", "01234567890", "123 Main Street", "12345", "New York", "IL0vNY123", 312, false);
+		User u2 = new User("AliceInBorderlands", "Johnson", "Alice", "alice.johnson@email.com", "02345678901", "456 Elm Street", "23456", "Los Angeles", "lAV!bes", 153, false);
+		User u3 = new User("DoudouDavid", "Fortin", "David", "david.fortin@email.com", "0761115598", "78 Avenue Montaigne", "75007", "Paris", "monMotdePasseEstTop", 1200, false);
+		User u4 = new User("Soso", "Wilson", "Sophia", "sophia.wilson@email.com", "4567890123", "1010 Pine Road", "45678", "Houston", "123456", 0, false);
+		User u5 = new User("admin", "admin", "admin", "admin@email.com", "0761144598", "admin street", "75000", "Paris", "admin", 600, true);
+		
+		createUser(u1);
+		createUser(u2);
+		createUser(u3);
+		createUser(u4);
+		createUser(u5);
+
+	}
+	
 	@Override
 	public void createUser(User newUser) {
 		
@@ -47,8 +94,13 @@ public class UserDAOJdbcImpl implements UserDAO {
 			String password = newUser.getPasswordUser();
 			String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
 			pStmt.setString(9, hashedPassword);
-		
-			pStmt.setInt(10, INITIAL_CREDIT);
+			
+			if (newUser.getCredit() == 0) {
+				pStmt.setInt(10, INITIAL_CREDIT);
+			} else {
+				pStmt.setInt(10, newUser.getCredit());
+			}
+			
 			pStmt.setInt(11, STD_USER);
 			
 			pStmt.executeUpdate();
@@ -59,6 +111,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 			}
 			
 		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN INSERT User INTO DATABASE");
 			sqle.printStackTrace();
 		}
 		
