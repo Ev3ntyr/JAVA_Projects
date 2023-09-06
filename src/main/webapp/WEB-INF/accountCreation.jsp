@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="org.enchere.eni.m.messages.MessageReader"%>
 <!DOCTYPE html>
+
 <html>
 <head>
 <link rel="stylesheet"
@@ -29,6 +32,19 @@
 	<br>
 	<br>
 
+	<c:if test="${!empty errorCodesList }">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4 text-danger">Erreur lors de la création de
+					compte</h1>
+				<c:forEach items="${errorCodesList }" var="code">
+					<p class="lead">${MessageReader.getErrorMessage(code) }</p>
+
+				</c:forEach>
+			</div>
+		</div>
+
+	</c:if>
 	<form action="create" method="POST">
 
 		<div class="form-row ">
@@ -48,13 +64,13 @@
 		<div class="form-row">
 			<div class="form-group mx-auto col-md-5">
 				<label for="passwordUser">Mot de passe</label> <input
-					type="password" maxlength="128" class="form-control" name="passwordUser"
-					id="passwordUser" placeholder="Soyez créatif !">
+					type="password" maxlength="128" class="form-control"
+					name="passwordUser" id="passwordUser" placeholder="Soyez créatif !">
 			</div>
 			<div class="form-group mx-auto col-md-5">
 				<label for="passwordUserCheck">Confirmation mot de passe</label> <input
-					type="password" maxlength="128" class="form-control" name="passwordUserCheck"
-					id="passwordUserCheck">
+					type="password" maxlength="128" class="form-control"
+					name="passwordUserCheck" id="passwordUserCheck">
 			</div>
 		</div>
 		<br>
@@ -91,14 +107,14 @@
 			</div>
 			<div class="form-group mx-auto col-md-5">
 				<label for="phone">Téléphone</label> <input type=tel maxlength="15"
-					class="form-control" id="phone"  name="phone">
+					class="form-control" id="phone" name="phone">
 			</div>
-		</div>	
-		<br>
-		<input class="btn btn-info" type="submit" value="créer">
-		
+		</div>
+		<br> <input class="btn btn-info" type="submit" value="créer">
+
 	</form>
-<br><br>
+	<br>
+	<br>
 
 
 

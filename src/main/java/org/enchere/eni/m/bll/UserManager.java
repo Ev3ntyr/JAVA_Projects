@@ -57,7 +57,7 @@ public class UserManager {
 	}
 
 	private void emailCheck(String email, BusinessException be) {
-		if (DAOFactory.getUserDAO().checkEmail(email)) {
+		if (DAOFactory.getUserDAO().checkEmail(email)) {			
 			be.addErrorCode(ErrorCodesBLL.EMAIL_NOT_UNIQUE_ERROR);
 		}
 	}
