@@ -50,8 +50,7 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 					int sellingPrice = rs.getInt("sellingPrice");
 					int stateItem = rs.getInt("stateItem");
 				
-					itemInProgress = new ItemSold(idItem, nameItem, descriptionItem, bidStartDate,
-							bidEndDate, initialPrice, sellingPrice, stateItem);
+					
 
 					// enchaine avec tous les champs de user puis crée un new User
 
@@ -86,15 +85,22 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 
 					Category c = new Category(idCategory, wording);
 
+					itemInProgress = new ItemSold(idItem, nameItem, descriptionItem, bidStartDate,
+							bidEndDate, initialPrice, sellingPrice, stateItem, u, w, c);	
+				
+					idPreviousItem = idItem;
 					
+				}
 					
 					int idBid = rs.getInt("idBid");
 					LocalDate bidDate = rs.getDate("bidDate").toLocalDate();
 					int bidAmount = rs.getInt("bidAmount");
+					
 					Bid bid = new Bid(idBid, bidDate, bidAmount);
+					
 					itemInProgress.addBid(bid);
 
-			}	
+			
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -102,19 +108,3 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 		return itemSold;
 	}
 }
-
-/*
- * itemSold = new ItemSold(itemInProgress, nameItem, descriptionItem,
- * bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem);
- * itemsSold.add(itemSold);
- * 
- * idPreviousItem = itemInProgress;
- * 
- * 
- * 
- * 
- * int idBid = rs.getInt("idBid"); LocalDate bidDate =
- * rs.getDate("bidDate").toLocalDate(); int bidAmount = rs.getInt("bidAmount");
- * Bid bid = new Bid(idBid, bidDate, bidAmount); itemInProgress.addBid(bid); }
- * catch(SQLException e ) { e.printStackTrace(); } return itemSold;
- */

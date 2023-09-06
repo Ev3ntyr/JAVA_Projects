@@ -103,10 +103,11 @@ public class ItemSold implements Serializable {
 	// CONSTRUCTORS
 	public ItemSold() {}
 	
+
 	
 	public ItemSold(int idItem, String nameItem, String descriptionItem, LocalDate bidStartDate, LocalDate bidEndDate,
-			int initialPrice, int sellingPrice, int stateItem) {
-		super();
+			int initialPrice, int sellingPrice, int stateItem, User user, Withdraw withdraw, Category category) {
+		this();
 		this.idItem = idItem;
 		this.nameItem = nameItem;
 		this.descriptionItem = descriptionItem;
@@ -115,6 +116,9 @@ public class ItemSold implements Serializable {
 		this.initialPrice = initialPrice;
 		this.sellingPrice = sellingPrice;
 		this.stateItem = stateItem;
+		this.user = user;
+		this.withdraw = withdraw;
+		this.category = category;
 	}
 	// OVERRIDEN METHODS
 	@Override
