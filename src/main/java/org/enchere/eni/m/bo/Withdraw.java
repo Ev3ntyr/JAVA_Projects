@@ -40,13 +40,19 @@ public class Withdraw implements Serializable {
 	// CONSTRUCTORS
 	public Withdraw() {}
 	
-	
 	public Withdraw(String street, String zipCode, String city) {
-		super();
+		this();
 		this.street = street;
 		this.zipCode = zipCode;
 		this.city = city;
 	}
+	
+	public Withdraw(ItemSold item, String street, String zipCode, String city) {
+		this(street, zipCode, city);
+		this.itemSold = item;
+	}
+	
+	
 	// OVERRRIDEN METHODS
 	@Override
 	public String toString() {

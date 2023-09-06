@@ -7,4 +7,5 @@ import org.enchere.eni.m.bo.ItemSold;
 public interface ItemSoldDAO {
 
 	List<ItemSold> selectAll();
+	void insert(ItemSold item);
 }

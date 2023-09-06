@@ -8,7 +8,7 @@ private static ResourceBundle rb;
 	
 	static {
 		//récupère le fichier qui contient les messages d'erreur
-		rb = ResourceBundle.getBundle("org.enchere.eni.messages.error_messages");
+		rb = ResourceBundle.getBundle("org.enchere.eni.m.messages.error_messages");
 	}
 	
 	/**

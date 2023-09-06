@@ -15,10 +15,7 @@ public class CategoryManager {
 		}
 		return instance;
 	}
-	
-	public void initDataset() {
-		DAOFactory.getCategoryDAO().initDataset();
-	}
+
 	public void insertCategory(Category newCategory) {
 		DAOFactory.getCategoryDAO().insert(newCategory);
 	}

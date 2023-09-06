@@ -22,4 +22,7 @@ public class ItemSoldManager {
 		return DAOFactory.getItemSoldDAO().selectAll();
 	}
 	
+	public void insert(ItemSold item) {
+		DAOFactory.getItemSoldDAO().insert(item);
+	}
 }
