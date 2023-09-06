@@ -39,7 +39,11 @@ public class CreateAccount extends HttpServlet {
 		
 		User newUser = new User(enteredAlias,enteredSurname, enteredFirstName, enteredEmail,enteredPhone, enteredStreet, enteredZipCode, enteredCity, enteredPassword);
 		System.out.println(newUser);
-		UserManager.getInstance().createUser(newUser);
+		try {
+			UserManager.getInstance().createUser(newUser);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
 		RequestDispatcher rd = request.getRequestDispatcher("home");
 		rd.forward(request, response);
 	}
