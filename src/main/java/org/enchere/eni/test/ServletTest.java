@@ -31,6 +31,8 @@ public class ServletTest extends HttpServlet {
 			System.out.println("echec");		
 		}	
 		
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSPTest.jsp");
 		rd.forward(request, response);
 	}
