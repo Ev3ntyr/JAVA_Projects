@@ -1,6 +1,8 @@
 package org.enchere.eni.m.dal.jdbc;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,9 +18,8 @@ import org.enchere.eni.m.bo.Withdraw;
 import org.enchere.eni.m.dal.ItemSoldDAO;
 
 public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
-
-	public final static String SELECT_ALL = """
-
+	
+	public static final String SELECT_ALL = """
 			SELECT * FROM SOLD_ITEMS
 			JOIN USERS ON SOLD_ITEMS.idUser = USERS.idUser
 			JOIN CATEGORIES ON SOLD_ITEMS.idCategory = CATEGORIES.idCategory
@@ -29,10 +30,7 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 	@Override
 	public List<ItemSold> selectAll() {
 		
-		
-		
 		List<ItemSold> itemSold = new ArrayList<ItemSold>();
-		
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
@@ -53,8 +51,6 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 					int initialPrice = rs.getInt("initialPrice");
 					int sellingPrice = rs.getInt("sellingPrice");
 					int stateItem = rs.getInt("stateItem");
-
-					// enchaine avec tous les champs de user puis crée un new User
 
 					int idUser = rs.getInt("idUser");
 					String alias = rs.getString("alias");
@@ -87,32 +83,79 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 							initialPrice, sellingPrice, stateItem, u, w, c);
 					
 					itemSold.add(itemInProgress);
-					
-
-					idPreviousItem = idItem;
-
-					
+					idPreviousItem = idItem;				
 				}
-
 				if (rs.getInt("idBid") != 0) {
 					int idBid = rs.getInt("idBid");
 					LocalDate bidDate = rs.getDate("bidDate").toLocalDate();
 					int bidAmount = rs.getInt("bidAmount");
-
 					Bid bid = new Bid(idBid, bidDate, bidAmount, itemInProgress, u);
 				
-
 					itemInProgress.addBid(bid);
 				}
-
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		
-
 		return itemSold;
+	}
+	
+	public static final String INSERT = """
+			INSERT INTO SOLD_ITEMS (nameItem, descriptionItem, bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem, idUser, idCategory)
+			VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
+			""";
+	@Override
+	public void insert(ItemSold item) {
+		
+		try(Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
+			pStmt.setString(1, item.getNameItem());
+			pStmt.setString(2, item.getDescriptionItem());
+			pStmt.setDate(3, Date.valueOf(item.getBidStartDate()));
+			pStmt.setDate(4, Date.valueOf(item.getBidEndDate()));
+			pStmt.setInt(5, item.getInitialPrice());
+			pStmt.setInt(6, item.getSellingPrice());
+			pStmt.setInt(7, item.getStateItem());
+			pStmt.setInt(8, item.getUser().getIdUser());
+			pStmt.setInt(9, item.getCategory().getIdCategory());
+			
+			pStmt.executeUpdate();
+			
+			ResultSet rs = pStmt.getGeneratedKeys();
+			
+			if (rs.next()) {
+				item.setIdItem(rs.getInt(1));
+			}
+						
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN INSERTING ITEM");
+			sqle.printStackTrace();
+		}
+		
+	}
 
+	public static final String INSERT_WITHDRAW = """
+			INSERT INTO WITHDRAW (idItem, street, zipCode, city)
+			VALUES(?, ?, ?, ?);
+			""";
+	private void insertWithdraw(Withdraw withdraw) {
+		
+		// TODO Add this method when creating a new item
+		
+		try(Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(INSERT);
+			pStmt.setInt(1, withdraw.getItemSold().getIdItem());
+			pStmt.setString(2, withdraw.getStreet());
+			pStmt.setString(3, withdraw.getZipCode());
+			pStmt.setString(4, withdraw.getCity());
+			
+			pStmt.executeUpdate();
+						
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN INSERTING WITHDRAW");
+			sqle.printStackTrace();
+		}
+		
 	}
 }

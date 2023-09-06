@@ -41,11 +41,6 @@ public class UserManager {
 		DAOFactory.getUserDAO().createUser(newUser);
 		
 	}
-	
-	public void initDataset() {
-		DAOFactory.getUserDAO().initDataset();
-	}
-	
 
 	public User selectById(int idUser) {
 		return DAOFactory.getUserDAO().selectById(idUser);

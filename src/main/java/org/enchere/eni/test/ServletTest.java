@@ -2,21 +2,16 @@ package org.enchere.eni.test;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 import org.enchere.eni.m.bll.ItemSoldManager;
-import org.enchere.eni.m.bll.UserManager;
 import org.enchere.eni.m.bo.ItemSold;
-import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.dal.jdbc.ConnectionProvider;
 
 /**
@@ -38,6 +33,7 @@ public class ServletTest extends HttpServlet {
 		for(ItemSold item: itemSold ) {
 			System.out.println(item);
 		}
+
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSPTest.jsp");
 		rd.forward(request, response);

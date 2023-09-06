@@ -16,10 +16,6 @@ public class BidManager {
 
 	private BidManager() {}
 	
-	public void initDataset() {
-		DAOFactory.getBidDAO().initDataset();
-	}
-	
 	public void insert(Bid bid) {
 		DAOFactory.getBidDAO().insert(bid);
 	}

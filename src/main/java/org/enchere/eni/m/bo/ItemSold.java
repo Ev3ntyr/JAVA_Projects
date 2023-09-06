@@ -103,12 +103,9 @@ public class ItemSold implements Serializable {
 	// CONSTRUCTORS
 	public ItemSold() {}
 	
-
-	
-	public ItemSold(int idItem, String nameItem, String descriptionItem, LocalDate bidStartDate, LocalDate bidEndDate,
-			int initialPrice, int sellingPrice, int stateItem, User user, Withdraw withdraw, Category category) {
+	public ItemSold(String nameItem, String descriptionItem, LocalDate bidStartDate, LocalDate bidEndDate,
+			int initialPrice, int sellingPrice, int stateItem, User user, Category category) {
 		this();
-		this.idItem = idItem;
 		this.nameItem = nameItem;
 		this.descriptionItem = descriptionItem;
 		this.bidStartDate = bidStartDate;
@@ -117,9 +114,17 @@ public class ItemSold implements Serializable {
 		this.sellingPrice = sellingPrice;
 		this.stateItem = stateItem;
 		this.user = user;
-		this.withdraw = withdraw;
 		this.category = category;
 	}
+	
+	public ItemSold(int idItem, String nameItem, String descriptionItem, LocalDate bidStartDate, LocalDate bidEndDate,
+			int initialPrice, int sellingPrice, int stateItem, User user, Withdraw withdraw, Category category) {
+		this(nameItem, descriptionItem, bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem, user, category);
+		this.idItem = idItem;
+		this.withdraw = withdraw;
+	}
+	
+	
 	// OVERRIDEN METHODS
 	@Override
 	public String toString() {
