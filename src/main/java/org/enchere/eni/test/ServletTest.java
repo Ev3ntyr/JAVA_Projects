@@ -11,8 +11,11 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
+import org.enchere.eni.m.bll.ItemSoldManager;
 import org.enchere.eni.m.bll.UserManager;
+import org.enchere.eni.m.bo.ItemSold;
 import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.dal.jdbc.ConnectionProvider;
 
@@ -31,7 +34,10 @@ public class ServletTest extends HttpServlet {
 			System.out.println("echec");		
 		}	
 		
-		
+		List<ItemSold> itemSold = ItemSoldManager.getInstance().selectAll();
+		for(ItemSold item: itemSold ) {
+			System.out.println(item);
+		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSPTest.jsp");
 		rd.forward(request, response);

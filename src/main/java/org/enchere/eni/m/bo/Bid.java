@@ -55,12 +55,17 @@ public class Bid implements Serializable {
 		this.user = user;
 	}
 	
+
+	public Bid(int idBid, LocalDate bidDate, int bidAmount,ItemSold itemSold,  User user) {
+		this(bidDate, bidAmount, itemSold, user);
+		this.idBid = idBid;
 	
+	}
 	// OVERRIDEN METHODS
 	@Override
 	public String toString() {
 		return "Bid [idBid=" + idBid + ", bidDate=" + bidDate + ", bidAmount=" + bidAmount + ", user=" + user
-				+ ", itemSold=" + itemSold + "]";
+				+ ", itemSold=" + "]";
 	}
 
 }

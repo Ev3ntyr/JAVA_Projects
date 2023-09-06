@@ -28,8 +28,11 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 
 	@Override
 	public List<ItemSold> selectAll() {
-
+		
+		
+		
 		List<ItemSold> itemSold = new ArrayList<ItemSold>();
+		
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
@@ -38,6 +41,7 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 
 			int idPreviousItem = 0;
 			ItemSold itemInProgress = null;
+			User u = null;
 			while (rs.next()) {
 
 				int idItem = rs.getInt("idItem");
@@ -49,8 +53,6 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 					int initialPrice = rs.getInt("initialPrice");
 					int sellingPrice = rs.getInt("sellingPrice");
 					int stateItem = rs.getInt("stateItem");
-				
-					
 
 					// enchaine avec tous les champs de user puis crée un new User
 
@@ -67,10 +69,8 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 					int credit = rs.getInt("credit");
 					boolean isAdmin = rs.getBoolean("isAdmin");
 
-					User u = new User(idUser, alias, surname, firstName, email, phone, street, zipCode, city,
-							passwordUser, credit, isAdmin);
-					
-					
+					u = new User(idUser, alias, surname, firstName, email, phone, street, zipCode, city, passwordUser,
+							credit, isAdmin);
 
 					String street1 = rs.getString("street");
 					String zipCode1 = rs.getString("zipCode");
@@ -78,35 +78,41 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 
 					Withdraw w = new Withdraw(street1, zipCode1, city1);
 
-					
-					
 					int idCategory = rs.getInt("idCategory");
 					String wording = rs.getString("wording");
 
 					Category c = new Category(idCategory, wording);
 
-					itemInProgress = new ItemSold(idItem, nameItem, descriptionItem, bidStartDate,
-							bidEndDate, initialPrice, sellingPrice, stateItem, u, w, c);	
-				
+					itemInProgress = new ItemSold(idItem, nameItem, descriptionItem, bidStartDate, bidEndDate,
+							initialPrice, sellingPrice, stateItem, u, w, c);
+					
+					itemSold.add(itemInProgress);
+					
+
 					idPreviousItem = idItem;
+
 					
 				}
-					
+
+				if (rs.getInt("idBid") != 0) {
 					int idBid = rs.getInt("idBid");
 					LocalDate bidDate = rs.getDate("bidDate").toLocalDate();
 					int bidAmount = rs.getInt("bidAmount");
-					
-					Bid bid = new Bid(idBid, bidDate, bidAmount);
-					
-					itemInProgress.addBid(bid);
 
-			
+					Bid bid = new Bid(idBid, bidDate, bidAmount, itemInProgress, u);
+				
+
+					itemInProgress.addBid(bid);
+				}
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+		
+
 		return itemSold;
-		
-		
+
 	}
 }
