@@ -42,7 +42,10 @@ public class CreateAccount extends HttpServlet {
 		try {
 			UserManager.getInstance().createUser(newUser);
 		} catch (BusinessException e) {
+			System.out.println(e.getMessage());
 			e.printStackTrace();
+			request.setAttribute("errorCodesList", e.getErrorCodeList());
+			doGet(request, response);
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("home");
 		rd.forward(request, response);
