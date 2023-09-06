@@ -25,7 +25,7 @@
 <meta charset="UTF-8">
 <title>Création de Compte</title>
 </head>
-<body>
+<body class="container" max-width=80%>
 	<br>
 	<br>
 	<h1>Créer mon compte</h1>
@@ -110,15 +110,20 @@
 					class="form-control" id="phone" name="phone">
 			</div>
 		</div>
-		<br> <input class="btn btn-info" type="submit" value="créer">
+		<br>
+		<br>
+		<div class="d-flex justify-content-center">
 
+			<input class="btn btn-info mr-3 col-3" type="submit" value="Créer">
+			<a href="home" class="btn btn-danger col-3">Annuler</a>
+
+		</div>
 	</form>
 	<br>
 	<br>
 
 
 
-	<a href="home">Annuler</a>
 
 </body>
 </html>
