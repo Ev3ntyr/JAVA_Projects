@@ -1,7 +1,5 @@
 package org.enchere.eni.m.bll;
 
-import java.util.List;
-
 import org.enchere.eni.m.bo.Bid;
 import org.enchere.eni.m.dal.DAOFactory;
 
@@ -16,7 +14,15 @@ public class BidManager {
 		return instance;
 	}
 
-	private BidManager() {
+	private BidManager() {}
+	
+	public void initDataset() {
+		DAOFactory.getBidDAO().initDataset();
 	}
+	
+	public void insert(Bid bid) {
+		DAOFactory.getBidDAO().insert(bid);
+	}
+	
 
 }
