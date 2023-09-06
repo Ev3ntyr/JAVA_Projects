@@ -1,6 +1,7 @@
 package org.enchere.eni.m.dal;
 
 import org.enchere.eni.m.dal.jdbc.BidDAOJdbcImpl;
+import org.enchere.eni.m.dal.jdbc.CategoryDAOJdbcImpl;
 import org.enchere.eni.m.dal.jdbc.ItemSoldDAOJdbcImpl;
 import org.enchere.eni.m.dal.jdbc.UserDAOJdbcImpl;
 
@@ -16,5 +17,9 @@ public class DAOFactory {
 	
 	public static ItemSoldDAO getItemSoldDAO() {
 		return new ItemSoldDAOJdbcImpl();
+	}
+	
+	public static CategoryDAO getCategoryDAO() {
+		return new CategoryDAOJdbcImpl();
 	}
 }

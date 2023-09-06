@@ -19,6 +19,10 @@ public class UserManager {
 		return instance;
 	}
 	
+	public void initDataset() {
+		DAOFactory.getUserDAO().initDataset();
+	}
+	
 	public void createUser(User newUser) {
 		DAOFactory.getUserDAO().createUser(newUser);
 	}
