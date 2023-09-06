@@ -6,5 +6,7 @@ import org.enchere.eni.m.bo.Bid;
 
 public interface BidDAO {
 	
+	void initDataset();
+	void insert(Bid bid);
 
 }

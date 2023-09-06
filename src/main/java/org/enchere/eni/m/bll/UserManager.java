@@ -20,6 +20,7 @@ public class UserManager {
 		return instance;
 	}
 
+
 	public void createUser(User newUser) throws BusinessException {
 		
 		BusinessException be = new BusinessException();
@@ -38,7 +39,13 @@ public class UserManager {
 		}	
 		
 		DAOFactory.getUserDAO().createUser(newUser);
+		
 	}
+	
+	public void initDataset() {
+		DAOFactory.getUserDAO().initDataset();
+	}
+	
 
 	public User selectById(int idUser) {
 		return DAOFactory.getUserDAO().selectById(idUser);

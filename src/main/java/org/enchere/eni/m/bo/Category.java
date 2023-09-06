@@ -40,6 +40,11 @@ public class Category implements Serializable {
 	// CONSTRUCTORS
 	public Category() {}
 	
+	public Category(String wording) {
+		this();
+		this.wording = wording;
+	}
+	
 	
 	
 	public Category(int idCategory, String wording) {

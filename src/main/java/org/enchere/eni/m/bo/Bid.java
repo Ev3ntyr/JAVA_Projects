@@ -47,14 +47,15 @@ public class Bid implements Serializable {
 	// CONSTRUCTORS
 	public Bid() {}
 	
-	
-	
-	public Bid(int idBid, LocalDate bidDate, int bidAmount) {
-		super();
-		this.idBid = idBid;
+	public Bid(LocalDate bidDate, int bidAmount, ItemSold itemSold, User user) {
+		this();
 		this.bidDate = bidDate;
 		this.bidAmount = bidAmount;
+		this.itemSold = itemSold;
+		this.user = user;
 	}
+	
+	
 	// OVERRIDEN METHODS
 	@Override
 	public String toString() {
