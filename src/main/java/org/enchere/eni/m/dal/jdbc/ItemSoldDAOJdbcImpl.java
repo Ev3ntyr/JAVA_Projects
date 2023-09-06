@@ -106,5 +106,7 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 			e.printStackTrace();
 		}
 		return itemSold;
+		
+		
 	}
 }
