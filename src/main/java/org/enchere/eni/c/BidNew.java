@@ -25,8 +25,6 @@ public class BidNew extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User testwithdraw = UserManager.getInstance().selectById(5);
-		System.out.println(testwithdraw);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/bidNew.jsp");
 		rd.forward(request, response);
 		
@@ -43,7 +41,7 @@ public class BidNew extends HttpServlet {
 		
 		String enteredName = request.getParameter("nameItem");
 		String enteredDescript = request.getParameter("descriptionItem");
-		String enteredCategory = request.getParameter("passwordUser");
+		String enteredCategory = request.getParameter("idCategory");
 		//TODO Récupérer la liste des catégories pour l'afficher ?
 		//TODO Récupérer la photo et la stocker
 		int enteredInitialPrice = Integer.valueOf(request.getParameter("initialPrice"));
@@ -59,7 +57,6 @@ public class BidNew extends HttpServlet {
 			e.printStackTrace();
 			BusinessException be = new BusinessException(ErrorCodesBLL.FORMAT_BID_START_DATE_ERROR);		
 		}
-		System.out.println(bidStartDate);
 
 		LocalDate bidEndDate = null;
 		try {

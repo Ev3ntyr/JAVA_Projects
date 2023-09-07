@@ -27,11 +27,6 @@
 <body class="container" max-width=80%>
 	<h1>Nouvelle mise aux enchères</h1>
 
-	<ul>
-		<li><a href="home">Enregister</a></li>
-		<li><a href="home">Annuler</a></li>
-	</ul>
-
 	<br>
 	<br>
 	<br>
@@ -69,7 +64,7 @@
 			<br>
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="idCategory">Catégorie :</label> <input
-					type="textarea" maxlength="300" class="col col-lg-4" id="" name=""
+					type="textarea" maxlength="300" class="col col-lg-4" id="idCategory" name="idCategory"
 					required>
 			</div>
 			<br>
