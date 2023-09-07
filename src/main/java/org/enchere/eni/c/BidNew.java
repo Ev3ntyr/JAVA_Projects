@@ -25,6 +25,13 @@ public class BidNew extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		int idUser = (int) session.getAttribute("idUser");
+		
+		User user = UserManager.getInstance().selectById(idUser);
+		
+		request.setAttribute("user", user);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/bidNew.jsp");
 		rd.forward(request, response);
 		
@@ -91,7 +98,7 @@ public class BidNew extends HttpServlet {
 			doGet(request, response);
 		}
 		
-		// TODO verif si donnée formulaire idem à user. Si différent on crée un withdraw
+		// Vérification de la concordance entre l'adresse saisie en formulaire et celle du user
 		String enteredStreet = request.getParameter("street");
 		String enteredZipCode = request.getParameter("zipCode");
 		String enteredCity = request.getParameter("city");

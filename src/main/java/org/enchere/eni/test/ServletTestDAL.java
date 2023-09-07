@@ -33,7 +33,6 @@ public class ServletTestDAL extends HttpServlet {
         try {
 			UserManager.getInstance().createUser(quentin);
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         
