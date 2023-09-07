@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="org.enchere.eni.m.messages.MessageReader"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,13 +30,15 @@
 	<h1>Créer mon compte</h1>
 	<br>
 	<br>
+	
+	<br>
 
 	<c:if test="${!empty errorCodesList }">
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
 				<h1 class="display-4 text-danger">Erreur lors de la création de
 					compte</h1>
-				<c:forEach items="${errorCodesList }" var="code">
+					<c:forEach items="${errorCodesList }" var="code">
 					<p class="lead">${MessageReader.getErrorMessage(code) }</p>
 
 				</c:forEach>
@@ -53,7 +57,6 @@
 			</div>
 		</div>
 		<br>
-
 		<div class="form-row">
 			<div class="form-group mx-auto col-md-5">
 				<label for="passwordUser">Mot de passe</label> <input
@@ -62,8 +65,12 @@
 			</div>
 		</div>
 		<br>
-
-		
+		<div class="form-row">
+			<div class="form-group mx-auto col-md-5">
+				<input type="checkbox" id="rememberMe" name="rememberMe">
+				<label for="rememberMe">Se souvenir de moi</label>
+			</div>
+		</div>
 		<br>
 		<br>
 		<div class="d-flex justify-content-center">
