@@ -5,6 +5,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 import org.enchere.eni.m.bll.UserManager;
@@ -23,6 +25,9 @@ public class CreateAccount extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		
 		//1. on récupère les valeurs du formulaire (paramètres)
 		String enteredEmail = request.getParameter("email");
 		String enteredAlias = request.getParameter("alias");
@@ -41,6 +46,7 @@ public class CreateAccount extends HttpServlet {
 		System.out.println(newUser);
 		try {
 			UserManager.getInstance().createUser(newUser);
+			session.setAttribute("idUser", newUser.getIdUser());
 		} catch (BusinessException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
