@@ -2,10 +2,26 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
     
+   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
 <title>Accueil</title>
 </head>
 <body>
@@ -45,19 +61,45 @@
 	<a href="bidDetails">Consulter l'enchère</a>
 
 	<c:choose>
-		<c:when test="${listItemSold.size() > 0 }">
-			<c:forEach items="${listItemSold }" var="itemSold">
-				<div class="card" style="width: 18rem;">
-					<img class="card-img-top" src="..." alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">Some quick example text to build on the
-							card title and make up the bulk of the card's content.</p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
+		<c:when test="${listItem.size() > 0 }">
+			<tbody>
 
+				<c:forEach items="${listItem }" var="itemSold">
+
+					<div class="container">
+						<div class="row row-cols-2">
+							<div class="col"><div class="card" style="width: 18rem;">
+						<img class="card-img-top" src="..." alt="">
+						<div class="card-body">
+							<h5 class="card-title">
+								<a href="bidDetails">${itemSold.nameItem}</a>
+							</h5>
+							<p class="card-text">Prix : ${itemSold.initialPrice}</p>
+							<p class="card-text">Fin de l'enchère :
+								${itemSold.bidEndDate}</p>
+							<p class="card-text">
+								Vendeur :<a href="#" class="btn btn-primary">${u.alias}</a>
+							</p></div>
+						</div>
 					</div>
-				</div>
+
+					<div class="card" style="width: 18rem;">
+						<img class="card-img-top" src="..." alt="">
+						<div class="card-body">
+							<h5 class="card-title">
+								<a href="bidDetails">${itemSold.nameItem}</a>
+							</h5>
+							<p class="card-text">Prix : ${itemSold.initialPrice}</p>
+							<p class="card-text">Fin de l'enchère :
+								${itemSold.bidEndDate}</p>
+							<p class="card-text">
+								Vendeur :<a href="#" class="btn btn-primary">${u.alias}</a>
+							</p>
+
+						</div>
+					</div>
 				</c:forEach>
+			</tbody>
 		</c:when>
 	</c:choose>
 
