@@ -19,10 +19,6 @@ public class Connection extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if (session.getAttribute("idUser") != null) {
-			int idUser = (int) session.getAttribute("idUser");
-			request.setAttribute("idUser", idUser);
-		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/accountConnection.jsp");
 		rd.forward(request, response);
@@ -36,7 +32,7 @@ public class Connection extends HttpServlet {
 		boolean rememberMe = request.getParameter("rememberMe") != null;
 		
 		User user = UserManager.getInstance().selectByAlias(alias);
-		System.out.println("remember check ?" + rememberMe);
+		System.out.println("remember check ? " + rememberMe);
 		
 		if (UserManager.getInstance().checkPassword(password, user.getPasswordUser())) {
 			System.out.println("Password OK");

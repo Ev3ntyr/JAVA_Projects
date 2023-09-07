@@ -11,27 +11,34 @@
 <body>
 
 	<h1>Accueil - liste enchères</h1>
-
-	<ul>
-		<li><a href="connection">S'inscrire/Se connecter</a></li>
-	</ul>
-	<ul>
-		<li>
-			<a href="">Enchères</a>
-		</li>
-		<li>
-			<a href="bidNew">Vendre un article</a>
-		</li>
-		<li>
-			<a href="userProfile">Mon profil</a>
-		</li>
-		<li>
-			<a href="logout">Déconnexion</a>
-		</li>
-		<li>
-			<a href="">Déconnexion</a>
-		</li>
-	</ul>
+	
+	<c:choose>
+		<c:when test="${sessionScope.idUser == null}">
+			<ul>
+				<li>
+					<a href="connection">S'inscrire/Se connecter</a>
+				</li>
+			</ul>
+		</c:when>
+		<c:otherwise>
+			<ul>
+				<li>
+					<a href="">Enchères</a>
+				</li>
+				<li>
+					<a href="bidNew">Vendre un article</a>
+				</li>
+				<li>
+					<a href="userProfile">Mon profil</a>
+				</li>
+				<li>
+					<a href="logout">Déconnexion</a>
+				</li>
+			</ul>
+		</c:otherwise>
+	</c:choose>
+	
+	
 
 	<br>
 

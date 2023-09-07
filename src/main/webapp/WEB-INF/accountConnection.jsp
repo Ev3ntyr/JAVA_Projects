@@ -30,7 +30,6 @@
 	<h1>Créer mon compte</h1>
 	<br>
 	<br>
-	<p>${idUser} </p>
 	
 	<br>
 
