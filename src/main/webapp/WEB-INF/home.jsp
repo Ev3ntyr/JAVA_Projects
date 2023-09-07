@@ -24,7 +24,7 @@
 	crossorigin="anonymous"></script>
 <title>Accueil</title>
 </head>
-<body>
+<body class="container" max-width="80%">
 
 	<h1>Accueil - liste enchères</h1>
 	
@@ -54,7 +54,6 @@
 		</c:otherwise>
 	</c:choose>
 	
-	
 
 	<br>
 
@@ -63,27 +62,13 @@
 	<c:choose>
 		<c:when test="${listItem.size() > 0 }">
 			<tbody>
-
+				<div class="container">
+				<div class="row justify-content-md-center">
 				<c:forEach items="${listItem }" var="itemSold">
 
-					<div class="container">
-						<div class="row row-cols-2">
-							<div class="col"><div class="card" style="width: 18rem;">
-						<img class="card-img-top" src="..." alt="">
-						<div class="card-body">
-							<h5 class="card-title">
-								<a href="bidDetails">${itemSold.nameItem}</a>
-							</h5>
-							<p class="card-text">Prix : ${itemSold.initialPrice}</p>
-							<p class="card-text">Fin de l'enchère :
-								${itemSold.bidEndDate}</p>
-							<p class="card-text">
-								Vendeur :<a href="#" class="btn btn-primary">${u.alias}</a>
-							</p></div>
-						</div>
-					</div>
 
-					<div class="card" style="width: 18rem;">
+
+					<div class="card col-3 m-4" style="width: 18rem;">
 						<img class="card-img-top" src="..." alt="">
 						<div class="card-body">
 							<h5 class="card-title">
@@ -93,12 +78,14 @@
 							<p class="card-text">Fin de l'enchère :
 								${itemSold.bidEndDate}</p>
 							<p class="card-text">
-								Vendeur :<a href="#" class="btn btn-primary">${u.alias}</a>
+								Vendeur :<a href="userProfile?idUser=${itemSold.user.idUser}" class="btn btn-primary">${itemSold.user.alias}</a>
 							</p>
 
 						</div>
 					</div>
 				</c:forEach>
+				</div>
+				</div>
 			</tbody>
 		</c:when>
 	</c:choose>
