@@ -1,12 +1,13 @@
 package org.enchere.eni.m.dal.jdbc;
 
 
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import org.apache.tomcat.dbcp.dbcp2.SQLExceptionList;
 import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.dal.UserDAO;
 import org.enchere.eni.m.security.BCrypt;
@@ -175,6 +176,49 @@ public class UserDAOJdbcImpl implements UserDAO {
 		}
 		
 		return u;
+	}
+	
+	private static final String UPDATE = """
+			UPDATE USERS
+			SET alias = ?,
+			surname = ?,
+			firstName = ?,
+			email = ?,
+			phone = ?,
+			street = ?,
+			zipCode = ?,
+			city = ?,
+			passwordUser = ?
+			WHERE idUser = ?;
+			""";
+	@Override
+	public void update(User user) {
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(UPDATE);
+			pStmt.setString(1, user.getAlias());
+			pStmt.setString(2,  user.getSurname());
+			pStmt.setString(3, user.getFirstName());
+			pStmt.setString(4, user.getEmail());
+			pStmt.setString(5, user.getPhone());
+			pStmt.setString(6,  user.getStreet());
+			pStmt.setString(7,  user.getZipCode());
+			pStmt.setString(8,  user.getCity());
+			String userPassword = user.getPasswordUser();
+			if (userPassword.length() < 20) {
+				userPassword = BCrypt.hashpw(userPassword, BCrypt.gensalt());
+			}
+			pStmt.setString(9,  userPassword);
+			pStmt.setInt(10,  user.getIdUser());
+			
+			pStmt.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN UPDATING USER");
+			sqle.printStackTrace();
+		}
+		
 	}
   
 }

@@ -63,4 +63,8 @@ public class UserManager {
 	public User selectByAlias(String alias) {
 		return DAOFactory.getUserDAO().selectByAlias(alias);
 	}
+	
+	public void update(User user) {
+		DAOFactory.getUserDAO().update(user);
+	}
 }
