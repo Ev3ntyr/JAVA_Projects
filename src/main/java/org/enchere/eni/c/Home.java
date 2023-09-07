@@ -19,7 +19,7 @@ public class Home extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Item> listItem = ItemManager.getInstance().selectAll();
-		
+		request.setAttribute("listItem", listItem);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
 		rd.forward(request, response);
