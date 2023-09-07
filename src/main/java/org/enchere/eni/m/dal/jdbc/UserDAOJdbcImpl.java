@@ -29,7 +29,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 			SELECT email FROM USERS WHERE email = ?;
 			""";
 	private static final String SELECT_BY_ALIAS = """
-			SELECT alias FROM USERS WHERE alias = ?;
+			SELECT idUser, alias, passwordUser FROM USERS WHERE alias = ?;
 			""";
 	
 	@Override
@@ -48,7 +48,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 			pStmt.setString(8, newUser.getCity());
 
 			String password = newUser.getPasswordUser();
-			String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
+			String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 			pStmt.setString(9, hashedPassword);
 			
 			if (newUser.getCredit() == 0) {
@@ -108,12 +108,8 @@ public class UserDAOJdbcImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean checkPassword(String password, String encryptedPassword)
-			throws NoSuchAlgorithmException, NoSuchProviderException {
-
-		// TODO Implement the check method in DAO
-
-		return false;
+	public boolean checkPassword(String password, String encryptedPassword) {
+		return BCrypt.checkpw(password, encryptedPassword);
 	}
 
 	@Override
@@ -155,5 +151,30 @@ public class UserDAOJdbcImpl implements UserDAO {
 		}
 		return false;
 	}
-
+	
+	@Override
+	public User selectByAlias(String alias) {
+		User u = new User();
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_ALIAS);
+			pStmt.setString(1, alias);
+			
+			ResultSet rs = pStmt.executeQuery();
+			
+			if (rs.next()) {
+				u.setIdUser(rs.getInt("idUser"));
+				u.setAlias(alias);
+				u.setPasswordUser(rs.getString("passwordUser"));
+			}
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN SELECTING USER WITH ALIAS=" + alias);
+			sqle.printStackTrace();
+		}
+		
+		return u;
+	}
+  
 }
