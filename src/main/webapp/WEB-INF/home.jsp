@@ -65,12 +65,13 @@
 <div class="row justify-content-center">
 <label for="category" class="p-1 ml-1" >Catégorie : </label>
 
-<select name="pets" id="category" >
+
+<select name="" id="category" >
   <option value="Toutes">Toutes</option>
-  <option value="Informatique">Informatique</option>
-  <option value="Ameublement">Ameublement</option>
-  <option value="Sport Loisirs">Sport Loisirs</option>
-  <option value="Vetement">Vetement</option>
+	<c:forEach items="${listCategory}" var="category">
+	<option value="${category.idCategory }">${category.wording}</option>
+	
+	</c:forEach>
 </select>
 </div>
 	
@@ -94,7 +95,7 @@
 							<p class="card-text">Fin de l'enchère :
 								${itemSold.bidEndDate}</p>
 							<p class="card-text">
-								Vendeur : <a href="userProfile?idUser=${itemSold.user.idUser}" class="bidDetails text-success">${itemSold.user.alias}</a>
+								Vendeur : <a href="userProfile?idUser=${itemSold.user.idUser}" class="bidDetails ">${itemSold.user.alias}</a>
 							</p>
 
 						</div>

@@ -1,5 +1,7 @@
 package org.enchere.eni.m.bll;
 
+import java.util.List;
+
 import org.enchere.eni.m.bo.Category;
 import org.enchere.eni.m.dal.DAOFactory;
 
@@ -18,6 +20,10 @@ public class CategoryManager {
 
 	public void insertCategory(Category newCategory) {
 		DAOFactory.getCategoryDAO().insert(newCategory);
+	}
+	
+	public List<Category>select() {
+		return DAOFactory.getCategoryDAO().select();
 	}
 
 }

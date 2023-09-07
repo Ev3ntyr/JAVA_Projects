@@ -8,8 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import org.enchere.eni.m.bll.CategoryManager;
 import org.enchere.eni.m.bll.ItemManager;
-
+import org.enchere.eni.m.bo.Category;
 import org.enchere.eni.m.bo.Item;
 
 public class Home extends HttpServlet {
@@ -20,6 +21,9 @@ public class Home extends HttpServlet {
 		
 		List<Item> listItem = ItemManager.getInstance().selectAll();
 		request.setAttribute("listItem", listItem);
+		
+		List<Category> listCategory = CategoryManager.getInstance().select();
+		request.setAttribute("listCategory", listCategory);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
 		rd.forward(request, response);
