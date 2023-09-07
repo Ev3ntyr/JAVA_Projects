@@ -100,7 +100,9 @@ public class BidNew extends HttpServlet {
 		String enteredCity = request.getParameter("city");
 		
 		
-		if ((enteredStreet.equalsIgnoreCase(currentUser.getStreet())) ) {
+		if (!(enteredStreet.equalsIgnoreCase(currentUser.getStreet())) 
+			|| !(enteredCity.equalsIgnoreCase(currentUser.getCity())) 
+			|| !(enteredZipCode.equalsIgnoreCase(currentUser.getZipCode()))) {
 			Withdraw newWithdraw = new Withdraw(newItem,enteredStreet, enteredZipCode, enteredCity);
 			System.out.println(newWithdraw);
 			ItemManager.getInstance().insertWithdraw(newWithdraw);
