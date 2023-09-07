@@ -9,7 +9,7 @@ public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public int idCategory;
 	public String wording;
-	private List <ItemSold> itemsSold = new ArrayList <ItemSold>();
+	private List <Item> itemsSold = new ArrayList <Item>();
 	
 	// GETTERS AND SETTERS
 	public int getIdCategory() {
@@ -24,15 +24,15 @@ public class Category implements Serializable {
 	public void setWording(String wording) {
 		this.wording = wording;
 	}
-	public List<ItemSold> getItemsSold() {
+	public List<Item> getItemsSold() {
 		return itemsSold;
 	}
-	public void setItemsSold(List<ItemSold> itemsSold) {
+	public void setItemsSold(List<Item> itemsSold) {
 		this.itemsSold = itemsSold;
 	}
 	
 	// SPECIFIC BO METHODS
-	public void addItemSold(ItemSold itemSold) {
+	public void addItemSold(Item itemSold) {
 		itemsSold.add(itemSold);
 	}
 	
