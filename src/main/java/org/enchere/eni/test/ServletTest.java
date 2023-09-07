@@ -10,8 +10,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.enchere.eni.m.bll.ItemSoldManager;
-import org.enchere.eni.m.bo.ItemSold;
+import org.enchere.eni.m.bll.ItemManager;
+import org.enchere.eni.m.bo.Item;
 import org.enchere.eni.m.dal.jdbc.ConnectionProvider;
 
 /**
@@ -29,8 +29,8 @@ public class ServletTest extends HttpServlet {
 			System.out.println("echec");		
 		}	
 		
-		List<ItemSold> itemSold = ItemSoldManager.getInstance().selectAll();
-		for(ItemSold item: itemSold ) {
+		List<Item> itemSold = ItemManager.getInstance().selectAll();
+		for(Item item: itemSold ) {
 			System.out.println(item);
 		}
 
