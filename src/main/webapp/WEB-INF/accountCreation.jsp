@@ -51,12 +51,12 @@
 			<div class="form-group mx-auto col-md-5">
 				<label for="email">Adresse mail</label> <input type="email"
 					maxlength="50" class="form-control" id="email" name="email"
-					aria-describedby="emailHelp" placeholder="Entrez votre email">
+					aria-describedby="emailHelp" placeholder="Entrez votre email" required>
 			</div>
 			<div class="form-group mx-auto col-md-5">
 				<label for="alias">Pseudo</label> <input type="text" maxlength="30"
 					class="form-control" id="alias" name="alias"
-					placeholder="Sans caractère spécial ou ponctuation">
+					placeholder="Sans caractère spécial ou ponctuation" required>
 			</div>
 		</div>
 		<br>
@@ -65,12 +65,12 @@
 			<div class="form-group mx-auto col-md-5">
 				<label for="passwordUser">Mot de passe</label> <input
 					type="password" maxlength="128" class="form-control"
-					name="passwordUser" id="passwordUser" placeholder="Soyez créatif !">
+					name="passwordUser" id="passwordUser" placeholder="Soyez créatif !" required>
 			</div>
 			<div class="form-group mx-auto col-md-5">
 				<label for="passwordUserCheck">Confirmation mot de passe</label> <input
 					type="password" maxlength="128" class="form-control"
-					name="passwordUserCheck" id="passwordUserCheck">
+					name="passwordUserCheck" id="passwordUserCheck" required>
 			</div>
 		</div>
 		<br>
@@ -78,11 +78,11 @@
 		<div class="form-row">
 			<div class="form-group mx-auto col-md-5">
 				<label for="surname">Nom</label> <input type="text" maxlength="30"
-					class="form-control" id="surname" name="surname">
+					class="form-control" id="surname" name="surname" required>
 			</div>
 			<div class="form-group mx-auto col-md-5">
 				<label for="firstName">Prénom</label> <input type="text"
-					maxlength="30" class="form-control" id="firstName" name="firstName">
+					maxlength="30" class="form-control" id="firstName" name="firstName" required>
 			</div>
 		</div>
 		<br>
@@ -90,11 +90,11 @@
 		<div class="form-row">
 			<div class="form-group mx-auto col-md-5">
 				<label for="zipCode">Code postal</label> <input type="text"
-					maxlength="10" class="form-control" id="zipCode" name="zipCode">
+					maxlength="10" class="form-control" id="zipCode" name="zipCode" required>
 			</div>
 			<div class="form-group mx-auto col-md-5">
 				<label for="city">Ville</label> <input type="text" maxlength="50"
-					class="form-control" id="city" name="city">
+					class="form-control" id="city" name="city" required>
 			</div>
 		</div>
 		<br>
@@ -114,7 +114,7 @@
 		<br>
 		<div class="d-flex justify-content-center">
 
-			<input class="btn btn-info mr-3 col-3" type="submit" value="Créer">
+			<input class="btn btn-success mr-4 col-3" type="submit" value="Créer">
 			<a href="home" class="btn btn-danger col-3">Annuler</a>
 
 		</div>

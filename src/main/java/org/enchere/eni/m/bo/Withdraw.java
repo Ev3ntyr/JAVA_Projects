@@ -5,17 +5,17 @@ import java.io.Serializable;
 public class Withdraw implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private ItemSold itemSold;
+	private Item itemSold;
 	private String street;
 	private String zipCode;
 	private String city;
 	
 	
 	// GETTERS AND SETTERS
-	public ItemSold getItemSold() {
+	public Item getItemSold() {
 		return itemSold;
 	}
-	public void setItemSold(ItemSold itemSold) {
+	public void setItemSold(Item itemSold) {
 		this.itemSold = itemSold;
 	}
 	public String getStreet() {
@@ -47,7 +47,7 @@ public class Withdraw implements Serializable {
 		this.city = city;
 	}
 	
-	public Withdraw(ItemSold item, String street, String zipCode, String city) {
+	public Withdraw(Item item, String street, String zipCode, String city) {
 		this(street, zipCode, city);
 		this.itemSold = item;
 	}

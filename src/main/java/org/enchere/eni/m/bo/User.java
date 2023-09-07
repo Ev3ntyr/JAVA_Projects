@@ -19,7 +19,7 @@ public class User implements Serializable {
 	private String passwordUser;
 	private int credit;
 	private boolean isAdmin;
-	private List <ItemSold> itemsSold = new ArrayList <ItemSold>();
+	private List <Item> itemsSold = new ArrayList <Item>();
 	private List <Bid> bids = new ArrayList <Bid>();
 	
 	
@@ -96,10 +96,10 @@ public class User implements Serializable {
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-	public List<ItemSold> getItemsSold() {
+	public List<Item> getItemsSold() {
 		return itemsSold;
 	}
-	public void setItemsSold(List<ItemSold> itemsSold) {
+	public void setItemsSold(List<Item> itemsSold) {
 		this.itemsSold = itemsSold;
 	}
 	public List<Bid> getBids() {
@@ -110,7 +110,7 @@ public class User implements Serializable {
 	}
 	
 	// BO SPECIFIC METHODS
-	public void addItemSold(ItemSold itemSold) {
+	public void addItemSold(Item itemSold) {
 		itemsSold.add(itemSold);
 	}
 	public void addBid(Bid bid) {

@@ -10,7 +10,7 @@ public class Bid implements Serializable {
 	private LocalDate bidDate;
 	private int bidAmount;
 	private User user;
-	private ItemSold itemSold;
+	private Item itemSold;
 	
 	// GETTERS AND SETTERS
 	public int getIdBid() {
@@ -37,17 +37,17 @@ public class Bid implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public ItemSold getItemSold() {
+	public Item getItemSold() {
 		return itemSold;
 	}
-	public void setItemSold(ItemSold itemSold) {
+	public void setItemSold(Item itemSold) {
 		this.itemSold = itemSold;
 	}
 
 	// CONSTRUCTORS
 	public Bid() {}
 	
-	public Bid(LocalDate bidDate, int bidAmount, ItemSold itemSold, User user) {
+	public Bid(LocalDate bidDate, int bidAmount, Item itemSold, User user) {
 		this();
 		this.bidDate = bidDate;
 		this.bidAmount = bidAmount;
@@ -56,7 +56,7 @@ public class Bid implements Serializable {
 	}
 	
 
-	public Bid(int idBid, LocalDate bidDate, int bidAmount,ItemSold itemSold,  User user) {
+	public Bid(int idBid, LocalDate bidDate, int bidAmount,Item itemSold,  User user) {
 		this(bidDate, bidAmount, itemSold, user);
 		this.idBid = idBid;
 	

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemSold implements Serializable {
+public class Item implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private int idItem;
@@ -101,9 +101,9 @@ public class ItemSold implements Serializable {
 	}
 	
 	// CONSTRUCTORS
-	public ItemSold() {}
+	public Item() {}
 	
-	public ItemSold(String nameItem, String descriptionItem, LocalDate bidStartDate, LocalDate bidEndDate,
+	public Item(String nameItem, String descriptionItem, LocalDate bidStartDate, LocalDate bidEndDate,
 			int initialPrice, int sellingPrice, int stateItem, User user, Category category) {
 		this();
 		this.nameItem = nameItem;
@@ -117,7 +117,7 @@ public class ItemSold implements Serializable {
 		this.category = category;
 	}
 	
-	public ItemSold(int idItem, String nameItem, String descriptionItem, LocalDate bidStartDate, LocalDate bidEndDate,
+	public Item(int idItem, String nameItem, String descriptionItem, LocalDate bidStartDate, LocalDate bidEndDate,
 			int initialPrice, int sellingPrice, int stateItem, User user, Withdraw withdraw, Category category) {
 		this(nameItem, descriptionItem, bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem, user, category);
 		this.idItem = idItem;

@@ -17,7 +17,7 @@ import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.bo.Withdraw;
 import org.enchere.eni.m.dal.ItemDAO;
 
-public class ItemSoldDAOJdbcImpl implements ItemDAO {
+public class ItemDAOJdbcImpl implements ItemDAO {
 	
 	public static final String SELECT_ALL = """
 			SELECT * FROM SOLD_ITEMS
@@ -51,6 +51,7 @@ public class ItemSoldDAOJdbcImpl implements ItemDAO {
 					int initialPrice = rs.getInt("initialPrice");
 					int sellingPrice = rs.getInt("sellingPrice");
 					int stateItem = rs.getInt("stateItem");
+
 					int idUser = rs.getInt("idUser");
 					String alias = rs.getString("alias");
 					String surname = rs.getString("surname");
