@@ -2,11 +2,20 @@ package org.enchere.eni.c;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import org.enchere.eni.m.bll.ErrorCodesBLL;
+import org.enchere.eni.m.bll.ItemManager;
+import org.enchere.eni.m.bll.UserManager;
+import org.enchere.eni.m.bo.Category;
+import org.enchere.eni.m.bo.Item;
+import org.enchere.eni.m.bo.User;
+import org.enchere.eni.m.bo.Withdraw;
 
 /**
  * Servlet implementation class AuctionNew
@@ -16,7 +25,8 @@ public class BidNew extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		User testwithdraw = UserManager.getInstance().selectById(5);
+		System.out.println(testwithdraw);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/bidNew.jsp");
 		rd.forward(request, response);
 		
@@ -26,8 +36,78 @@ public class BidNew extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		HttpSession session = request.getSession();
+		int idCurrentUser = (int) session.getAttribute("idUser");
+		User currentUser = UserManager.getInstance().selectById(idCurrentUser);
+		
+		String enteredName = request.getParameter("nameItem");
+		String enteredDescript = request.getParameter("descriptionItem");
+		String enteredCategory = request.getParameter("passwordUser");
+		//TODO Récupérer la liste des catégories pour l'afficher ?
+		//TODO Récupérer la photo et la stocker
+		int enteredInitialPrice = Integer.valueOf(request.getParameter("initialPrice"));
+		String enteredBidStartDate = request.getParameter("bidStartDate");
+		String enteredBidEndDate = request.getParameter("bidEndDate");
+
+
+		// On transforme les valeurs dans le bon format			
+		LocalDate bidStartDate = null;
+		try {
+			bidStartDate = LocalDate.parse(enteredBidStartDate);
+		} catch (DateTimeException e) {
+			e.printStackTrace();
+			BusinessException be = new BusinessException(ErrorCodesBLL.FORMAT_BID_START_DATE_ERROR);		
+		}
+		System.out.println(bidStartDate);
+
+		LocalDate bidEndDate = null;
+		try {
+			bidEndDate = LocalDate.parse(enteredBidEndDate);
+		} catch (DateTimeException e) {
+			e.printStackTrace();
+			BusinessException be = new BusinessException(ErrorCodesBLL.FORMAT_BID_END_DATE_ERROR);		
+		} finally {
+			if (bidStartDate.isAfter(bidEndDate) || bidEndDate.isEqual(bidStartDate)) {
+				BusinessException be = new BusinessException(ErrorCodesBLL.BID_END_DATE_ERROR);		
+			}
+		}
+		System.out.println(bidStartDate);
+		
+		//Verification conformité des dates et attribution du statut 0 ou 1
+		int statut = 0;
+		if (bidStartDate.isEqual(LocalDate.now()) ) {
+			statut = 1;
+		}		
+
+		// On crée l'item
+		
+		Item newItem = new Item(enteredName, enteredDescript, bidStartDate, bidEndDate, enteredInitialPrice, 0, statut, currentUser, new Category());
+		System.out.println(newItem);
+		
+		try {
+			ItemManager.getInstance().insert(newItem);		
+		} catch (BusinessException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			request.setAttribute("errorCodesList", e.getErrorCodeList());
+			doGet(request, response);
+		}
+		
+		// TODO verif si donnée formulaire idem à user. Si différent on crée un withdraw
+		String enteredStreet = request.getParameter("street");
+		String enteredZipCode = request.getParameter("zipCode");
+		String enteredCity = request.getParameter("city");
+		
+		
+		if ((enteredStreet.equalsIgnoreCase(currentUser.getStreet())) ) {
+			Withdraw newWithdraw = new Withdraw(newItem,enteredStreet, enteredZipCode, enteredCity);
+			System.out.println(newWithdraw);
+			ItemManager.getInstance().insertWithdraw(newWithdraw);
+		}
+		
+		RequestDispatcher rd = request.getRequestDispatcher("home");
+		rd.forward(request, response);
 	}
 
 }

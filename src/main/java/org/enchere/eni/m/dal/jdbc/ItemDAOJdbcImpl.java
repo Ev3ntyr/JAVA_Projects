@@ -139,10 +139,10 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			INSERT INTO WITHDRAW (idItem, street, zipCode, city)
 			VALUES(?, ?, ?, ?);
 			""";
-	private void insertWithdraw(Withdraw withdraw) {
-		
-		// TODO Add this method when creating a new item
-		
+	
+	@Override	
+	public void insertWithdraw(Withdraw withdraw) {
+				
 		try(Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pStmt = cnx.prepareStatement(INSERT);
 			pStmt.setInt(1, withdraw.getItemSold().getIdItem());

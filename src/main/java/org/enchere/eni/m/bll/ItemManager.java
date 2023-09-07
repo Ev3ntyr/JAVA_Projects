@@ -2,7 +2,9 @@ package org.enchere.eni.m.bll;
 
 import java.util.List;
 
+import org.enchere.eni.c.BusinessException;
 import org.enchere.eni.m.bo.Item;
+import org.enchere.eni.m.bo.Withdraw;
 import org.enchere.eni.m.dal.DAOFactory;
 
 public class ItemManager {
@@ -22,7 +24,11 @@ public class ItemManager {
 		return DAOFactory.getItemSoldDAO().selectAll();
 	}
 	
-	public void insert(Item item) {
+	public void insert(Item item) throws BusinessException{
 		DAOFactory.getItemSoldDAO().insert(item);
+	}
+	
+	public void insertWithdraw(Withdraw withdraw) {
+		DAOFactory.getItemSoldDAO().insertWithdraw(withdraw);
 	}
 }
