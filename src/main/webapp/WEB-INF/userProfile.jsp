@@ -24,6 +24,9 @@
 <title>Profil</title>
 </head>
 <body class="container" max-width=80%>
+
+	<h1 class="my-5">Profil</h1>
+
 	
 	<div class="row">
 		<div class="col mr-2 col-3">
@@ -92,7 +95,7 @@
 		
 	<c:if test="${sessionScope.idUser == requestScope.user.idUser}">
 		<div class="d-flex justify-content-center">
-			<a href="create" class="btn btn-warning mt-5 mr-4 col-3">Modifier</a> 
+			<a href="update" class="btn btn-warning mt-5 mr-4 col-3">Modifier</a> 
 		</div>
 	</c:if>
 </body>

@@ -10,4 +10,5 @@ public interface UserDAO {
 	boolean checkEmail (String email);
 	boolean checkAlias (String alias);
 	User selectByAlias(String alias);
+	void update(User user);
 }

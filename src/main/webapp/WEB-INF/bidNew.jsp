@@ -27,11 +27,6 @@
 <body class="container" max-width=80%>
 	<h1>Nouvelle mise aux enchères</h1>
 
-	<ul>
-		<li><a href="home">Enregister</a></li>
-		<li><a href="home">Annuler</a></li>
-	</ul>
-
 	<br>
 	<br>
 	<br>
@@ -69,7 +64,7 @@
 			<br>
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="idCategory">Catégorie :</label> <input
-					type="textarea" maxlength="300" class="col col-lg-4" id="" name=""
+					type="textarea" maxlength="300" class="col col-lg-4" id="idCategory" name="idCategory"
 					required>
 			</div>
 			<br>
@@ -101,19 +96,19 @@
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="street">Rue :</label> <input
 					type="text" maxlength="30" class="col col-lg-2" id="street"
-					name="street" required>
+					name="street" value="${requestScope.user.street}" required>
 			</div>
 			<br>
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="bidEndDate">Code postal :</label> <input
 					type="text" maxlength="15" class="col col-lg-2" id="zipCode"
-					name="zipCode" required>
+					name="zipCode" value="${requestScope.user.zipCode}" required>
 			</div>
 			<br>
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="city">Ville :</label> <input
 					type="text" maxlength="30" class="col col-lg-2" id="city"
-					name="city" required>
+					name="city" value="${requestScope.user.city}" required>
 			</div>
 		</div>
 		<br> <br>
