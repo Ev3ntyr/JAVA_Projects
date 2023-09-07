@@ -11,14 +11,12 @@ import java.io.IOException;
 
 import org.enchere.eni.m.bll.UserManager;
 import org.enchere.eni.m.bo.User;
-import org.enchere.eni.m.dal.DAOFactory;
 
 
 public class Connection extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/accountConnection.jsp");
 		rd.forward(request, response);
@@ -43,7 +41,7 @@ public class Connection extends HttpServlet {
 				session.setMaxInactiveInterval(Integer.MAX_VALUE);
 			}
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("home");
 			rd.forward(request, response);
 			
 			

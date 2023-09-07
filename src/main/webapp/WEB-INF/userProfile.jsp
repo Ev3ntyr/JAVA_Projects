@@ -95,7 +95,7 @@
 		
 	<c:if test="${sessionScope.idUser == requestScope.user.idUser}">
 		<div class="d-flex justify-content-center">
-			<a href="create" class="btn btn-warning mt-5 mr-4 col-3">Modifier</a> 
+			<a href="update" class="btn btn-warning mt-5 mr-4 col-3">Modifier</a> 
 		</div>
 	</c:if>
 </body>

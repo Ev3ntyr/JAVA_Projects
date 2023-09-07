@@ -35,7 +35,7 @@
 	<c:if test="${!empty errorCodesList }">
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
-				<h1 class="display-4 text-danger">Erreur lors de la création de
+				<h1 class="display-4 text-danger">Erreur lors de la mise à jour du
 					compte</h1>
 				<c:forEach items="${errorCodesList }" var="code">
 					<p class="lead">${MessageReader.getErrorMessage(code) }</p>
@@ -45,7 +45,7 @@
 		</div>
 
 	</c:if>
-	<form action="create" method="POST">
+	<form action="update" method="POST">
 
 		<div class="form-row ">
 			<div class="form-group mx-auto col-md-5">
@@ -56,33 +56,20 @@
 			<div class="form-group mx-auto col-md-5">
 				<label for="alias">Pseudo</label> <input type="text" maxlength="30"
 					class="form-control" id="alias" name="alias"
-					placeholder="Sans caractère spécial ou ponctuation" required>
+					placeholder="Sans caractère spécial ou ponctuation" value="${requestScope.user.alias}" required>
 			</div>
 		</div>
-		<br>
-
-		<div class="form-row">
-			<div class="form-group mx-auto col-md-5">
-				<label for="passwordUser">Mot de passe</label> <input
-					type="password" maxlength="128" class="form-control"
-					name="passwordUser" id="passwordUser" placeholder="Soyez créatif !" required>
-			</div>
-			<div class="form-group mx-auto col-md-5">
-				<label for="passwordUserCheck">Confirmation mot de passe</label> <input
-					type="password" maxlength="128" class="form-control"
-					name="passwordUserCheck" id="passwordUserCheck" required>
-			</div>
-		</div>
+		
 		<br>
 
 		<div class="form-row">
 			<div class="form-group mx-auto col-md-5">
 				<label for="surname">Nom</label> <input type="text" maxlength="30"
-					class="form-control" id="surname" name="surname" required>
+					class="form-control" id="surname" name="surname" value="${requestScope.user.surname}" required>
 			</div>
 			<div class="form-group mx-auto col-md-5">
 				<label for="firstName">Prénom</label> <input type="text"
-					maxlength="30" class="form-control" id="firstName" name="firstName" required>
+					maxlength="30" class="form-control" id="firstName" name="firstName" value="${requestScope.user.firstName}" required>
 			</div>
 		</div>
 		<br>
@@ -90,11 +77,11 @@
 		<div class="form-row">
 			<div class="form-group mx-auto col-md-5">
 				<label for="zipCode">Code postal</label> <input type="text"
-					maxlength="10" class="form-control" id="zipCode" name="zipCode" required>
+					maxlength="10" class="form-control" id="zipCode" name="zipCode" value="${requestScope.user.zipCode}" required>
 			</div>
 			<div class="form-group mx-auto col-md-5">
 				<label for="city">Ville</label> <input type="text" maxlength="50"
-					class="form-control" id="city" name="city" required>
+					class="form-control" id="city" name="city" value="${requestScope.user.city}" required>
 			</div>
 		</div>
 		<br>
@@ -103,15 +90,41 @@
 			<div class="form-group mx-auto col-md-5">
 				<label for="street">Rue</label> <input type="text" maxlength="30"
 					class="form-control" id="street"
-					placeholder="7 rue des bonnes affaires" name="street">
+					placeholder="7 rue des bonnes affaires" name="street" value="${requestScope.user.street}" required>
 			</div>
 			<div class="form-group mx-auto col-md-5">
 				<label for="phone">Téléphone</label> <input type=tel maxlength="15"
-					class="form-control" id="phone" name="phone">
+					class="form-control" id="phone" name="phone" value="${requestScope.user.phone}" required>
 			</div>
 		</div>
 		<br>
+		
+		<div class="form-row d-flex">
+			<div class="form-group justify-content-start ml-5 col-md-5">
+				<label for="passwordUser">Mot de passe actuel</label> <input
+					type="password" maxlength="20" class="form-control"
+					name="passwordUser" id="passwordUser" placeholder="Soyez créatif !" value="password" required>
+			</div>
+		</div>
+		
 		<br>
+		
+		<div class="form-row">
+			<div class="form-group mx-auto col-md-5">
+				<label for="newPasswordUser">Nouveau mot de passe</label> <input
+					type="password" maxlength="20" class="form-control"
+					name="newPasswordUser" id="newPasswordUser" placeholder="Soyez créatif !">
+			</div>
+			<div class="form-group mx-auto col-md-5">
+				<label for="newPasswordUserCheck">Confirmation du nouveau mot de passe</label> <input
+					type="password" maxlength="128" class="form-control"
+					name="newPasswordUserCheck" id="newPasswordUserCheck">
+			</div>
+		</div>
+		
+		<br>
+		<br>
+		
 		<div class="d-flex justify-content-center">
 
 			<input class="btn btn-warning mr-4 col-3" type="submit" value="Modifier">
