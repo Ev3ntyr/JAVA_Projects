@@ -32,10 +32,21 @@
 		<li><a href="connection">S'inscrire/Se connecter</a></li>
 	</ul>
 	<ul>
-		<li><a href="">Enchères</a></li>
-		<li><a href="bidNew">Vendre un article</a></li>
-		<li><a href="userProfile">Mon profil</a></li>
-		<li><a href="">Déconnexion</a></li>
+		<li>
+			<a href="">Enchères</a>
+		</li>
+		<li>
+			<a href="bidNew">Vendre un article</a>
+		</li>
+		<li>
+			<a href="userProfile">Mon profil</a>
+		</li>
+		<li>
+			<a href="logout">Déconnexion</a>
+		</li>
+		<li>
+			<a href="">Déconnexion</a>
+		</li>
 	</ul>
 
 	<br>
