@@ -24,6 +24,9 @@
 <title>Profil</title>
 </head>
 <body class="container" max-width=80%>
+
+	<h1 class="my-5">Profil</h1>
+
 	
 	<div class="row">
 		<div class="col mr-2 col-3">

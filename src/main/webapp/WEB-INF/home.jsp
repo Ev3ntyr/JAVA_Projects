@@ -26,15 +26,13 @@
 </head>
 <body class="container" max-width="80%">
 
-	<h1>Accueil - liste enchères</h1>
+	<h1 class="row justify-content-center">Accueil - liste enchères</h1>
 	
 	<c:choose>
 		<c:when test="${sessionScope.idUser == null}">
-			<ul>
-				<li>
-					<a href="connection">S'inscrire/Se connecter</a>
-				</li>
-			</ul>
+			
+					<div><a href="connection" class="row justify-content-center" >S'inscrire / Se connecter</a></div>
+			
 		</c:when>
 		<c:otherwise>
 			<ul>
@@ -56,8 +54,26 @@
 	
 
 	<br>
+	
+	<form>
+	<div class="row justify-content-center m-4"  >
+	<label for="site-search" ></label>
+<input  type="search" id="site-search" name="q" placeholder="Rechercher sur le site…" class="form-control col-5" />
 
-	<a href="bidDetails">Consulter l'enchère</a>
+<button class=" form-control col-2 btn btn-outline-success">Search</button></div></form>
+
+<div class="row justify-content-center">
+<label for="category" class="p-1 ml-1" >Catégorie : </label>
+
+<select name="pets" id="category" >
+  <option value="Toutes">Toutes</option>
+  <option value="Informatique">Informatique</option>
+  <option value="Ameublement">Ameublement</option>
+  <option value="Sport Loisirs">Sport Loisirs</option>
+  <option value="Vetement">Vetement</option>
+</select>
+</div>
+	
 
 	<c:choose>
 		<c:when test="${listItem.size() > 0 }">
@@ -74,11 +90,11 @@
 							<h5 class="card-title">
 								<a href="bidDetails">${itemSold.nameItem}</a>
 							</h5>
-							<p class="card-text">Prix : ${itemSold.initialPrice}</p>
+							<p class="card-text">Prix : ${itemSold.initialPrice} points</p>
 							<p class="card-text">Fin de l'enchère :
 								${itemSold.bidEndDate}</p>
 							<p class="card-text">
-								Vendeur :<a href="userProfile?idUser=${itemSold.user.idUser}" class="btn btn-primary">${itemSold.user.alias}</a>
+								Vendeur : <a href="userProfile?idUser=${itemSold.user.idUser}" class="bidDetails text-success">${itemSold.user.alias}</a>
 							</p>
 
 						</div>
