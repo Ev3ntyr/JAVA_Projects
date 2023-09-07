@@ -21,10 +21,12 @@
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-<title>Mon profil</title>
+<title>Profil</title>
 </head>
 <body class="container" max-width=80%>
+
 	<h1 class="my-5">Profil</h1>
+
 	
 	<div class="row">
 		<div class="col mr-2 col-3">
@@ -93,7 +95,7 @@
 		
 	<c:if test="${sessionScope.idUser == requestScope.user.idUser}">
 		<div class="d-flex justify-content-center">
-			<a href="userUpdate" class="btn btn-warning mt-5 mr-4 col-3">Modifier</a> 
+			<a href="create" class="btn btn-warning mt-5 mr-4 col-3">Modifier</a> 
 		</div>
 	</c:if>
 </body>

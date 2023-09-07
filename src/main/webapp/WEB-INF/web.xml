@@ -94,4 +94,14 @@
     <servlet-name>Logout</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateAccount</display-name>
+    <servlet-name>UpdateAccount</servlet-name>
+    <servlet-class>org.enchere.eni.c.UpdateAccount</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateAccount</servlet-name>
+    <url-pattern>/update</url-pattern>
+  </servlet-mapping>
 </web-app>
