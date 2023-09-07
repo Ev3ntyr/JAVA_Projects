@@ -37,7 +37,7 @@
 		<c:otherwise>
 			<ul>
 				<li>
-					<a href="">Enchères</a>
+					<a href="home">Enchères</a>
 				</li>
 				<li>
 					<a href="bidNew">Vendre un article</a>
