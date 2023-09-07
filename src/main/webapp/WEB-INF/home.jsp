@@ -26,7 +26,7 @@
 			<a href="userProfile">Mon profil</a>
 		</li>
 		<li>
-			<a href="">Déconnexion</a>
+			<a href="logout">Déconnexion</a>
 		</li>
 	</ul>
 	
