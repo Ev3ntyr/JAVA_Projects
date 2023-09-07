@@ -35,7 +35,7 @@ public class CreateAccount extends HttpServlet {
 		String enteredStreet = request.getParameter("street");
 		String enteredPhone = request.getParameter("phone");
 
-		// TODO Verif des données = pas de doublon sur email et pseudo + 2 password identiques
+		// TODO Verif des données = 2 password identiques
 		
 		User newUser = new User(enteredAlias,enteredSurname, enteredFirstName, enteredEmail,enteredPhone, enteredStreet, enteredZipCode, enteredCity, enteredPassword);
 		System.out.println(newUser);

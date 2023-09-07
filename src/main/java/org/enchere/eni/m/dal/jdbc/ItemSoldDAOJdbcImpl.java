@@ -51,7 +51,6 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 					int initialPrice = rs.getInt("initialPrice");
 					int sellingPrice = rs.getInt("sellingPrice");
 					int stateItem = rs.getInt("stateItem");
-
 					int idUser = rs.getInt("idUser");
 					String alias = rs.getString("alias");
 					String surname = rs.getString("surname");
