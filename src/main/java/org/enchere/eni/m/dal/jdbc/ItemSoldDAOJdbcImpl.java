@@ -12,12 +12,12 @@ import java.util.List;
 
 import org.enchere.eni.m.bo.Bid;
 import org.enchere.eni.m.bo.Category;
-import org.enchere.eni.m.bo.ItemSold;
+import org.enchere.eni.m.bo.Item;
 import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.bo.Withdraw;
-import org.enchere.eni.m.dal.ItemSoldDAO;
+import org.enchere.eni.m.dal.ItemDAO;
 
-public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
+public class ItemSoldDAOJdbcImpl implements ItemDAO {
 	
 	public static final String SELECT_ALL = """
 			SELECT * FROM SOLD_ITEMS
@@ -28,9 +28,9 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 			""";
 
 	@Override
-	public List<ItemSold> selectAll() {
+	public List<Item> selectAll() {
 		
-		List<ItemSold> itemSold = new ArrayList<ItemSold>();
+		List<Item> itemSold = new ArrayList<Item>();
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
@@ -38,7 +38,7 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 			ResultSet rs = stmt.executeQuery(SELECT_ALL);
 
 			int idPreviousItem = 0;
-			ItemSold itemInProgress = null;
+			Item itemInProgress = null;
 			User u = null;
 			while (rs.next()) {
 
@@ -78,7 +78,7 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 
 					Category c = new Category(idCategory, wording);
 
-					itemInProgress = new ItemSold(idItem, nameItem, descriptionItem, bidStartDate, bidEndDate,
+					itemInProgress = new Item(idItem, nameItem, descriptionItem, bidStartDate, bidEndDate,
 							initialPrice, sellingPrice, stateItem, u, w, c);
 					
 					itemSold.add(itemInProgress);
@@ -105,7 +105,7 @@ public class ItemSoldDAOJdbcImpl implements ItemSoldDAO {
 			VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
 			""";
 	@Override
-	public void insert(ItemSold item) {
+	public void insert(Item item) {
 		
 		try(Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pStmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
