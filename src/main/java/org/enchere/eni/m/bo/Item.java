@@ -2,6 +2,7 @@ package org.enchere.eni.m.bo;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +12,8 @@ public class Item implements Serializable {
 	private int idItem;
 	private String nameItem;
 	private String descriptionItem;
-	private LocalDate bidStartDate;
-	private LocalDate bidEndDate;
+	private LocalDateTime bidStartDate;
+	private LocalDateTime bidEndDate;
 	private int initialPrice;
 	private int sellingPrice;
 	private int stateItem;
@@ -40,16 +41,16 @@ public class Item implements Serializable {
 	public void setDescriptionItem(String descriptionItem) {
 		this.descriptionItem = descriptionItem;
 	}
-	public LocalDate getBidStartDate() {
+	public LocalDateTime getBidStartDate() {
 		return bidStartDate;
 	}
-	public void setBidStartDate(LocalDate bidStartDate) {
+	public void setBidStartDate(LocalDateTime bidStartDate) {
 		this.bidStartDate = bidStartDate;
 	}
-	public LocalDate getBidEndDate() {
+	public LocalDateTime getBidEndDate() {
 		return bidEndDate;
 	}
-	public void setBidEndDate(LocalDate bidEndDate) {
+	public void setBidEndDate(LocalDateTime bidEndDate) {
 		this.bidEndDate = bidEndDate;
 	}
 	public int getInitialPrice() {
@@ -103,7 +104,7 @@ public class Item implements Serializable {
 	// CONSTRUCTORS
 	public Item() {}
 	
-	public Item(String nameItem, String descriptionItem, LocalDate bidStartDate, LocalDate bidEndDate,
+	public Item(String nameItem, String descriptionItem, LocalDateTime bidStartDate, LocalDateTime bidEndDate,
 			int initialPrice, int sellingPrice, int stateItem, User user, Category category) {
 		this();
 		this.nameItem = nameItem;
@@ -117,7 +118,7 @@ public class Item implements Serializable {
 		this.category = category;
 	}
 	
-	public Item(int idItem, String nameItem, String descriptionItem, LocalDate bidStartDate, LocalDate bidEndDate,
+	public Item(int idItem, String nameItem, String descriptionItem, LocalDateTime bidStartDate, LocalDateTime bidEndDate,
 			int initialPrice, int sellingPrice, int stateItem, User user, Withdraw withdraw, Category category) {
 		this(nameItem, descriptionItem, bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem, user, category);
 		this.idItem = idItem;
