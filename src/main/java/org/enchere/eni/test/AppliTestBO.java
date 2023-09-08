@@ -8,8 +8,8 @@ public class AppliTestBO {
 	public static void main(String[] args) {
 		
 		// TESTING USER CREATION
-		User u1 = new User(1, "plop", "SMITH", "John", "john.smith@mail.com", "0725345899", "rue de l'ENI", "35752", "Rennes", "azerty", 100, false);
-		User u2 = new User(2, "admin", "ADMIN", "ADMIN", "admin@admin.fr", "0000000000", "admin street", "75000", "Paris", "admin", 999, true);
+		User u1 = new User(1, "plop", "SMITH", "John", "john.smith@mail.com", "0725345899", "rue de l'ENI", "35752", "Rennes", "azerty", 100, false, true);
+		User u2 = new User(2, "admin", "ADMIN", "ADMIN", "admin@admin.fr", "0000000000", "admin street", "75000", "Paris", "admin", 999, true, true);
 		
 		System.out.println("/// DISPLAY OF CREATED USERS");
 		System.out.println(u1);

@@ -19,11 +19,11 @@ public class UserDAOJdbcImpl implements UserDAO {
 	private static final int INITIAL_CREDIT = 100;
 	
 	private static final String CREATE_USER = """
-			INSERT INTO USERS VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+			INSERT INTO USERS VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1);
 			""";
 	private static final String SELECT_BY_ID = """
 			SELECT alias, surname, firstName, email, phone, street, zipCode,
-			city, passwordUser, credit, isAdmin
+			city, passwordUser, credit, isAdmin, isActive
 			FROM USERS WHERE idUser = ?;
 			""";
 	private static final String SELECT_BY_EMAIL = """
@@ -97,8 +97,9 @@ public class UserDAOJdbcImpl implements UserDAO {
 				String passwordUser = rs.getString("passwordUser");
 				int credit = rs.getInt("credit");
 				boolean isAdmin = rs.getBoolean("isAdmin");
+				boolean isActive = rs.getBoolean("isActive");
 				user = new User(idUser, alias, surname, firstName, email, phone, street, zipCode, city, passwordUser,
-						credit, isAdmin);
+						credit, isAdmin, isActive);
 			}
 
 		} catch (SQLException sqle) {
