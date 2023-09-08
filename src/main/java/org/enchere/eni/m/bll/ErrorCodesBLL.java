@@ -8,4 +8,5 @@ public abstract class ErrorCodesBLL {
 	public final static int FORMAT_BID_START_DATE_ERROR = 30_001;
 	public final static int FORMAT_BID_END_DATE_ERROR = 30_002;
 	public final static int BID_END_DATE_ERROR = 30_003;
+	
 }

@@ -26,29 +26,33 @@
 </head>
 <body class="container" max-width="80%">
 
-	<h1 class="row justify-content-center">Accueil - liste enchères</h1>
+
 	
+	<h1 class="row justify-content-center">Accueil - liste enchères</h1>
+	<img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail" style="width:100px;">
 	<c:choose>
 		<c:when test="${sessionScope.idUser == null}">
-			
-					<div><a href="connection" class="row justify-content-center" >S'inscrire / Se connecter</a></div>
-			
+			<ul class="nav justify-content-center">
+				<li class="nav-item mr-2">
+					<a href="connection" class="nav-link" active>S'inscrire / Se connecter</a>
+				</li>
+		 	</ul>			
 		</c:when>
 		<c:otherwise>
-			<ul>
-				<li>
-					<a href="home">Enchères</a>
-				</li>
-				<li>
-					<a href="bidNew">Vendre un article</a>
-				</li>
-				<li>
-					<a href="userProfile">Mon profil</a>
-				</li>
-				<li>
-					<a href="logout">Déconnexion</a>
-				</li>
-			</ul>
+		<ul class="nav justify-content-center">
+		  <li class="nav-item mr-2">
+		    <a href="home" class="nav-link" active>Enchères</a>
+		  </li>
+		  <li class="nav-item mr-2">
+		    <a href="bidNew" class="nav-link">Vendre un article</a>
+		  </li>
+		  <li class="nav-item mr-2">
+		    <a href="userProfile" class="nav-link">Mon profil</a>
+		  </li>
+		  <li class="nav-item mr-2">
+		    <a href="logout" class="nav-link">Déconnexion</a>
+		  </li>
+		</ul>
 		</c:otherwise>
 	</c:choose>
 	
@@ -106,6 +110,6 @@
 			</tbody>
 		</c:when>
 	</c:choose>
-
+	<footer>Logo by: <a href="https://pixabay.com/fr/users/geralt-9301/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=728408">Gerd Altmann</a> de <a href="https://pixabay.com/fr//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=728408">Pixabay</a></footer>
 </body>
 </html>

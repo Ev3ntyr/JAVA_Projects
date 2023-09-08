@@ -53,7 +53,7 @@
 			<div class="form-group mx-auto col-md-5">
 				<label for="alias">Pseudo</label> <input type="text" maxlength="30"
 					class="form-control" id="alias" name="alias"
-					placeholder="Votre pseudo">
+					placeholder="Votre pseudo" required>
 			</div>
 		</div>
 		<br>
@@ -61,7 +61,7 @@
 			<div class="form-group mx-auto col-md-5">
 				<label for="passwordUser">Mot de passe</label> <input
 					type="password" maxlength="128" class="form-control"
-					name="passwordUser" id="passwordUser" placeholder="Votre mot de passe">
+					name="passwordUser" id="passwordUser" placeholder="Votre mot de passe" required>
 			</div>
 		</div>
 		<br>
