@@ -29,9 +29,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 	private static final String SELECT_BY_EMAIL = """
 			SELECT email FROM USERS WHERE email = ?;
 			""";
-	private static final String SELECT_BY_ALIAS = """
-			SELECT idUser, alias, passwordUser FROM USERS WHERE alias = ?;
-			""";
+
 	
 	@Override
 	public void createUser(User newUser) {
@@ -154,6 +152,10 @@ public class UserDAOJdbcImpl implements UserDAO {
 		return false;
 	}
 	
+	
+	private static final String SELECT_BY_ALIAS = """
+			SELECT idUser, alias, passwordUser, isActive FROM USERS WHERE alias = ?;
+			""";
 	@Override
 	public User selectByAlias(String alias) {
 		User u = new User();
@@ -169,6 +171,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 				u.setIdUser(rs.getInt("idUser"));
 				u.setAlias(alias);
 				u.setPasswordUser(rs.getString("passwordUser"));
+				u.setActive(rs.getBoolean("isActive"));
 			}
 			
 		} catch (SQLException sqle) {
@@ -238,6 +241,28 @@ public class UserDAOJdbcImpl implements UserDAO {
 			
 		} catch (SQLException sqle) {
 			System.out.println("ERROR WHEN DELETING USER id=" + idUser);
+			sqle.printStackTrace();
+		}
+		
+	}
+	
+	private static final String DEACTIVATE = """
+			UPDATE USERS 
+			SET isActive = 0
+			WHERE idUser = ?;
+			""";
+	@Override
+	public void deactivate(int idUser) {
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(DEACTIVATE);
+			pStmt.setInt(1, idUser);
+			
+			pStmt.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN DEACTIVATING USER id=" + idUser);
 			sqle.printStackTrace();
 		}
 		

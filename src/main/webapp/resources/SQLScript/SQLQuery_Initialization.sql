@@ -6,13 +6,13 @@ INSERT INTO CATEGORIES (wording) VALUES ('Informatique'),('Ameublement'),('Sport
 
 -- Adding users
 
-INSERT INTO USERS (alias, surname, firstName, email, phone, street, zipCode, city, passwordUser, credit, isAdmin)
+INSERT INTO USERS (alias, surname, firstName, email, phone, street, zipCode, city, passwordUser, credit, isAdmin, isActive)
 VALUES
-    ('RogerTheRoro', 'Smith', 'Roger', 'roger.smith@email.com', '01234567890', '123 Main Street', '12345', 'New York', 'IL0vNY123', 312, 0),
-    ('AliceInBorderlands', 'Johnson', 'Alice', 'alice.johnson@email.com', '02345678901', '456 Elm Street', '23456', 'Los Angeles', 'lAV!bes', 153, 0),
-    ('DoudouDavid', 'Fortin', 'David', 'david.fortin@email.com', '0761115598', '78 Avenue Montaigne', '75007', 'Paris', 'monMotdePasseEstTop', 1200, 0),
-    ('Soso', 'Wilson', 'Sophia', 'sophia.wilson@email.com', '4567890123', '1010 Pine Road', '45678', 'Houston', '123456', 0, 0),
-	('admin', 'admin', 'admin', 'admin@email.com', '0761144598', 'admin street', '75000', 'Paris', 'admin', 600, 1);
+    ('RogerTheRoro', 'Smith', 'Roger', 'roger.smith@email.com', '01234567890', '123 Main Street', '12345', 'New York', 'IL0vNY123', 312, 0, 1),
+    ('AliceInBorderlands', 'Johnson', 'Alice', 'alice.johnson@email.com', '02345678901', '456 Elm Street', '23456', 'Los Angeles', 'lAV!bes', 153, 0, 1),
+    ('DoudouDavid', 'Fortin', 'David', 'david.fortin@email.com', '0761115598', '78 Avenue Montaigne', '75007', 'Paris', 'monMotdePasseEstTop', 1200, 0, 1),
+    ('Soso', 'Wilson', 'Sophia', 'sophia.wilson@email.com', '4567890123', '1010 Pine Road', '45678', 'Houston', '123456', 0, 0, 1),
+	('admin', 'admin', 'admin', 'admin@email.com', '0761144598', 'admin street', '75000', 'Paris', 'admin', 600, 1, 1);
 
 -- Adding IT items
 
@@ -26,19 +26,19 @@ VALUES
 -- Adding furnishings items
 INSERT INTO SOLD_ITEMS (nameItem, descriptionItem, bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem, idUser, idCategory)
 VALUES
-    ('Canapé en Cuir', 'Un canape en cuir veritable pleine fleur de couleur beige. 6 places assises, tres confortable, legerement abime', '2023-09-04', '2023-09-20', 500, NULL, 1, 1, 2),
-    ('Table à Manger', 'Une table à manger en bois massif', '2023-09-05', '2023-09-19', 200, NULL, 1, 4, 2);
+    ('Canapï¿½ en Cuir', 'Un canape en cuir veritable pleine fleur de couleur beige. 6 places assises, tres confortable, legerement abime', '2023-09-04', '2023-09-20', 500, NULL, 1, 1, 2),
+    ('Table ï¿½ Manger', 'Une table ï¿½ manger en bois massif', '2023-09-05', '2023-09-19', 200, NULL, 1, 4, 2);
 
 -- Adding sports items
 INSERT INTO SOLD_ITEMS (nameItem, descriptionItem, bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem, idUser, idCategory)
 VALUES
-    ('Vélo de Montagne', 'Un velo de montagne tout-terrain qui roule super bien et a des gros pneus. 16 vitesses, sonette et antivol compris', '2023-06-07', '2023-06-22', 350, 370, 2, 4, 3),
+    ('Vï¿½lo de Montagne', 'Un velo de montagne tout-terrain qui roule super bien et a des gros pneus. 16 vitesses, sonette et antivol compris', '2023-06-07', '2023-06-22', 350, 370, 2, 4, 3),
     ('Raquette de Tennis Decathlon', 'Une raquette de tennis professionnelle pour les enfants', '2023-09-17', '2023-09-23', 100, NULL, 0, 3, 3);
 
 -- Adding clothing items
 INSERT INTO SOLD_ITEMS (nameItem, descriptionItem, bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem, idUser, idCategory)
 VALUES
-    ('Manteau Hiver T38 Kaporal', 'Un manteau hiver chaud et élégant pour homme', '2023-09-01', '2023-09-26', 30, NULL, 1, 4, 4);
+    ('Manteau Hiver T38 Kaporal', 'Un manteau hiver chaud et ï¿½lï¿½gant pour homme', '2023-09-01', '2023-09-26', 30, NULL, 1, 4, 4);
 
 
 -- Adding Withdraw points 

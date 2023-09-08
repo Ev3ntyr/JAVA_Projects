@@ -12,4 +12,5 @@ public interface UserDAO {
 	User selectByAlias(String alias);
 	void update(User user);
 	void delete(int idUser);
+	void deactivate(int idUser);
 }
