@@ -71,14 +71,16 @@
 	</form>
 
 	<div class="row justify-content-center">
-		<label for="category" class="p-1 ml-1">Catégorie : </label> <select
-			name="" id="category">
+		<label for="category" class="p-1 ml-1">Catégorie : </label> 
+	<form action="" method="post">
+			<select	name="category" id="category">
 			<option value="Toutes">Toutes</option>
 			<c:forEach items="${listCategory}" var="category">
 				<option value="${category.idCategory }">${category.wording}</option>
 
 			</c:forEach>
 		</select>
+		</form>
 	</div>
 
 
