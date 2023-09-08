@@ -28,13 +28,13 @@ public class BidNew extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
-		int idUser = (int) session.getAttribute("idUser");
-		
-		User user = UserManager.getInstance().selectById(idUser);
-		
+		int idUser = (int) session.getAttribute("idUser");	
+		User user = UserManager.getInstance().selectById(idUser);		
 		request.setAttribute("user", user);
 		
+		// GETTING CATEGORY LIST FROM DATABASE
 		List<Category> listCategory = CategoryManager.getInstance().select();
 		request.setAttribute("listCategory", listCategory);
 		
@@ -52,6 +52,8 @@ public class BidNew extends HttpServlet {
 		int idCurrentUser = (int) session.getAttribute("idUser");
 		User currentUser = UserManager.getInstance().selectById(idCurrentUser);
 		
+		// GETTING FORM PARAMETERS FROM JSP
+		
 		String enteredName = request.getParameter("nameItem");
 		String enteredDescript = request.getParameter("descriptionItem");
 		int enteredCategory = Integer.valueOf(request.getParameter("category"));
@@ -62,8 +64,8 @@ public class BidNew extends HttpServlet {
 		String enteredBidStartDate = request.getParameter("bidStartDate");
 		String enteredBidEndDate = request.getParameter("bidEndDate");
 
-
-		// On transforme les valeurs dans le bon format			
+		// CHECKING FORMAT VALUE TO THROW BUSINESS EXCEPTION	
+		
 		LocalDateTime bidStartDate = null;
 		try {
 			bidStartDate = LocalDateTime.parse(enteredBidStartDate);
@@ -85,13 +87,14 @@ public class BidNew extends HttpServlet {
 		}
 		System.out.println(bidStartDate);
 		
-		//Verification conformité des dates et attribution du statut 0 ou 1
+		//  CHECKING BID START DATE FOR ITEM STATUT
+		
 		int statut = 0;
-		if (bidStartDate.isEqual(LocalDateTime.now()) ) {
+		if (bidStartDate.isBefore(LocalDateTime.now()) ) {
 			statut = 1;
 		}		
 
-		// On crée l'item
+		// CREATING NEW ITEM
 		
 		Item newItem = new Item(enteredName, enteredDescript, bidStartDate, bidEndDate, enteredInitialPrice, 0, statut, currentUser, currentCategory);
 		System.out.println(newItem);
@@ -105,7 +108,8 @@ public class BidNew extends HttpServlet {
 			doGet(request, response);
 		}
 		
-		// Vérification de la concordance entre l'adresse saisie en formulaire et celle du user
+		// COMPARING USER ADRESS VS FORM WITHDRAW ADRESSE TO CREATE A NEW WITHDRAW OR NOT
+
 		String enteredStreet = request.getParameter("street");
 		String enteredZipCode = request.getParameter("zipCode");
 		String enteredCity = request.getParameter("city");

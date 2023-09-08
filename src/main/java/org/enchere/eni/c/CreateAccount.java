@@ -28,7 +28,8 @@ public class CreateAccount extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		//1. on récupère les valeurs du formulaire (paramètres)
+		// COLLECTING VALUES FROM THE JSP FORM
+		
 		String enteredEmail = request.getParameter("email");
 		String enteredAlias = request.getParameter("alias");
 		String enteredPassword = request.getParameter("passwordUser");
@@ -41,6 +42,9 @@ public class CreateAccount extends HttpServlet {
 		String enteredPhone = request.getParameter("phone");
 
 		// TODO Verif des données = 2 password identiques		
+		
+		// CREATING USER
+		
 		User newUser = new User(enteredAlias,enteredSurname, enteredFirstName, enteredEmail,enteredPhone, enteredStreet, enteredZipCode, enteredCity, enteredPassword);
 		System.out.println(newUser);
 		try {
