@@ -18,27 +18,27 @@ VALUES
 
 INSERT INTO SOLD_ITEMS (nameItem, descriptionItem, bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem, idUser, idCategory)
 VALUES
-    ('Ordinateur Portable AlienWare', 'Un ordinateur portable haut de gamme AlienWare avec 32 GO de RAM !!', '2023-09-04', '2023-09-12', 600, NULL, 1, 1, 1),
-    ('Tablette Android', 'Une tablette Android de derniere generation de 10 pouces, pas de chargeur cependant, prevoir de racheter', '2023-09-10', '2023-09-18', 320, NULL, 0, 1, 1),
-    ('Imprimante Laser Canon', 'Une imprimante laser rapide et silencieuse', '2023-08-01', '2023-08-20', 150, 223, 2, 3, 1),
-    ('Moniteur 27 pouces Dell', 'Un moniteur IPS de 27 pouces de la marque DELL, TBE', '2023-09-16', '2023-09-22', 250, NULL, 0, 2, 1);
+    ('Ordinateur Portable AlienWare', 'Un ordinateur portable haut de gamme AlienWare avec 32 GO de RAM !!', '20230904 10:34:09 AM', '20230912 10:34:09 AM', 600, NULL, 1, 1, 1),
+    ('Tablette Android', 'Une tablette Android de derniere generation de 10 pouces, pas de chargeur cependant, prevoir de racheter', '20230910 11:34:09 PM', '20230918 09:34:09 PM', 320, NULL, 0, 1, 1),
+    ('Imprimante Laser Canon', 'Une imprimante laser rapide et silencieuse', '20230801 10:34:09 AM', '20230820 10:34:09 AM', 150, 223, 2, 3, 1),
+    ('Moniteur 27 pouces Dell', 'Un moniteur IPS de 27 pouces de la marque DELL, TBE', '20230916 10:34:09 AM', '20230922 10:34:09 AM', 250, NULL, 0, 2, 1);
 
 -- Adding furnishings items
 INSERT INTO SOLD_ITEMS (nameItem, descriptionItem, bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem, idUser, idCategory)
 VALUES
-    ('Canapï¿½ en Cuir', 'Un canape en cuir veritable pleine fleur de couleur beige. 6 places assises, tres confortable, legerement abime', '2023-09-04', '2023-09-20', 500, NULL, 1, 1, 2),
-    ('Table ï¿½ Manger', 'Une table ï¿½ manger en bois massif', '2023-09-05', '2023-09-19', 200, NULL, 1, 4, 2);
+    ('Canapé en Cuir', 'Un canape en cuir veritable pleine fleur de couleur beige. 6 places assises, tres confortable, legerement abime', '20230904 10:34:09 AM', '20230920 10:34:09 AM', 500, NULL, 1, 1, 2),
+    ('Table à Manger', 'Une table à manger en bois massif', '20230905 10:34:09 AM', '20230919 10:34:09 AM', 200, NULL, 1, 4, 2);
 
 -- Adding sports items
 INSERT INTO SOLD_ITEMS (nameItem, descriptionItem, bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem, idUser, idCategory)
 VALUES
-    ('Vï¿½lo de Montagne', 'Un velo de montagne tout-terrain qui roule super bien et a des gros pneus. 16 vitesses, sonette et antivol compris', '2023-06-07', '2023-06-22', 350, 370, 2, 4, 3),
-    ('Raquette de Tennis Decathlon', 'Une raquette de tennis professionnelle pour les enfants', '2023-09-17', '2023-09-23', 100, NULL, 0, 3, 3);
+    ('Vélo de Montagne', 'Un velo de montagne tout-terrain qui roule super bien et a des gros pneus. 16 vitesses, sonette et antivol compris', '20230607 10:34:09 AM', '20230622 10:34:09 AM', 350, 370, 2, 4, 3),
+    ('Raquette de Tennis Decathlon', 'Une raquette de tennis professionnelle pour les enfants', '20230917 10:34:09 AM', '20230923 10:34:09 AM', 100, NULL, 0, 3, 3);
 
 -- Adding clothing items
 INSERT INTO SOLD_ITEMS (nameItem, descriptionItem, bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem, idUser, idCategory)
 VALUES
-    ('Manteau Hiver T38 Kaporal', 'Un manteau hiver chaud et ï¿½lï¿½gant pour homme', '2023-09-01', '2023-09-26', 30, NULL, 1, 4, 4);
+    ('Manteau Hiver T38 Kaporal', 'Un manteau hiver chaud et élégant pour homme', '20230901 10:34:09 AM', '20230926 10:34:09 AM', 30, NULL, 1, 4, 4);
 
 
 -- Adding Withdraw points 
@@ -59,13 +59,14 @@ VALUES
 
 INSERT INTO BIDS (bidDate, bidAmount, idItem, idUser)
 VALUES
-	(2023-06-08, 620, 1, 2),
-	(2023-06-08, 370, 7, 1), 
-	(2023-09-03, 32, 9, 1);
+	('20230608 10:34:09 AM', 620, 1, 2),
+	('20230608 10:34:09 AM', 370, 7, 1), 
+	('20230903 10:34:09 AM', 32, 9, 1);
 
 
 -- Testing
 SELECT * FROM CATEGORIES;
+USE AUCTION_DB
 SELECT * FROM USERS;
 SELECT * FROM SOLD_ITEMS;
 SELECT * FROM SOLD_ITEMS WHERE idUser = 1;
