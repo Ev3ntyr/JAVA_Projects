@@ -12,8 +12,8 @@ USE AUCTION_DB
 
 DROP TABLE IF EXISTS WITHDRAW
 DROP TABLE IF EXISTS BIDS
-DROP TABLE IF EXISTS USERS
 DROP TABLE IF EXISTS SOLD_ITEMS
+DROP TABLE IF EXISTS USERS
 DROP TABLE IF EXISTS CATEGORIES
 
 CREATE TABLE CATEGORIES (
@@ -50,8 +50,8 @@ CREATE TABLE SOLD_ITEMS (
     idItem                    INTEGER IDENTITY(1,1) NOT NULL,
     nameItem                   VARCHAR(30) NOT NULL,
     descriptionItem                   VARCHAR(300) NOT NULL,
-	bidStartDate           DATE NOT NULL,
-    bidEndDate             DATE NOT NULL,
+	bidStartDate           DATETIME  NOT NULL,
+    bidEndDate             DATETIME NOT NULL,
     initialPrice                  INTEGER,
     sellingPrice                    INTEGER,
 	stateItem					INT NOT NULL,

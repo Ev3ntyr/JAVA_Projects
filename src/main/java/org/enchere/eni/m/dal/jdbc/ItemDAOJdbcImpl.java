@@ -1,12 +1,13 @@
 package org.enchere.eni.m.dal.jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,8 +47,8 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 				if (idPreviousItem != idItem) {
 					String nameItem = rs.getString("nameItem");
 					String descriptionItem = rs.getString("descriptionItem");
-					LocalDate bidStartDate = rs.getDate("bidStartDate").toLocalDate();
-					LocalDate bidEndDate = rs.getDate("bidEndDate").toLocalDate();
+					LocalDateTime bidStartDate = rs.getObject("bidStartDate",LocalDateTime.class);
+					LocalDateTime bidEndDate = rs.getObject("bidEndDate",LocalDateTime.class);
 					int initialPrice = rs.getInt("initialPrice");
 					int sellingPrice = rs.getInt("sellingPrice");
 					int stateItem = rs.getInt("stateItem");
@@ -64,9 +65,10 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 					String passwordUser = rs.getString("passwordUser");
 					int credit = rs.getInt("credit");
 					boolean isAdmin = rs.getBoolean("isAdmin");
+					boolean isActive = rs.getBoolean("isActive");
 
 					u = new User(idUser, alias, surname, firstName, email, phone, street, zipCode, city, passwordUser,
-							credit, isAdmin);
+							credit, isAdmin, isActive);
 
 					String street1 = rs.getString("street");
 					String zipCode1 = rs.getString("zipCode");
@@ -112,8 +114,8 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			PreparedStatement pStmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			pStmt.setString(1, item.getNameItem());
 			pStmt.setString(2, item.getDescriptionItem());
-			pStmt.setDate(3, Date.valueOf(item.getBidStartDate()));
-			pStmt.setDate(4, Date.valueOf(item.getBidEndDate()));
+			pStmt.setTimestamp(3, Timestamp.valueOf(item.getBidStartDate()));
+			pStmt.setTimestamp(4, Timestamp.valueOf(item.getBidEndDate()));
 			pStmt.setInt(5, item.getInitialPrice());
 			pStmt.setInt(6, item.getSellingPrice());
 			pStmt.setInt(7, item.getStateItem());

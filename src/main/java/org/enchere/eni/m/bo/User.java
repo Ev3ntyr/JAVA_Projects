@@ -19,6 +19,7 @@ public class User implements Serializable {
 	private String passwordUser;
 	private int credit;
 	private boolean isAdmin;
+	private boolean isActive;
 	private List <Item> itemsSold = new ArrayList <Item>();
 	private List <Bid> bids = new ArrayList <Bid>();
 	
@@ -96,6 +97,12 @@ public class User implements Serializable {
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
+	public boolean isActive() {
+		return isActive;
+	}
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
 	public List<Item> getItemsSold() {
 		return itemsSold;
 	}
@@ -141,7 +148,7 @@ public class User implements Serializable {
 	}
 	
 	public User(String alias, String surname, String firstName, String email, String phone, String street,
-			String zipCode, String city, String passwordUser, int credit, boolean isAdmin) {
+			String zipCode, String city, String passwordUser, int credit, boolean isAdmin, boolean isActive) {
 		
 		this(alias, surname, firstName, email, phone, street, zipCode, city, passwordUser);
 		
@@ -151,9 +158,9 @@ public class User implements Serializable {
 	}
 	
 	public User(int idUser, String alias, String surname, String firstName, String email, String phone, String street,
-			String zipCode, String city, String passwordUser, int credit, boolean isAdmin) {
+			String zipCode, String city, String passwordUser, int credit, boolean isAdmin, boolean isActive) {
 		
-		this(alias, surname, firstName, email, phone, street, zipCode, city, passwordUser, credit, isAdmin);
+		this(alias, surname, firstName, email, phone, street, zipCode, city, passwordUser, credit, isAdmin, isActive);
 		
 		this.idUser = idUser;
 		
