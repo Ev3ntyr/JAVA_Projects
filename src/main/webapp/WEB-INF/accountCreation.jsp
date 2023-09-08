@@ -21,6 +21,9 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
+<script 
+src="resources/js/scriptCreateAccount.js"
+type="text/javascript" defer></script>
 
 <meta charset="UTF-8">
 <title>Création de Compte</title>
@@ -45,7 +48,7 @@
 		</div>
 
 	</c:if>
-	<form action="create" method="POST">
+	<form action="create" method="POST" id="formCreate">
 
 		<div class="form-row ">
 			<div class="form-group mx-auto col-md-5">
@@ -114,7 +117,7 @@
 		<br>
 		<div class="d-flex justify-content-center">
 
-			<input class="btn btn-success mr-4 col-3" type="submit" value="Créer">
+			<input class="btn btn-success mr-4 col-3" type=button id="formSubmitBtn" value="Créer">
 			<a href="home" class="btn btn-danger col-3">Annuler</a>
 
 		</div>

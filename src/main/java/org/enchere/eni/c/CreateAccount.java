@@ -33,7 +33,6 @@ public class CreateAccount extends HttpServlet {
 		String enteredEmail = request.getParameter("email");
 		String enteredAlias = request.getParameter("alias");
 		String enteredPassword = request.getParameter("passwordUser");
-		String enteredPasswordCheck = request.getParameter("passwordUserCheck");
 		String enteredSurname = request.getParameter("surname");
 		String enteredFirstName = request.getParameter("firstName");
 		String enteredZipCode = request.getParameter("zipCode");

@@ -21,6 +21,9 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
+<script 
+src="resources/js/scriptUpdateAccount.js"
+type="text/javascript" defer></script>
 
 <meta charset="UTF-8">
 <title>Modification de Compte</title>
@@ -45,7 +48,7 @@
 		</div>
 
 	</c:if>
-	<form action="update" method="POST">
+	<form action="update" method="POST" id="formUpdate">
 
 		<div class="form-row ">
 			<div class="form-group mx-auto col-md-5">
@@ -127,7 +130,7 @@
 		
 		<div class="d-flex justify-content-center">
 
-			<input class="btn btn-warning mr-4 col-3" type="submit" value="Modifier">
+			<input class="btn btn-warning mr-4 col-3" type="button" value="Modifier" id="formSubmitBtn">
 			<a href="delete?idUser=${sessionScope.idUser}" class="btn btn-danger mr-4 col-3" onclick="alert('Cette action est irréversible, continuer ?')">Supprimer mon compte</a>
 			<a href="home" class="btn btn-info col-3">Annuler</a>
 
