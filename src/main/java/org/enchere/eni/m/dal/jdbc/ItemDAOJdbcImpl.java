@@ -11,6 +11,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.enchere.eni.m.bll.BidManager;
+import org.enchere.eni.m.bll.CategoryManager;
+import org.enchere.eni.m.bll.ItemManager;
+import org.enchere.eni.m.bll.UserManager;
 import org.enchere.eni.m.bo.Bid;
 import org.enchere.eni.m.bo.Category;
 import org.enchere.eni.m.bo.Item;
@@ -22,85 +26,73 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 	
 	public static final String SELECT_ALL = """
 			SELECT * FROM SOLD_ITEMS
-			JOIN USERS ON SOLD_ITEMS.idUser = USERS.idUser
-			JOIN CATEGORIES ON SOLD_ITEMS.idCategory = CATEGORIES.idCategory
-			LEFT JOIN WITHDRAW ON SOLD_ITEMS.idItem = WITHDRAW.idItem
-			LEFT JOIN BIDS ON SOLD_ITEMS.idItem = BIDS.idItem;
 			""";
+
+	
 
 	@Override
 	public List<Item> selectAll() {
 		
-		List<Item> itemSold = new ArrayList<Item>();
+		List<Item> items = new ArrayList<Item>();
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			Statement stmt = cnx.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_ALL);
 
-			int idPreviousItem = 0;
-			Item itemInProgress = null;
-			User u = null;
 			while (rs.next()) {
-
-				int idItem = rs.getInt("idItem");
-				if (idPreviousItem != idItem) {
-					String nameItem = rs.getString("nameItem");
-					String descriptionItem = rs.getString("descriptionItem");
-					LocalDateTime bidStartDate = rs.getObject("bidStartDate",LocalDateTime.class);
-					LocalDateTime bidEndDate = rs.getObject("bidEndDate",LocalDateTime.class);
-					int initialPrice = rs.getInt("initialPrice");
-					int sellingPrice = rs.getInt("sellingPrice");
-					int stateItem = rs.getInt("stateItem");
-
-					int idUser = rs.getInt("idUser");
-					String alias = rs.getString("alias");
-					String surname = rs.getString("surname");
-					String firstName = rs.getString("firstName");
-					String email = rs.getString("email");
-					String phone = rs.getString("phone");
-					String street = rs.getString("street");
-					String zipCode = rs.getString("zipCode");
-					String city = rs.getString("city");
-					String passwordUser = rs.getString("passwordUser");
-					int credit = rs.getInt("credit");
-					boolean isAdmin = rs.getBoolean("isAdmin");
-					boolean isActive = rs.getBoolean("isActive");
-
-					u = new User(idUser, alias, surname, firstName, email, phone, street, zipCode, city, passwordUser,
-							credit, isAdmin, isActive);
-
-					String street1 = rs.getString("street");
-					String zipCode1 = rs.getString("zipCode");
-					String city1 = rs.getString("city");
-
-					Withdraw w = new Withdraw(street1, zipCode1, city1);
-
-					int idCategory = rs.getInt("idCategory");
-					String wording = rs.getString("wording");
-
-					Category c = new Category(idCategory, wording);
-
-					itemInProgress = new Item(idItem, nameItem, descriptionItem, bidStartDate, bidEndDate,
-							initialPrice, sellingPrice, stateItem, u, w, c);
-					
-					itemSold.add(itemInProgress);
-					idPreviousItem = idItem;				
-				}
-				if (rs.getInt("idBid") != 0) {
-					int idBid = rs.getInt("idBid");
-					LocalDate bidDate = rs.getDate("bidDate").toLocalDate();
-					int bidAmount = rs.getInt("bidAmount");
-					Bid bid = new Bid(idBid, bidDate, bidAmount, itemInProgress, u);
+				Item currentItem = new Item();
 				
-					itemInProgress.addBid(bid);
+				int idItem = rs.getInt("idItem");
+				currentItem.setIdItem(idItem);
+				
+				String nameItem = rs.getString("nameItem");
+				currentItem.setNameItem(nameItem);
+				
+				String descriptionItem = rs.getString("descriptionItem");
+				currentItem.setDescriptionItem(descriptionItem);
+				
+				LocalDateTime bidStartDate = rs.getObject("bidStartDate",LocalDateTime.class);
+				currentItem.setBidStartDate(bidStartDate);
+				
+				LocalDateTime bidEndDate = rs.getObject("bidEndDate",LocalDateTime.class);
+				currentItem.setBidEndDate(bidEndDate);
+				
+				int initialPrice = rs.getInt("initialPrice");
+				currentItem.setInitialPrice(initialPrice);
+				
+				int sellingPrice = rs.getInt("sellingPrice");
+				currentItem.setSellingPrice(sellingPrice);
+				
+				int stateItem = rs.getInt("stateItem");
+				currentItem.setStateItem(stateItem);
+
+			
+				User user = UserManager.getInstance().selectById(rs.getInt("idUser"));
+				currentItem.setUser(user);
+				
+				Withdraw withdraw = new Withdraw();
+				if (ItemManager.getInstance().hasWithdraw(currentItem)) {
+					withdraw = ItemManager.getInstance().selectWithdraw(currentItem);
+					currentItem.setWithdraw(withdraw);
 				}
+
+				Category category = CategoryManager.getInstance().selectById(rs.getInt("idCategory"));
+				currentItem.setCategory(category);
+				
+				List<Bid> bids = BidManager.getInstance().selectAllByItem(currentItem);
+				if (!bids.isEmpty()) {
+					currentItem.setBids(bids);
+				}
+				
+				items.add(currentItem);
+				
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return itemSold;
+		return items;
 	}
 	
 	public static final String INSERT = """
@@ -159,5 +151,41 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			sqle.printStackTrace();
 		}
 		
+	}
+	
+	public static final String SELECT_WITHDRAW_BY_ID = """
+			SELECT * FROM WITHDRAW WHERE idItem = ?;
+			""";
+	@Override
+	public Withdraw selectWithdraw(Item item) {
+		
+		Withdraw withdraw = new Withdraw();
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_WITHDRAW_BY_ID);
+			pStmt.setInt(1, item.getIdItem());
+			
+			ResultSet rs = pStmt.executeQuery();
+			if (rs.next()) {
+				withdraw.setItemSold(item);
+				withdraw.setCity(rs.getString("city"));
+				withdraw.setStreet(rs.getString("street"));
+				withdraw.setZipCode(rs.getString("zipCode"));
+			}
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN SELECTING WITHDRAW id=" + item.getIdItem());
+			sqle.printStackTrace();
+		}
+		
+		return withdraw;
+		
+	}
+	
+	@Override
+	public boolean hasWithdraw(Item item) {
+		return selectWithdraw(item) != null;
 	}
 }
