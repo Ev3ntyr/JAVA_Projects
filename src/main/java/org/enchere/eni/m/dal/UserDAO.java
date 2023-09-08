@@ -11,4 +11,5 @@ public interface UserDAO {
 	boolean checkAlias (String alias);
 	User selectByAlias(String alias);
 	void update(User user);
+	void delete(int idUser);
 }

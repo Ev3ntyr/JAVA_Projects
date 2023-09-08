@@ -220,5 +220,26 @@ public class UserDAOJdbcImpl implements UserDAO {
 		}
 		
 	}
+	
+	private static final String DELETE = """
+			DELETE FROM USERS WHERE idUser = ?;
+			""";
+	
+	@Override
+	public void delete(int idUser) {
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(DELETE);
+			pStmt.setInt(1, idUser);
+			
+			pStmt.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN DELETING USER id=" + idUser);
+			sqle.printStackTrace();
+		}
+		
+	}
   
 }

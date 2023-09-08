@@ -128,7 +128,8 @@
 		<div class="d-flex justify-content-center">
 
 			<input class="btn btn-warning mr-4 col-3" type="submit" value="Modifier">
-			<a href="home" class="btn btn-danger col-3">Annuler</a>
+			<a href="delete?idUser=${sessionScope.idUser}" class="btn btn-danger mr-4 col-3" onclick="alert('Cette action est irréversible, continuer ?')">Supprimer mon compte</a>
+			<a href="home" class="btn btn-info col-3">Annuler</a>
 
 		</div>
 	</form>

@@ -104,4 +104,14 @@
     <servlet-name>UpdateAccount</servlet-name>
     <url-pattern>/update</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteAccount</display-name>
+    <servlet-name>DeleteAccount</servlet-name>
+    <servlet-class>org.enchere.eni.c.DeleteAccount</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteAccount</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
 </web-app>

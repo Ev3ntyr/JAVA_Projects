@@ -67,4 +67,8 @@ public class UserManager {
 	public void update(User user) {
 		DAOFactory.getUserDAO().update(user);
 	}
+	
+	public void delete(int idUser) {
+		DAOFactory.getUserDAO().delete(idUser);
+	}
 }
