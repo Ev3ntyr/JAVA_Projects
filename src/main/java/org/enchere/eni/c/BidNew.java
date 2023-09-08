@@ -55,6 +55,7 @@ public class BidNew extends HttpServlet {
 		String enteredName = request.getParameter("nameItem");
 		String enteredDescript = request.getParameter("descriptionItem");
 		int enteredCategory = Integer.valueOf(request.getParameter("category"));
+		Category currentCategory = CategoryManager.getInstance().selectById(enteredCategory);
 		System.out.println("catégorie :" + enteredCategory);
 		//TODO Récupérer la photo et la stocker
 		int enteredInitialPrice = Integer.valueOf(request.getParameter("initialPrice"));
@@ -92,7 +93,7 @@ public class BidNew extends HttpServlet {
 
 		// On crée l'item
 		
-		Item newItem = new Item(enteredName, enteredDescript, bidStartDate, bidEndDate, enteredInitialPrice, 0, statut, currentUser, enteredCategory);
+		Item newItem = new Item(enteredName, enteredDescript, bidStartDate, bidEndDate, enteredInitialPrice, 0, statut, currentUser, currentCategory);
 		System.out.println(newItem);
 		
 		try {
