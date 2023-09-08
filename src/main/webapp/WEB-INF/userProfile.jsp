@@ -30,7 +30,7 @@
 		<h1 class="">ENI-Enchères</h1>
 	</div>
 	<br>
-		<h2 class="text-center">Mon Profil</h2>
+		<h2 class="text-center">Profil</h2>
 	<br>
 
 	
