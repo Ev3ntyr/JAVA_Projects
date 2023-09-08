@@ -136,9 +136,9 @@ type="text/javascript" defer></script>
 		<div class="d-flex justify-content-center">
 
 			<input class="btn btn-warning mr-4 col-3" type="button" value="Modifier" id="formSubmitBtn">
-			<a href="" class="btn btn-danger mr-4 col-3" id="deleteAccountBtn">Supprimer mon compte</a>
+			<input type="hidden" value="${sessionScope.idUser}" id="userID">
+			<button class="btn btn-danger mr-4 col-3" id="deleteAccountBtn" type="button">Supprimer mon compte</button>
 			<a href="home" class="btn btn-info col-3">Annuler</a>
-			<!-- delete?idUser=${sessionScope.idUser} -->
 		</div>
 	</form>
 	<br>
