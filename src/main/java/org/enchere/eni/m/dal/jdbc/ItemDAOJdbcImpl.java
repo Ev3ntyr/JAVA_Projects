@@ -199,12 +199,69 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 		List<Item> items = new ArrayList<Item>();
 		
 		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_ALL_BY_NAME);
 			
+			pStmt.setString(1, "%" + itemName + "%");
+			
+			ResultSet rs = pStmt.executeQuery();
+			
+			while(rs.next()) {
+			
+				Item currentItem = new Item();
+				
+				int idItem = rs.getInt("idItem");
+				currentItem.setIdItem(idItem);
+				
+				String nameItem = rs.getString("nameItem");
+				currentItem.setNameItem(nameItem);
+				
+				String descriptionItem = rs.getString("descriptionItem");
+				currentItem.setDescriptionItem(descriptionItem);
+				
+				LocalDateTime bidStartDate = rs.getObject("bidStartDate",LocalDateTime.class);
+				currentItem.setBidStartDate(bidStartDate);
+				
+				LocalDateTime bidEndDate = rs.getObject("bidEndDate",LocalDateTime.class);
+				currentItem.setBidEndDate(bidEndDate);
+				
+				int initialPrice = rs.getInt("initialPrice");
+				currentItem.setInitialPrice(initialPrice);
+				
+				int sellingPrice = rs.getInt("sellingPrice");
+				currentItem.setSellingPrice(sellingPrice);
+				
+				int stateItem = rs.getInt("stateItem");
+				currentItem.setStateItem(stateItem);
+
+			
+				User user = UserManager.getInstance().selectById(rs.getInt("idUser"));
+				currentItem.setUser(user);
+				
+				Withdraw withdraw = new Withdraw();
+				if (ItemManager.getInstance().hasWithdraw(currentItem)) {
+					withdraw = ItemManager.getInstance().selectWithdraw(currentItem);
+					currentItem.setWithdraw(withdraw);
+				}
+
+				Category category = CategoryManager.getInstance().selectById(rs.getInt("idCategory"));
+				currentItem.setCategory(category);
+				
+				List<Bid> bids = BidManager.getInstance().selectAllByItem(currentItem);
+				if (!bids.isEmpty()) {
+					currentItem.setBids(bids);
+				}
+				
+				items.add(currentItem);
+		
+				
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		return items;
 	
 	

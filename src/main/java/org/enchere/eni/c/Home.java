@@ -19,8 +19,15 @@ public class Home extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Item> listItem = ItemManager.getInstance().selectAll();
-		request.setAttribute("listItem", listItem);
+		if (request.getAttribute("listItem") == null) {
+			List<Item> listItem = ItemManager.getInstance().selectAll();
+			request.setAttribute("listItem", listItem);
+		} else {
+			@SuppressWarnings("unchecked")
+			List<Item> listItem = (List<Item>) request.getAttribute("listItem");
+			request.setAttribute("listItem", listItem);
+		}
+		
 		
 		List<Category> listCategory = CategoryManager.getInstance().select();
 		request.setAttribute("listCategory", listCategory);
@@ -32,10 +39,13 @@ public class Home extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
 		
 		String itemName = request.getParameter("itemName");
-		
+				
+		List<Item> listItem = ItemManager.getInstance().selectAllByName(itemName);
+		request.setAttribute("listItem", listItem);
+		doGet(request, response);
 		// ramener liste des SOLD_ITEMS de la bdd dont le nom contient itemName
 		
 		

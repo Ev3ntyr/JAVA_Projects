@@ -67,7 +67,7 @@
 				id="site-search" name="itemName" placeholder="Rechercher sur le site…"
 				class="form-control col-5" />
 
-			<button class=" form-control col-2 btn btn-outline-success">Search</button>
+			<button class="form-control col-2 btn btn-outline-success" type=submit>Search</button>
 		</div>
 	</form>
 
