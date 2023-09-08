@@ -26,8 +26,10 @@
 </head>
 <body class="container" max-width="80%">
 	
+	<div class="d-flex ">
+		<a href="home"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail" style="width:100px;"></a>
+	</div>
 	<h1 class="row justify-content-center">Accueil - liste enchères</h1>
-	<img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail" style="width:100px;">
 
 	<c:choose>
 		<c:when test="${sessionScope.idUser == null}">
@@ -136,6 +138,6 @@
 			</tbody>
 		</c:when>
 	</c:choose>
-	<footer>Logo by: <a href="https://pixabay.com/fr/users/geralt-9301/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=728408">Gerd Altmann</a> de <a href="https://pixabay.com/fr//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=728408">Pixabay</a></footer>
+	<footer>Logo by: <a href="https://pixabay.com/fr/users/geralt-9301/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=728409">Gerd Altmann</a> de <a href="https://pixabay.com/fr//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=728409">Pixabay</a></footer>
 </body>
 </html>
