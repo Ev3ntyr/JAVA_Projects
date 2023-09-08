@@ -40,9 +40,9 @@ public class CategoryDAOJdbcImpl implements CategoryDAO {
 	}
 	
 	
-	public static final String SELECT_CATEGORY =  """ 
-			
-		SELECT * FROM CATEGORIES; """;
+	public static final String SELECT_CATEGORY =  """	
+		SELECT idCategory, wording FROM CATEGORIES;
+		""";
 	
 	@Override
 	public List<Category> select() {
@@ -66,9 +66,34 @@ public class CategoryDAOJdbcImpl implements CategoryDAO {
 			exception.printStackTrace();
 			System.out.println("ERROR WHEN SELECTING CATEGORY");
 		}
-		
-		
+		return categories;
+	}
 	
-return categories;
-}
+	public static final String SELECT_CATEGORY_BY_ID = """
+			SELECT wording FROM CATEGORIES WHERE idCategory = ?;
+			""";
+	@Override
+	public Category selectById(int idCategory) {
+		
+		Category category = new Category();
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_CATEGORY_BY_ID);
+			pStmt.setInt(1, idCategory);
+			
+			ResultSet rs = pStmt.executeQuery();
+			if (rs.next()) {
+				category.setIdCategory(idCategory);
+				category.setWording(rs.getString("wording"));
+			}
+			 
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN SELECTING CATGORY WITH ID=" + idCategory);
+			sqle.printStackTrace();
+		}
+		
+		return category;
+		
+	}
 }

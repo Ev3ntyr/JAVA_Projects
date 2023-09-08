@@ -10,4 +10,6 @@ public interface ItemDAO {
 	List<Item> selectAll();
 	void insert(Item item);
 	void insertWithdraw (Withdraw withdraw);
+	boolean hasWithdraw(Item item);
+	Withdraw selectWithdraw(Item item);
 }

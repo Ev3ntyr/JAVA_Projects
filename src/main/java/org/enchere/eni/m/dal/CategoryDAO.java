@@ -9,4 +9,5 @@ public interface CategoryDAO {
 	void insert(Category newCategory);
 
 	List<Category> select();
+	Category selectById(int idCategory);
 }

@@ -9,7 +9,9 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import org.enchere.eni.m.bll.CategoryManager;
 import org.enchere.eni.m.bll.ErrorCodesBLL;
 import org.enchere.eni.m.bll.ItemManager;
 import org.enchere.eni.m.bll.UserManager;
@@ -33,6 +35,9 @@ public class BidNew extends HttpServlet {
 		
 		request.setAttribute("user", user);
 		
+		List<Category> listCategory = CategoryManager.getInstance().select();
+		request.setAttribute("listCategory", listCategory);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/bidNew.jsp");
 		rd.forward(request, response);
 		
@@ -49,8 +54,9 @@ public class BidNew extends HttpServlet {
 		
 		String enteredName = request.getParameter("nameItem");
 		String enteredDescript = request.getParameter("descriptionItem");
-		String enteredCategory = request.getParameter("idCategory");
-		//TODO Récupérer la liste des catégories pour l'afficher ?
+		int enteredCategory = Integer.valueOf(request.getParameter("category"));
+		Category currentCategory = CategoryManager.getInstance().selectById(enteredCategory);
+		System.out.println("catégorie :" + enteredCategory);
 		//TODO Récupérer la photo et la stocker
 		int enteredInitialPrice = Integer.valueOf(request.getParameter("initialPrice"));
 		String enteredBidStartDate = request.getParameter("bidStartDate");
@@ -87,7 +93,7 @@ public class BidNew extends HttpServlet {
 
 		// On crée l'item
 		
-		Item newItem = new Item(enteredName, enteredDescript, bidStartDate, bidEndDate, enteredInitialPrice, 0, statut, currentUser, new Category());
+		Item newItem = new Item(enteredName, enteredDescript, bidStartDate, bidEndDate, enteredInitialPrice, 0, statut, currentUser, currentCategory);
 		System.out.println(newItem);
 		
 		try {

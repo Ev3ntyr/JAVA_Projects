@@ -118,6 +118,7 @@ public class Item implements Serializable {
 		this.category = category;
 	}
 	
+	
 	public Item(int idItem, String nameItem, String descriptionItem, LocalDateTime bidStartDate, LocalDateTime bidEndDate,
 			int initialPrice, int sellingPrice, int stateItem, User user, Withdraw withdraw, Category category) {
 		this(nameItem, descriptionItem, bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem, user, category);
