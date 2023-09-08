@@ -65,9 +65,10 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 					String passwordUser = rs.getString("passwordUser");
 					int credit = rs.getInt("credit");
 					boolean isAdmin = rs.getBoolean("isAdmin");
+					boolean isActive = rs.getBoolean("isActive");
 
 					u = new User(idUser, alias, surname, firstName, email, phone, street, zipCode, city, passwordUser,
-							credit, isAdmin);
+							credit, isAdmin, isActive);
 
 					String street1 = rs.getString("street");
 					String zipCode1 = rs.getString("zipCode");

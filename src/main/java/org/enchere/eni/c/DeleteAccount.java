@@ -15,8 +15,7 @@ public class DeleteAccount extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int idUser = Integer.valueOf(request.getParameter("idUser"));
-		
-		UserManager.getInstance().delete(idUser);
+		UserManager.getInstance().deactivate(idUser);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("logout");
 		rd.forward(request, response);
@@ -24,6 +23,11 @@ public class DeleteAccount extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// TODO Admin menu to completely delete User from DB
+		int idUser = Integer.valueOf(request.getParameter("idUser"));
+		UserManager.getInstance().delete(idUser);
+		
 		doGet(request, response);
 	}
 
