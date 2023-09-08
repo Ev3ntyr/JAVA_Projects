@@ -25,7 +25,13 @@
 </head>
 <body class="container" max-width=80%>
 
-	<h1 class="my-5">Profil</h1>
+	<div class="d-flex justify-content-center align-text-middle my-5">
+		<a href="home"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail mr-3 align-self-left" style="width:100px;"></a>
+		<h1 class="">ENI-Enchères</h1>
+	</div>
+	<br>
+		<h2 class="text-center">Mon Profil</h2>
+	<br>
 
 	
 	<div class="row">
