@@ -25,7 +25,7 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			SELECT * FROM SOLD_ITEMS
 			JOIN USERS ON SOLD_ITEMS.idUser = USERS.idUser
 			JOIN CATEGORIES ON SOLD_ITEMS.idCategory = CATEGORIES.idCategory
-			JOIN WITHDRAW ON SOLD_ITEMS.idItem = WITHDRAW.idItem
+			LEFT JOIN WITHDRAW ON SOLD_ITEMS.idItem = WITHDRAW.idItem
 			LEFT JOIN BIDS ON SOLD_ITEMS.idItem = BIDS.idItem;
 			""";
 	public static final String SELECT_CATEGORY_BY_IDITEM = """
