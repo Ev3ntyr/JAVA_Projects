@@ -61,10 +61,10 @@
 
 	<br>
 
-	<form>
+	<form action="home" method="post">
 		<div class="row justify-content-center m-4">
 			<label for="site-search"></label> <input type="search"
-				id="site-search" name="q" placeholder="Rechercher sur le site…"
+				id="site-search" name="itemName" placeholder="Rechercher sur le site…"
 				class="form-control col-5" />
 
 			<button class=" form-control col-2 btn btn-outline-success">Search</button>

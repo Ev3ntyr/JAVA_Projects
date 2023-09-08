@@ -185,6 +185,30 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 	
 	@Override
 	public boolean hasWithdraw(Item item) {
-		return selectWithdraw(item) != null;
+		return selectWithdraw(item) != null;	
 	}
+	
+	public static final String SELECT_ALL_BY_NAME = """
+			SELECT * FROM SOLD_ITEMS WHERE nameItem LIKE ?;
+			""";
+	
+	
+	@Override
+	public List<Item> selectAllByName(String itemName){
+		
+		List<Item> items = new ArrayList<Item>();
+		
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return items;
+	
+	
+	
+	
+}
 }
