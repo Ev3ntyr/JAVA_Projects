@@ -81,13 +81,13 @@
 			<br>
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="bidStartDate">Début de
-					l'enchère :</label> <input type="date" class="col col-lg-2"
+					l'enchère :</label> <input type="datetime-local" class="col col-lg-2"
 					id="bidStartDate" name="bidStartDate" required>
 			</div>
 			<br>
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="bidEndDate">Fin de
-					l'enchère :</label> <input type="date" class="col col-lg-2" id="bidEndDate"
+					l'enchère :</label> <input type="datetime-local" class="col col-lg-2" id="bidEndDate"
 					name="bidEndDate" required>
 			</div>
 		</div>

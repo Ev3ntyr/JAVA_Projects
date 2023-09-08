@@ -8,7 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.DateTimeException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import org.enchere.eni.m.bll.ErrorCodesBLL;
 import org.enchere.eni.m.bll.ItemManager;
 import org.enchere.eni.m.bll.UserManager;
@@ -57,17 +58,17 @@ public class BidNew extends HttpServlet {
 
 
 		// On transforme les valeurs dans le bon format			
-		LocalDate bidStartDate = null;
+		LocalDateTime bidStartDate = null;
 		try {
-			bidStartDate = LocalDate.parse(enteredBidStartDate);
+			bidStartDate = LocalDateTime.parse(enteredBidStartDate);
 		} catch (DateTimeException e) {
 			e.printStackTrace();
 			BusinessException be = new BusinessException(ErrorCodesBLL.FORMAT_BID_START_DATE_ERROR);		
 		}
 
-		LocalDate bidEndDate = null;
+		LocalDateTime bidEndDate = null;
 		try {
-			bidEndDate = LocalDate.parse(enteredBidEndDate);
+			bidEndDate = LocalDateTime.parse(enteredBidEndDate);
 		} catch (DateTimeException e) {
 			e.printStackTrace();
 			BusinessException be = new BusinessException(ErrorCodesBLL.FORMAT_BID_END_DATE_ERROR);		
@@ -80,7 +81,7 @@ public class BidNew extends HttpServlet {
 		
 		//Verification conformité des dates et attribution du statut 0 ou 1
 		int statut = 0;
-		if (bidStartDate.isEqual(LocalDate.now()) ) {
+		if (bidStartDate.isEqual(LocalDateTime.now()) ) {
 			statut = 1;
 		}		
 

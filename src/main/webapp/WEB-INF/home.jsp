@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
-    
-   
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +25,10 @@
 <title>Accueil</title>
 </head>
 <body class="container" max-width="80%">
-
-
 	
 	<h1 class="row justify-content-center">Accueil - liste enchères</h1>
 	<img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail" style="width:100px;">
+
 	<c:choose>
 		<c:when test="${sessionScope.idUser == null}">
 			<ul class="nav justify-content-center">
@@ -55,57 +54,84 @@
 		</ul>
 		</c:otherwise>
 	</c:choose>
-	
+
 
 	<br>
-	
+
 	<form>
-	<div class="row justify-content-center m-4"  >
-	<label for="site-search" ></label>
-<input  type="search" id="site-search" name="q" placeholder="Rechercher sur le site…" class="form-control col-5" />
+		<div class="row justify-content-center m-4">
+			<label for="site-search"></label> <input type="search"
+				id="site-search" name="q" placeholder="Rechercher sur le site…"
+				class="form-control col-5" />
 
-<button class=" form-control col-2 btn btn-outline-success">Search</button></div></form>
+			<button class=" form-control col-2 btn btn-outline-success">Search</button>
+		</div>
+	</form>
 
-<div class="row justify-content-center">
-<label for="category" class="p-1 ml-1" >Catégorie : </label>
+	<div class="row justify-content-center">
+		<label for="category" class="p-1 ml-1">Catégorie : </label> <select
+			name="" id="category">
+			<option value="Toutes">Toutes</option>
+			<c:forEach items="${listCategory}" var="category">
+				<option value="${category.idCategory }">${category.wording}</option>
 
+			</c:forEach>
+		</select>
+	</div>
 
-<select name="" id="category" >
-  <option value="Toutes">Toutes</option>
-	<c:forEach items="${listCategory}" var="category">
-	<option value="${category.idCategory }">${category.wording}</option>
-	
-	</c:forEach>
-</select>
-</div>
-	
 
 	<c:choose>
 		<c:when test="${listItem.size() > 0 }">
 			<tbody>
 				<div class="container">
-				<div class="row justify-content-md-center">
-				<c:forEach items="${listItem }" var="itemSold">
+					<div class="row justify-content-md-center">
+						<c:forEach items="${listItem }" var="itemSold">
 
 
 
-					<div class="card col-3 m-4" style="width: 18rem;">
-						<img class="card-img-top" src="..." alt="">
-						<div class="card-body">
-							<h5 class="card-title">
-								<a href="bidDetails">${itemSold.nameItem}</a>
-							</h5>
-							<p class="card-text">Prix : ${itemSold.initialPrice} points</p>
-							<p class="card-text">Fin de l'enchère :
-								${itemSold.bidEndDate}</p>
-							<p class="card-text">
-								Vendeur : <a href="userProfile?idUser=${itemSold.user.idUser}" class="bidDetails ">${itemSold.user.alias}</a>
-							</p>
+							<div class="card col-3 m-4" style="width: 18rem;">
+								<img class="card-img-top" src="..." alt="">
+								<div class="card-body">
+									<h5 class="card-title">
 
-						</div>
+										<c:choose>
+											<c:when test="${sessionScope.idUser == null }">
+								${itemSold.nameItem}
+											</c:when>
+											<c:otherwise>
+												<a href="bidDetails?idItem=${itemSold.idItem}"
+													class="bidDetails">${itemSold.nameItem}</a>
+											</c:otherwise>
+										</c:choose>
+											
+					
+											
+											
+											
+									
+
+									</h5>
+
+									<p class="card-text">Prix : ${itemSold.initialPrice} points</p>
+									<p class="card-text">Fin de l'enchère :
+										${itemSold.bidEndDate}</p>
+									<p class="card-text">
+										<c:choose>
+											<c:when test="${sessionScope.idUser == null }">
+								Vendeur : ${itemSold.user.alias}
+											</c:when>
+											<c:otherwise>
+												<a href="userProfile?idUser=${itemSold.user.idUser}"
+													class="bidDetails">${itemSold.user.alias}</a>
+											</c:otherwise>
+										</c:choose>
+
+									</p>
+
+								</div>
+							</div>
+						</c:forEach>
 					</div>
-				</c:forEach>
-				</div>
 				</div>
 			</tbody>
 		</c:when>
