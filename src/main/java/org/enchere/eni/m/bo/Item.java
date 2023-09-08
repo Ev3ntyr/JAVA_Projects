@@ -20,6 +20,7 @@ public class Item implements Serializable {
 	private User user;
 	private Withdraw withdraw;
 	private Category category;
+	private int idCategory;
 	private List <Bid> bids = new ArrayList <Bid>();
 	
 	// GETTERS AND SETTERS
@@ -116,6 +117,20 @@ public class Item implements Serializable {
 		this.stateItem = stateItem;
 		this.user = user;
 		this.category = category;
+	}
+	
+	public Item(String nameItem, String descriptionItem, LocalDateTime bidStartDate, LocalDateTime bidEndDate,
+			int initialPrice, int sellingPrice, int stateItem, User user, int idCategory) {
+		this();
+		this.nameItem = nameItem;
+		this.descriptionItem = descriptionItem;
+		this.bidStartDate = bidStartDate;
+		this.bidEndDate = bidEndDate;
+		this.initialPrice = initialPrice;
+		this.sellingPrice = sellingPrice;
+		this.stateItem = stateItem;
+		this.user = user;
+		this.idCategory = idCategory;
 	}
 	
 	public Item(int idItem, String nameItem, String descriptionItem, LocalDateTime bidStartDate, LocalDateTime bidEndDate,

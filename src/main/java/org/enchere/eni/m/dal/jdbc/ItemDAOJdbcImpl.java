@@ -120,9 +120,7 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			pStmt.setInt(6, item.getSellingPrice());
 			pStmt.setInt(7, item.getStateItem());
 			pStmt.setInt(8, item.getUser().getIdUser());
-			pStmt.setInt(9, 1);
-			//TODO Select Category 
-//			pStmt.setInt(9, item.getCategory().getIdCategory());
+			pStmt.setInt(9, item.getCategory().getIdCategory());
 			
 			pStmt.executeUpdate();
 			

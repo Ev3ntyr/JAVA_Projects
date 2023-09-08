@@ -62,12 +62,16 @@
 					required>
 			</div>
 			<br>
+
 			<div class="row justify-content-md-center">
-				<label class="col col-lg-2" for="idCategory">Catégorie :</label> <input
-					type="textarea" maxlength="300" class="col col-lg-4" id="idCategory" name="idCategory"
-					required>
+				<label for="category" class="col col-lg-2">Catégorie : </label> 
+					<select name="category" id="category">
+					<c:forEach items="${listCategory}" var="category">
+						<option value="${category.idCategory }">${category.wording}</option>
+					</c:forEach>
+				</select>
 			</div>
-			<br>
+<br>
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="">Photo de l'article :</label> <input
 					type="file" class="col col-lg-4" id="" name="">
@@ -87,8 +91,8 @@
 			<br>
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="bidEndDate">Fin de
-					l'enchère :</label> <input type="datetime-local" class="col col-lg-2" id="bidEndDate"
-					name="bidEndDate" required>
+					l'enchère :</label> <input type="datetime-local" class="col col-lg-2"
+					id="bidEndDate" name="bidEndDate" required>
 			</div>
 		</div>
 		<br>
