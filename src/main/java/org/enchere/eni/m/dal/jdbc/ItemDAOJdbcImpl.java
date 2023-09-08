@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.enchere.eni.m.bll.CategoryManager;
 import org.enchere.eni.m.bo.Bid;
 import org.enchere.eni.m.bo.Category;
 import org.enchere.eni.m.bo.Item;
@@ -27,6 +28,10 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			JOIN WITHDRAW ON SOLD_ITEMS.idItem = WITHDRAW.idItem
 			LEFT JOIN BIDS ON SOLD_ITEMS.idItem = BIDS.idItem;
 			""";
+	public static final String SELECT_CATEGORY_BY_IDITEM = """
+			
+			""";
+	
 
 	@Override
 	public List<Item> selectAll() {
@@ -76,10 +81,7 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 
 					Withdraw w = new Withdraw(street1, zipCode1, city1);
 
-					int idCategory = rs.getInt("idCategory");
-					String wording = rs.getString("wording");
-
-					Category c = new Category(idCategory, wording);
+					Category c = CategoryManager.getInstance().selectById(rs.getInt("idCategory"));
 
 					itemInProgress = new Item(idItem, nameItem, descriptionItem, bidStartDate, bidEndDate,
 							initialPrice, sellingPrice, stateItem, u, w, c);

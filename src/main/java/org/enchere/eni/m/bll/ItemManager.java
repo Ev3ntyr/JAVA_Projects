@@ -14,10 +14,10 @@ public class ItemManager {
 	public static ItemManager getInstance() {
 		if(instance == null) {
 			instance = new ItemManager();
-			
 		}
 		return instance;
 	}
+	
 	private ItemManager() {}
 	
 	public List<Item> selectAll(){
