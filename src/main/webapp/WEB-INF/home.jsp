@@ -26,10 +26,11 @@
 </head>
 <body class="container" max-width="80%">
 	
-	<div class="d-flex ">
-		<a href="home"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail" style="width:100px;"></a>
+	<div class="d-flex justify-content-center align-text-middle my-5">
+		<a href="home"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail mr-3 align-self-left" style="width:100px;"></a>
+		<h1 class="">ENI-Enchères</h1>
 	</div>
-	<h1 class="row justify-content-center">Accueil - liste enchères</h1>
+	
 
 	<c:choose>
 		<c:when test="${sessionScope.idUser == null}">

@@ -31,7 +31,12 @@ type="text/javascript" defer></script>
 <body class="container" max-width=80%>
 	<br>
 	<br>
-	<h1>Modifier mon profil</h1>
+	<div class="d-flex justify-content-center align-text-middle my-5">
+		<a href="home"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail mr-3 align-self-left" style="width:100px;"></a>
+		<h1 class="">ENI-Enchères</h1>
+	</div>
+	<br>
+		<h2 class="text-center">Modifier mon profil</h2>
 	<br>
 	<br>
 
@@ -131,9 +136,9 @@ type="text/javascript" defer></script>
 		<div class="d-flex justify-content-center">
 
 			<input class="btn btn-warning mr-4 col-3" type="button" value="Modifier" id="formSubmitBtn">
-			<a href="delete?idUser=${sessionScope.idUser}" class="btn btn-danger mr-4 col-3" onclick="alert('Cette action est irréversible, continuer ?')">Supprimer mon compte</a>
+			<a href="" class="btn btn-danger mr-4 col-3" id="deleteAccountBtn">Supprimer mon compte</a>
 			<a href="home" class="btn btn-info col-3">Annuler</a>
-
+			<!-- delete?idUser=${sessionScope.idUser} -->
 		</div>
 	</form>
 	<br>

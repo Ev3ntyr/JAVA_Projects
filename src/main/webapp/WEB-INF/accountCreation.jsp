@@ -31,8 +31,12 @@ type="text/javascript" defer></script>
 <body class="container" max-width=80%>
 	<br>
 	<br>
-	<h1>Créer mon compte</h1>
+	<div class="d-flex justify-content-center align-text-middle my-5">
+		<a href="home"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail mr-3 align-self-left" style="width:100px;"></a>
+		<h1 class="">ENI-Enchères</h1>
+	</div>
 	<br>
+		<h2 class="text-center">Créer mon compte</h2>
 	<br>
 
 	<c:if test="${!empty errorCodesList }">

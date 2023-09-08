@@ -22,5 +22,17 @@ function checkPasswordConfirmation() {
 	} else {
 		document.getElementById('formUpdate').submit();
 	}
-	
+}
+
+const deleteAccountBtn = document.getElementById('deleteAccountBtn');
+deleteAccountBtn.addEventListener('click', confirmDeletion);
+
+function confirmDeletion() {
+	if(confirm('Cette action est irréversible, continuer ?')) {
+		console.log('confirmed');
+		window.location.replace(deleteAccountBtn.getAttribute('href'));
+	} else {
+		console.log('canceled');
+		window.location.reload();
+	}
 }
