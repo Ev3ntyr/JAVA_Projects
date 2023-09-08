@@ -31,4 +31,12 @@ public class ItemManager {
 	public void insertWithdraw(Withdraw withdraw) {
 		DAOFactory.getItemSoldDAO().insertWithdraw(withdraw);
 	}
+	
+	public Withdraw selectWithdraw(Item item) {
+		return DAOFactory.getItemSoldDAO().selectWithdraw(item);
+	}
+	
+	public boolean hasWithdraw(Item item) {
+		return DAOFactory.getItemSoldDAO().hasWithdraw(item);
+	}
 }

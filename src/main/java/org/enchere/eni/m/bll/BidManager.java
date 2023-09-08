@@ -1,6 +1,9 @@
 package org.enchere.eni.m.bll;
 
+import java.util.List;
+
 import org.enchere.eni.m.bo.Bid;
+import org.enchere.eni.m.bo.Item;
 import org.enchere.eni.m.dal.DAOFactory;
 
 public class BidManager {
@@ -20,5 +23,8 @@ public class BidManager {
 		DAOFactory.getBidDAO().insert(bid);
 	}
 	
+	public List<Bid> selectAllByItem(Item item) {
+		return DAOFactory.getBidDAO().selectAllByItem(item);
+	}
 
 }
