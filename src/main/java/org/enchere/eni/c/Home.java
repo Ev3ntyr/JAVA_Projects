@@ -34,8 +34,14 @@ public class Home extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 		
+		String itemName = request.getParameter("itemName");
 		
-		String categories = request.getParameter("category");
+		// ramener liste des SOLD_ITEMS de la bdd dont le nom contient itemName
+		
+		
+		
+		
+		
 		
 	}
 

@@ -20,6 +20,10 @@ public class ItemManager {
 	
 	private ItemManager() {}
 	
+	public List<Item> selectAllByName(String itemName){
+		return DAOFactory.getItemSoldDAO().selectAllByName(itemName);
+	}
+	
 	public List<Item> selectAll(){
 		return DAOFactory.getItemSoldDAO().selectAll();
 	}
