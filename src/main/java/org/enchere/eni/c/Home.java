@@ -25,8 +25,6 @@ public class Home extends HttpServlet {
 		List<Category> listCategory = CategoryManager.getInstance().select();
 		request.setAttribute("listCategory", listCategory);
 		
-		
-		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
 		rd.forward(request, response);
 		
@@ -35,6 +33,10 @@ public class Home extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+		
+		
+		String categories = request.getParameter("category");
+		
 	}
 
 }
