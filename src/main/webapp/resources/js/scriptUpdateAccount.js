@@ -24,7 +24,6 @@ function checkPasswordConfirmation() {
 	}
 }
 
-
 const deleteAccountBtn = document.getElementById('deleteAccountBtn');
 deleteAccountBtn.addEventListener('click', confirmDeletion);
 

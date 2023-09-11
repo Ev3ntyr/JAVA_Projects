@@ -28,6 +28,10 @@ public class ItemManager {
 		return DAOFactory.getItemSoldDAO().selectAll();
 	}
 	
+	public Item selectById(int idItem) {
+		return DAOFactory.getItemSoldDAO().selectById(idItem);
+	}
+	
 	public void insert(Item item) throws BusinessException{
 		DAOFactory.getItemSoldDAO().insert(item);
 	}
