@@ -58,7 +58,7 @@ function handleFilter(radioBtn) {
 const CHECKBOXES = document.querySelectorAll('input[type=checkbox]');
 console.log(CHECKBOXES);
 
-function handleCheckboxFilter(checkbox) {
+function handleCheckboxFilter() {
 	
 	if (document.getElementById('buy').checked) {
 		const OPEN_BIDS = document.getElementById('openBids');
