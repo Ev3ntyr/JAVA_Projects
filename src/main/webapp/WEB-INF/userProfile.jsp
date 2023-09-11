@@ -22,6 +22,7 @@
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <title>Profil</title>
+<link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
 <body class="container" max-width=80%>
 

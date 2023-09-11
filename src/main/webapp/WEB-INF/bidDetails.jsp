@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Détails de l'enchère</title>
+<link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
 <body>
 

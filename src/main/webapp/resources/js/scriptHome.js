@@ -55,11 +55,9 @@ function handleFilter(radioBtn) {
 	
 }
 
-const CHECKBOXES = document.querySelectorAll('input[type=checkbox]');
-console.log(CHECKBOXES);
 
 function handleCheckboxFilter() {
-	
+	let cards = document.getElementsByClassName('card');
 	if (document.getElementById('buy').checked) {
 		const OPEN_BIDS = document.getElementById('openBids');
 		const MY_BIDS = document.getElementById('myBids');
@@ -68,8 +66,17 @@ function handleCheckboxFilter() {
 		if (OPEN_BIDS.checked) {
 			
 		}
+		
+		let userID = document.getElementById('hiddenID').value;
+		console.log(userID);
 		if (MY_BIDS.checked) {
-			
+			for (let i = 0; i < cards.length; i++) {
+				if (cards[i].firstChild.value == userID) {
+					cards[i].setAttribute('style', 'width: 18rem;display:block');
+				} else {
+					cards[i].setAttribute('style', 'width: 18rem;display:none');
+				}
+			}
 		}
 		if (WON_BIDS.checked) {
 			

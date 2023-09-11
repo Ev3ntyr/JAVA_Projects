@@ -27,6 +27,7 @@
 	src="resources/js/scriptHome.js" defer></script>
 	
 <title>Accueil</title>
+<link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
 <body class="container" max-width="80%">
 	
@@ -59,6 +60,7 @@
 		    <a href="logout" class="nav-link">Déconnexion</a>
 		  </li>
 		</ul>
+		<input type="hidden" id="hiddenID" value="${sessionScope.idUser}">
 		</c:otherwise>
 	</c:choose>
 
@@ -143,8 +145,8 @@
 				<div class="container">
 					<div class="row justify-content-md-center">
 						<c:forEach items="${listItem }" var="itemSold">
-							<input type="hidden" value="${sessionScope.idUser}">
 							<div class="card col-3 m-4" style="width: 18rem;display:block" name="${itemSold.category.idCategory}">
+								<input type="hidden" value="itemSold.user.idUser">
 								<img class="card-img-top" src="..." alt="">
 								<div class="card-body">
 									<h5 class="card-title">
