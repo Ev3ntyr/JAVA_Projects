@@ -82,8 +82,8 @@
 		<form action="" method="">
 			<select	name="category" id="category">
 				<option value="0" selected>Toutes</option>
-				<c:forEach items="${listCategory}" var="category">
-					<option value="${category.idCategory }">${category.wording}</option>
+				<c:forEach items="${requestScope.listCategory}" var="category">
+					<option value="${pageScope.category.idCategory }">${pageScope.category.wording}</option>
 				</c:forEach>
 			</select>
 		</form>
@@ -144,37 +144,37 @@
 			<tbody>
 				<div class="container">
 					<div class="row justify-content-md-center">
-						<c:forEach items="${listItem }" var="itemSold">
-							<div class="card col-3 m-4" style="width: 18rem;display:block" name="${itemSold.category.idCategory}">
+						<c:forEach items="${requestScope.listItem }" var="itemSold">
+							<div class="card col-3 m-4" style="width: 18rem;display:block" name="${pageScope.itemSold.category.idCategory}">
 								<input type="hidden" value="itemSold.user.idUser">
 								<img class="card-img-top" src="..." alt="">
 								<div class="card-body">
 									<h5 class="card-title">
 										<c:choose>
 											<c:when test="${sessionScope.idUser == null }">
-												${itemSold.nameItem}
+												${pageScope.itemSold.nameItem}
 											</c:when>
 											<c:otherwise>
-												<a href="bidDetails?idItem=${itemSold.idItem}"
-													class="bidDetails">${itemSold.nameItem}</a>
+												<a href="bidDetails?idItem=${pageScope.itemSold.idItem}"
+													class="bidDetails">${pageScope.itemSold.nameItem}</a>
 											</c:otherwise>
 										</c:choose>
 									</h5>
-									<p class="card-text">Prix : ${itemSold.initialPrice} points</p>
-									<fmt:parseDate value="${itemSold.bidEndDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+									<p class="card-text">Prix : ${pageScope.itemSold.initialPrice} points</p>
+									<fmt:parseDate value="${pageScope.itemSold.bidEndDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
 									
 									<p class="card-text">Fin de l'enchère :</p>
 									<p>
-										<fmt:formatDate pattern="dd/MM/yyyy' - 'HH:mm" value="${parsedDateTime}" />
+										<fmt:formatDate pattern="dd/MM/yyyy' - 'HH:mm" value="${pageScope.parsedDateTime}" />
 									</p>
 									<p class="card-text">
 									<c:choose>
 										<c:when test="${sessionScope.idUser == null }">
-											Vendeur : ${itemSold.user.alias}
+											Vendeur : ${pageScope.itemSold.user.alias}
 										</c:when>
 										<c:otherwise>
-											<a href="userProfile?idUser=${itemSold.user.idUser}"
-												class="bidDetails">${itemSold.user.alias}</a>
+											<a href="userProfile?idUser=${pageScope.itemSold.user.idUser}"
+												class="bidDetails">${pageScope.itemSold.user.alias}</a>
 										</c:otherwise>
 									</c:choose>
 									</p>

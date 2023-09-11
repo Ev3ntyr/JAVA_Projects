@@ -55,28 +55,31 @@ function handleFilter(radioBtn) {
 	
 }
 
+// PENDING BID MANAGEMENT IN SERVER BEFORE IMPLEMENTING FILTERS
 
 function handleCheckboxFilter() {
+	/*
+	// Display all items
 	let cards = document.getElementsByClassName('card');
+	for (let i = 0; i < cards.length; i++) {
+		cards[i].setAttribute('style', 'width: 18rem;display:block');
+	}
+	
+	
 	if (document.getElementById('buy').checked) {
 		const OPEN_BIDS = document.getElementById('openBids');
 		const MY_BIDS = document.getElementById('myBids');
 		const WON_BIDS = document.getElementById('myWonBids');
 		
 		if (OPEN_BIDS.checked) {
-			
+			for (let i = 0; i < cards.length; i++) {
+				console.log()
+			}
 		}
 		
-		let userID = document.getElementById('hiddenID').value;
-		console.log(userID);
+		
 		if (MY_BIDS.checked) {
-			for (let i = 0; i < cards.length; i++) {
-				if (cards[i].firstChild.value == userID) {
-					cards[i].setAttribute('style', 'width: 18rem;display:block');
-				} else {
-					cards[i].setAttribute('style', 'width: 18rem;display:none');
-				}
-			}
+			filterMyBids();
 		}
 		if (WON_BIDS.checked) {
 			
@@ -85,5 +88,18 @@ function handleCheckboxFilter() {
 	} else {
 		
 	}
-	
+	*/
+}
+
+function filterMyBids() {
+	/*
+	let userID = document.getElementById('hiddenID').value;
+	for (let i = 0; i < cards.length; i++) {
+		if (cards[i].firstChild.value == userID) {
+			cards[i].setAttribute('style', 'width: 18rem;display:block');
+		} else {
+			cards[i].setAttribute('style', 'width: 18rem;display:none');
+		}
+	}
+	*/
 }
