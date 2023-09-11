@@ -11,9 +11,9 @@
     <url-pattern>/ServletTest</url-pattern>
   </servlet-mapping>
   <display-name>TrocEnchere</display-name>
-	<welcome-file-list>
-		<welcome-file>home</welcome-file>
-	</welcome-file-list>
+  <welcome-file-list>
+    <welcome-file>home</welcome-file>
+  </welcome-file-list>
   <servlet>
     <description></description>
     <display-name>Home</display-name>
@@ -127,8 +127,28 @@
     <dispatcher>INCLUDE</dispatcher>
     <dispatcher>ERROR</dispatcher>
   </filter-mapping>
-    <error-page>
-  	<error-code>403</error-code>
-  	<location>/WEB-INF/errorForbidden.jsp</location>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/WEB-INF/errorForbidden.jsp</location>
   </error-page>
+  <servlet>
+    <description></description>
+    <display-name>AdminPanel</display-name>
+    <servlet-name>AdminPanel</servlet-name>
+    <servlet-class>org.enchere.eni.c.AdminPanel</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminPanel</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminCategory</display-name>
+    <servlet-name>AdminCategory</servlet-name>
+    <servlet-class>org.enchere.eni.c.AdminCategory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminCategory</servlet-name>
+    <url-pattern>/admin/categories</url-pattern>
+  </servlet-mapping>
 </web-app>
