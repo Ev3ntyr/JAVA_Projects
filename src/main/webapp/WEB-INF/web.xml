@@ -11,9 +11,9 @@
     <url-pattern>/ServletTest</url-pattern>
   </servlet-mapping>
   <display-name>TrocEnchere</display-name>
-  <welcome-file-list>
-    <welcome-file>home</welcome-file>
-  </welcome-file-list>
+	<welcome-file-list>
+		<welcome-file>home</welcome-file>
+	</welcome-file-list>
   <servlet>
     <description></description>
     <display-name>Home</display-name>
@@ -42,7 +42,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>CreateAccount</servlet-name>
-    <url-pattern>/create</url-pattern>
+    <url-pattern>/creation</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -114,4 +114,21 @@
     <servlet-name>DeleteAccount</servlet-name>
     <url-pattern>/delete</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>LoggedUser</display-name>
+    <filter-name>LoggedUser</filter-name>
+    <filter-class>org.enchere.eni.m.security.filters.LoggedUser</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoggedUser</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+  </filter-mapping>
+    <error-page>
+  	<error-code>403</error-code>
+  	<location>/WEB-INF/errorForbidden.jsp</location>
+  </error-page>
 </web-app>

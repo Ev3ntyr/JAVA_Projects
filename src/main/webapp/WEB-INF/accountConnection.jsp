@@ -81,7 +81,7 @@
 		<div class="d-flex justify-content-center">
 
 			<input class="btn btn-success mr-3 col-3" type="submit" value="Connexion">
-			<a href="create" class="btn btn-info mr-3 col-3">Créer mon compte</a>
+			<a href="creation" class="btn btn-info mr-3 col-3">Créer mon compte</a>
 			<a href="home" class="btn btn-danger col-3">Annuler</a>
 
 		</div>
