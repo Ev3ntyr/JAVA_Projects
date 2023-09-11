@@ -7,7 +7,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import org.enchere.eni.m.bll.ItemManager;
+import org.enchere.eni.m.bll.UserManager;
 import org.enchere.eni.m.bo.Item;
+import org.enchere.eni.m.bo.User;
+import org.enchere.eni.m.bo.Withdraw;
 
 public class BidDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,12 +31,12 @@ public class BidDetails extends HttpServlet {
 		Item item = ItemManager.getInstance().selectById(idItem);
 
 		System.out.println(item);
+		System.out.println(item.getWithdraw());
 
 		request.setAttribute("item", item);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/bidDetails.jsp");
 		rd.forward(request, response);
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

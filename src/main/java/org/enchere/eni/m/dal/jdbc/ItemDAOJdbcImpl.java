@@ -158,7 +158,7 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 	@Override
 	public Withdraw selectWithdraw(Item item) {
 
-		Withdraw withdraw = new Withdraw();
+		Withdraw withdraw = null;
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
@@ -167,6 +167,7 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 
 			ResultSet rs = pStmt.executeQuery();
 			if (rs.next()) {
+				withdraw = new Withdraw();
 				withdraw.setItemSold(item);
 				withdraw.setCity(rs.getString("city"));
 				withdraw.setStreet(rs.getString("street"));
@@ -268,8 +269,6 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 
 	@Override
 	public Item selectById(int idItem) {
-		
-		System.out.println("Entrée dans le select");
 
 		Item currentItem = new Item();
 
@@ -308,10 +307,18 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 				
 				User user = UserManager.getInstance().selectById(rs.getInt("idUser"));
 				currentItem.setUser(user);
-				System.out.println("création user ok");
+
 				Withdraw withdraw = new Withdraw();
 				if (ItemManager.getInstance().hasWithdraw(currentItem)) {
+					System.out.println("has withdraw");
 					withdraw = ItemManager.getInstance().selectWithdraw(currentItem);
+					currentItem.setWithdraw(withdraw);
+				} else {
+					System.out.println("has no withdraw");
+
+					withdraw.setCity(user.getCity());
+					withdraw.setStreet(user.getStreet());
+					withdraw.setZipCode(user.getZipCode());
 					currentItem.setWithdraw(withdraw);
 				}
 				

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%@ page import="org.enchere.eni.m.messages.MessageReader"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,10 +40,71 @@
 	<br>
 	<h2 class="text-center">Détail vente</h2>
 	<br>
+	<br>
 
 	<div class="row">
 		<div class="col mx-auto col-12">
 			<h4>${requestScope.item.nameItem}</h4>
 		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col col-lg-2 mx-auto">
+			<h4>Description :</h4>
+		</div>
+		<div class="col col-lg-8 ">
+			<h4>${requestScope.item.descriptionItem}</h4>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col col-lg-2 mx-auto">
+			<h4>Catégorie :</h4>
+		</div>
+		<div class="col col-lg-8 ">
+			<h4>${requestScope.item.category.wording}</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col col-lg-2 mx-auto">
+			<h4>Meilleure offre :</h4>
+		</div>
+		<div class="col col-lg-8 ">
+			<h4>! à coder !</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col col-lg-2 mx-auto">
+			<h4>Mise à prix :</h4>
+		</div>
+		<div class="col col-lg-8 ">
+			<h4>${requestScope.item.initialPrice}points</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col col-lg-2 mx-auto">
+			<h4>Fin de l'enchère :</h4>
+		</div>
+		<div class="col col-lg-8 ">
+			<fmt:parseDate value="${requestScope.item.bidEndDate}"
+				pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+			<h4>
+				<fmt:formatDate pattern="dd/MM/yyyy' - 'HH:mm"
+					value="${pageScope.parsedDateTime}" />
+			</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col col-lg-2 mx-auto">
+			<h4>Retrait :</h4>
+		</div>
+		<div class="col col-lg-8 ">
+					<h4>${requestScope.item.withdraw.street}</h4>
+					<h4>${requestScope.item.withdraw.zipCode} ${requestScope.item.withdraw.street}</h4>
+		</div>
+	</div>
+
+
 </body>
 </html>
