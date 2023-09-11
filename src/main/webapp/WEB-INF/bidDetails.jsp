@@ -21,7 +21,11 @@
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8">
+
 <title>Détail de la vente</title>
+
+<link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
+
 </head>
 <body class="container" max-width=80%>
 	<div class="d-flex justify-content-center align-text-middle my-5">

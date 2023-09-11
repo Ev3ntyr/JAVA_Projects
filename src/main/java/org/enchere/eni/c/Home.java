@@ -19,15 +19,19 @@ public class Home extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if (request.getAttribute("listItem") == null) {
-			List<Item> listItem = ItemManager.getInstance().selectAll();
-			request.setAttribute("listItem", listItem);
-		} else {
+	
+		
+		if (request.getAttribute("listItem") != null) {
 			@SuppressWarnings("unchecked")
 			List<Item> listItem = (List<Item>) request.getAttribute("listItem");
+			if (listItem.size() <= 0) {
+				listItem = ItemManager.getInstance().selectAll();
+				request.setAttribute("listItem", listItem);
+			}
+		} else {
+			List<Item> listItem = ItemManager.getInstance().selectAll();
 			request.setAttribute("listItem", listItem);
-		}
-		
+		}	
 		
 		List<Category> listCategory = CategoryManager.getInstance().select();
 		request.setAttribute("listCategory", listCategory);

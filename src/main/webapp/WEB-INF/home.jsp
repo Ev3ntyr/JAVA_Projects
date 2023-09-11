@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -27,6 +27,7 @@
 	src="resources/js/scriptHome.js" defer></script>
 	
 <title>Accueil</title>
+<link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
 <body class="container" max-width="80%">
 	
@@ -59,6 +60,7 @@
 		    <a href="logout" class="nav-link">Déconnexion</a>
 		  </li>
 		</ul>
+		<input type="hidden" id="hiddenID" value="${sessionScope.idUser}">
 		</c:otherwise>
 	</c:choose>
 
@@ -79,14 +81,63 @@
 		<label for="category" class="p-1 ml-1">Catégorie : </label> 
 		<form action="" method="">
 			<select	name="category" id="category">
-				<option value="Toutes" selected>Toutes</option>
+				<option value="0" selected>Toutes</option>
 				<c:forEach items="${listCategory}" var="category">
 					<option value="${category.idCategory }">${category.wording}</option>
 				</c:forEach>
 			</select>
 		</form>
 	</div>
-
+		<form action="" method="POST">
+			<div class="row d-flex justify-content-center mx-auto">
+			<!-- TODO CENTRER CE BOUT DE FORMULAIRE A LA C0N :D -->
+				<div class="col">
+					<div class="row">
+						<div class="col">
+							<input type="radio" id="buy" name="filter" onclick="handleFilter(this)" checked>
+							<label for="buy" class="p-1 ml-1">Achats</label>
+						</div>
+						<div class="col">
+							<input type="radio" id="sell" name="filter" onclick="handleFilter(this)">
+							<label for="sell" class="p-1 ml-1">Mes Ventes</label>
+						</div>
+					</div> 
+					<div class="row ml-2">
+						<div class="col">
+							<input type="checkbox" id="openBids" onclick="handleCheckboxFilter()" checked/>
+							<label for="openBids" class="ml-1">enchères ouvertes</label>
+						</div>
+						<div class="col">
+							<input type="checkbox" id="currentSell" onclick="handleCheckboxFilter()" disabled/>
+							<label for="currentSell" class="ml-1">mes ventes en cours</label>
+						</div>
+					</div> 
+					<div class="row ml-2">
+						<div class="col">
+							<input type="checkbox" id="myBids" onclick="handleCheckboxFilter()"/>
+							<label for="myBids" class="ml-1">mes enchères</label>
+						</div>
+						<div class="col">
+							<input type="checkbox" id="pendingSell" onclick="handleCheckboxFilter()" disabled/>
+							<label for="pendingSell" class="ml-1">ventes non débutées</label>
+						</div>
+					</div> 
+					<div class="row ml-2">
+						<div class="col">
+							<input type="checkbox" id="myWonBids" onclick="handleCheckboxFilter()"/>
+							<label for="myWonBids" class="ml-1">mes enchères remportées</label>
+						</div>
+						<div class="col">
+							<input type="checkbox" id="concludedSell" onclick="handleCheckboxFilter()" disabled/>
+							<label for="concludedSell" class="ml-1">ventes terminées</label>
+						</div>
+					</div> 
+				</div>
+			</div>
+		</form>
+		
+	<!--<c:if test="${sessionScope.idUser != null}">-->
+	<!--</c:if>-->
 
 	<c:choose>
 		<c:when test="${listItem.size() > 0 }">
@@ -95,6 +146,7 @@
 					<div class="row justify-content-md-center">
 						<c:forEach items="${listItem }" var="itemSold">
 							<div class="card col-3 m-4" style="width: 18rem;display:block" name="${itemSold.category.idCategory}">
+								<input type="hidden" value="itemSold.user.idUser">
 								<img class="card-img-top" src="..." alt="">
 								<div class="card-body">
 									<h5 class="card-title">
@@ -109,8 +161,12 @@
 										</c:choose>
 									</h5>
 									<p class="card-text">Prix : ${itemSold.initialPrice} points</p>
-									<p class="card-text">Fin de l'enchère :
-										${itemSold.bidEndDate}</p>
+									<fmt:parseDate value="${itemSold.bidEndDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+									
+									<p class="card-text">Fin de l'enchère :</p>
+									<p>
+										<fmt:formatDate pattern="dd/MM/yyyy' - 'HH:mm" value="${parsedDateTime}" />
+									</p>
 									<p class="card-text">
 									<c:choose>
 										<c:when test="${sessionScope.idUser == null }">

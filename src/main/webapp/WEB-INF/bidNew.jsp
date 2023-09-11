@@ -23,6 +23,7 @@
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <title>Nouvelle mise aux enchères</title>
+<link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
 <body class="container" max-width=80%>
 	<h1>Nouvelle mise aux enchères</h1>

@@ -27,6 +27,7 @@ type="text/javascript" defer></script>
 
 <meta charset="UTF-8">
 <title>Création de Compte</title>
+<link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
 <body class="container" max-width=80%>
 	<br>
