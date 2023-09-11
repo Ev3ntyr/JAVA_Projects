@@ -56,7 +56,7 @@ public class Withdraw implements Serializable {
 	// OVERRRIDEN METHODS
 	@Override
 	public String toString() {
-		return "Withdraw [itemSold=" + itemSold + ", street=" + street + ", zipCode=" + zipCode + ", city=" + city
+		return "Withdraw [ street=" + street + ", zipCode=" + zipCode + ", city=" + city
 				+ "]";
 	}
 	

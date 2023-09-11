@@ -13,5 +13,6 @@ public interface ItemDAO {
 	void insertWithdraw (Withdraw withdraw);
 	boolean hasWithdraw(Item item);
 	Withdraw selectWithdraw(Item item);
+	Item selectById (int idItem);
 	
 }

@@ -64,8 +64,8 @@ public class Bid implements Serializable {
 	// OVERRIDEN METHODS
 	@Override
 	public String toString() {
-		return "Bid [idBid=" + idBid + ", bidDate=" + bidDate + ", bidAmount=" + bidAmount + ", user=" + user
-				+ ", itemSold=" + "]";
+		return "Bid [idBid=" + idBid + ", bidDate=" + bidDate + ", bidAmount=" + bidAmount
+				+ "]";
 	}
 
 }

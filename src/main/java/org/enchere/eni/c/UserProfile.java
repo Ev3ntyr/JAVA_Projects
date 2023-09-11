@@ -17,9 +17,10 @@ import org.enchere.eni.m.bo.User;
  */
 public class UserProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		int idUser = 0;
 		if (request.getParameter("idUser") != null) {
 			try {
@@ -30,22 +31,22 @@ public class UserProfile extends HttpServlet {
 			}
 		} else {
 			HttpSession session = request.getSession();
-			 idUser = (int) session.getAttribute("idUser");
+			idUser = (int) session.getAttribute("idUser");
 		}
-		
+
 		User user = UserManager.getInstance().selectById(idUser);
-		
+
 		System.out.println(user);
-		
+
 		request.setAttribute("user", user);
-		
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/userProfile.jsp");
 		rd.forward(request, response);
 
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
