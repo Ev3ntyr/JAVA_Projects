@@ -41,6 +41,8 @@ public class Connection extends HttpServlet {
 				session.setMaxInactiveInterval(Integer.MAX_VALUE);
 			}
 			
+			
+			
 			RequestDispatcher rd = request.getRequestDispatcher("home");
 			rd.forward(request, response);
 			
