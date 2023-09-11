@@ -10,15 +10,19 @@ select.addEventListener('change', filterItemList);
 
 function filterItemList() {
 	let idCategory = document.getElementById('category').value;
+	console.log(idCategory);
 	let cards = document.getElementsByClassName('card');
 	for (let i = 0; i < cards.length; i++) {
-		if (cards[i].getAttribute('name') === idCategory) {
+		if (idCategory == 0) {
 			cards[i].setAttribute('style', 'width: 18rem;display:block');
 		} else {
+			if (cards[i].getAttribute('name') === idCategory) {
+			cards[i].setAttribute('style', 'width: 18rem;display:block');
+			} else {
 			cards[i].setAttribute('style', 'width: 18rem;display:none');
+			}
 		}
 	}
-			
 }
 
 function handleFilter(radioBtn) {
@@ -49,5 +53,30 @@ function handleFilter(radioBtn) {
 		document.getElementById('concludedSell').checked=false;
 	}
 	
+}
+
+const CHECKBOXES = document.querySelectorAll('input[type=checkbox]');
+console.log(CHECKBOXES);
+
+function handleCheckboxFilter(checkbox) {
+	
+	if (document.getElementById('buy').checked) {
+		const OPEN_BIDS = document.getElementById('openBids');
+		const MY_BIDS = document.getElementById('myBids');
+		const WON_BIDS = document.getElementById('myWonBids');
+		
+		if (OPEN_BIDS.checked) {
+			
+		}
+		if (MY_BIDS.checked) {
+			
+		}
+		if (WON_BIDS.checked) {
+			
+		}
+		
+	} else {
+		
+	}
 	
 }

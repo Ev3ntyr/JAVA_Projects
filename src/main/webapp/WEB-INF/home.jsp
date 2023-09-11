@@ -79,77 +79,60 @@
 		<label for="category" class="p-1 ml-1">Catégorie : </label> 
 		<form action="" method="">
 			<select	name="category" id="category">
-				<option value="Toutes" selected>Toutes</option>
+				<option value="0" selected>Toutes</option>
 				<c:forEach items="${listCategory}" var="category">
 					<option value="${category.idCategory }">${category.wording}</option>
 				</c:forEach>
 			</select>
 		</form>
 	</div>
-	
-		
-			<form action="" method="POST">
-				<div class="row d-flex justify-content-center mx-auto pl-5" style="border: solid 1px green;">
-				<!-- TODO CENTRER CE BOUT DE FORMULAIRE A LA C0N :D -->
-					<div class="col">
-						<div class="row">
-							<div class="col">
-								<input type="radio" id="buy" name="filter" onchange="handleFilter(this)" checked>
-								<label for="buy" class="p-1 ml-1">Achats</label>
-							</div>
-							<div class="col">
-								<input type="radio" id="sell" name="filter" onchange="handleFilter(this)">
-								<label for="sell" class="p-1 ml-1">Mes Ventes</label>
-							</div>
-						</div> 
-						<div class="row ml-2">
-							<div class="col">
-								<input type="checkbox" id="openBids" checked/>
-								<label for="openBids" class="ml-1">enchères ouvertes</label>
-							</div>
-							<div class="col">
-								<input type="checkbox" id="currentSell" disabled/>
-								<label for="currentSell" class="ml-1">mes ventes en cours</label>
-							</div>
-						</div> 
-						<div class="row ml-2">
-							<div class="col">
-								<input type="checkbox" id="myBids" />
-								<label for="myBids" class="ml-1">mes enchères</label>
-							</div>
-							<div class="col">
-								<input type="checkbox" id="pendingSell" disabled/>
-								<label for="pendingSell" class="ml-1">ventes non débutées</label>
-							</div>
-						</div> 
-						<div class="row ml-2">
-							<div class="col">
-								<input type="checkbox" id="myWonBids"/>
-								<label for="myWonBids" class="ml-1">mes enchères remportées</label>
-							</div>
-							<div class="col">
-								<input type="checkbox" id="concludedSell" disabled/>
-								<label for="concludedSell" class="ml-1">ventes terminées</label>
-							</div>
-						</div> 
-					</div>
-				
+		<form action="" method="POST">
+			<div class="row d-flex justify-content-center mx-auto">
+			<!-- TODO CENTRER CE BOUT DE FORMULAIRE A LA C0N :D -->
 				<div class="col">
 					<div class="row">
-
+						<div class="col">
+							<input type="radio" id="buy" name="filter" onclick="handleFilter(this)" checked>
+							<label for="buy" class="p-1 ml-1">Achats</label>
+						</div>
+						<div class="col">
+							<input type="radio" id="sell" name="filter" onclick="handleFilter(this)">
+							<label for="sell" class="p-1 ml-1">Mes Ventes</label>
+						</div>
 					</div> 
 					<div class="row ml-2">
-						
+						<div class="col">
+							<input type="checkbox" id="openBids" onclick="handleCheckboxFilter(this)" checked/>
+							<label for="openBids" class="ml-1">enchères ouvertes</label>
+						</div>
+						<div class="col">
+							<input type="checkbox" id="currentSell" onclick="handleCheckboxFilter(this)" disabled/>
+							<label for="currentSell" class="ml-1">mes ventes en cours</label>
+						</div>
 					</div> 
 					<div class="row ml-2">
-						
+						<div class="col">
+							<input type="checkbox" id="myBids" onclick="handleCheckboxFilter(this)"/>
+							<label for="myBids" class="ml-1">mes enchères</label>
+						</div>
+						<div class="col">
+							<input type="checkbox" id="pendingSell" onclick="handleCheckboxFilter(this)" disabled/>
+							<label for="pendingSell" class="ml-1">ventes non débutées</label>
+						</div>
 					</div> 
 					<div class="row ml-2">
-						
+						<div class="col">
+							<input type="checkbox" id="myWonBids" onclick="handleCheckboxFilter(this)"/>
+							<label for="myWonBids" class="ml-1">mes enchères remportées</label>
+						</div>
+						<div class="col">
+							<input type="checkbox" id="concludedSell" onclick="handleCheckboxFilter(this)" disabled/>
+							<label for="concludedSell" class="ml-1">ventes terminées</label>
+						</div>
 					</div> 
 				</div>
-				</div>
-			</form>
+			</div>
+		</form>
 		
 	<!--<c:if test="${sessionScope.idUser != null}">-->
 	<!--</c:if>-->
