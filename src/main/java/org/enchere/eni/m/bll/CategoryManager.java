@@ -33,5 +33,13 @@ public class CategoryManager {
 	public Category selectByWording(String wording) {
 		return DAOFactory.getCategoryDAO().selectByWording(wording);
 	}
+	
+	public void update(Category category) {
+		DAOFactory.getCategoryDAO().update(category);
+	}
+	
+	public void deleteById(int idCategory) {
+		DAOFactory.getCategoryDAO().deleteById(idCategory);
+	}
 
 }

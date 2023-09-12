@@ -104,11 +104,68 @@ public class CategoryDAOJdbcImpl implements CategoryDAO {
 	@Override
 	public Category selectByWording(String wording) {
 		
+		Category category = null;
 		
-		return null;
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_CATEGORY_BY_WORDING);
+			pStmt.setString(1, wording);
+			
+			ResultSet rs = pStmt.executeQuery();
+			
+			if (rs.next()) {
+				int idCategory = rs.getInt("idCategory");
+				category = new Category(idCategory, wording);
+			}
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR SELECT CATEGORY BY WORDING");
+			sqle.printStackTrace();
+		}
+		return category;
 	}
 	
+	public static final String UPDATE_CATEGORY = """
+			UPDATE CATEGORIES SET wording = ? WHERE idCategory = ?;
+			""";
+	@Override
+	public void update(Category category) {
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(UPDATE_CATEGORY);
+			pStmt.setString(1, category.wording);
+			pStmt.setInt(2, category.getIdCategory());
+			
+			pStmt.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR - CANNOT UPDATE CATEGORY");
+			sqle.printStackTrace();
+		}
+		
+	}
 	
+	public static final String DELETE = """
+			DELETE FROM CATEGORIES WHERE idCategory = ?;
+			""";
+	
+	public void deleteById(int idCategory) {
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(DELETE);
+			pStmt.setInt(1, idCategory);
+			
+			pStmt.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN DELETING CATEGORY");
+			sqle.printStackTrace();
+		}
+		
+		
+	}
 	
 	
 	
