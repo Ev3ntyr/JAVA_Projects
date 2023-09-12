@@ -115,6 +115,19 @@
     <url-pattern>/delete</url-pattern>
   </servlet-mapping>
   <filter>
+    <display-name>LoggedAdmin</display-name>
+    <filter-name>LoggedAdmin</filter-name>
+    <filter-class>org.enchere.eni.m.security.filters.LoggedAdmin</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoggedAdmin</filter-name>
+    <url-pattern>/admin/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+  </filter-mapping>
+  <filter>
     <display-name>LoggedUser</display-name>
     <filter-name>LoggedUser</filter-name>
     <filter-class>org.enchere.eni.m.security.filters.LoggedUser</filter-class>
@@ -151,19 +164,6 @@
     <servlet-name>AdminCategory</servlet-name>
     <url-pattern>/admin/categories</url-pattern>
   </servlet-mapping>
-  <filter>
-    <display-name>LoggedAdmin</display-name>
-    <filter-name>LoggedAdmin</filter-name>
-    <filter-class>org.enchere.eni.m.security.filters.LoggedAdmin</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>LoggedAdmin</filter-name>
-    <url-pattern>/admin*</url-pattern>
-    <dispatcher>REQUEST</dispatcher>
-    <dispatcher>FORWARD</dispatcher>
-    <dispatcher>INCLUDE</dispatcher>
-    <dispatcher>ERROR</dispatcher>
-  </filter-mapping>
   <servlet>
     <description></description>
     <display-name>UpdateCategory</display-name>
