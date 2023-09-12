@@ -1,5 +1,6 @@
 package org.enchere.eni.c;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,9 +27,10 @@ public class UpdateCategory extends HttpServlet {
 		String wording = request.getParameter("oldCategoryLabel");
 		Category category = CategoryManager.getInstance().selectByWording(wording);
 		
-		CategoryManager.getInstance().update(category);
+//		CategoryManager.getInstance().update(category);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("admin/category");
+		rd.forward(request, response);
 	}
 
 }

@@ -107,7 +107,7 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			pStmt.setTimestamp(3, Timestamp.valueOf(item.getBidStartDate()));
 			pStmt.setTimestamp(4, Timestamp.valueOf(item.getBidEndDate()));
 			pStmt.setInt(5, item.getInitialPrice());
-			pStmt.setInt(6, item.getSellingPrice());
+			pStmt.setInt(6, item.getInitialPrice());
 			pStmt.setInt(7, item.getStateItem());
 			pStmt.setInt(8, item.getUser().getIdUser());
 			pStmt.setInt(9, item.getCategory().getIdCategory());

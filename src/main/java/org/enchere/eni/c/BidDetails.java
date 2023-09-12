@@ -32,6 +32,8 @@ public class BidDetails extends HttpServlet {
 
 		System.out.println(item);
 		System.out.println(item.getWithdraw());
+		
+		item.getStateItem();
 
 		request.setAttribute("item", item);
 

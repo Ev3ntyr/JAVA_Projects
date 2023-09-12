@@ -81,7 +81,7 @@
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="initialPrice">Mise à prix :</label>
 				<input type="number" maxlength="10" class="col col-lg-2"
-					id="initialPrice" name="initialPrice" required>
+					id="initialPrice" name="initialPrice" min="0" required>
 			</div>
 			<br>
 			<div class="row justify-content-md-center">
