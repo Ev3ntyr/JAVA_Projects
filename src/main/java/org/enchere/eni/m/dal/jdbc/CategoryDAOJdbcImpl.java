@@ -101,11 +101,12 @@ public class CategoryDAOJdbcImpl implements CategoryDAO {
 			SELECT idCategory, wording FROM Categories WHERE wording = ?;
 			""";
 	
-//	public Category selectByWording(String wording) {
-//		
-//		
-//		
-//	}
+	@Override
+	public Category selectByWording(String wording) {
+		
+		
+		return null;
+	}
 	
 	
 	
