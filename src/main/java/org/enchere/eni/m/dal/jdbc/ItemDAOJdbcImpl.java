@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.tags.shaded.org.apache.xalan.xsltc.compiler.sym;
 import org.enchere.eni.m.bll.BidManager;
 import org.enchere.eni.m.bll.CategoryManager;
 import org.enchere.eni.m.bll.ItemManager;
@@ -107,7 +106,7 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			pStmt.setTimestamp(3, Timestamp.valueOf(item.getBidStartDate()));
 			pStmt.setTimestamp(4, Timestamp.valueOf(item.getBidEndDate()));
 			pStmt.setInt(5, item.getInitialPrice());
-			pStmt.setInt(6, item.getSellingPrice());
+			pStmt.setInt(6, item.getInitialPrice());
 			pStmt.setInt(7, item.getStateItem());
 			pStmt.setInt(8, item.getUser().getIdUser());
 			pStmt.setInt(9, item.getCategory().getIdCategory());

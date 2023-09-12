@@ -40,11 +40,10 @@ public class CreateAccount extends HttpServlet {
 		String enteredStreet = request.getParameter("street");
 		String enteredPhone = request.getParameter("phone");
 
-		// TODO Verif des données = 2 password identiques		
-		
 		// CREATING USER
 		
-		User newUser = new User(enteredAlias,enteredSurname, enteredFirstName, enteredEmail,enteredPhone, enteredStreet, enteredZipCode, enteredCity, enteredPassword);
+		User newUser = new User(enteredAlias,enteredSurname, enteredFirstName, enteredEmail,enteredPhone, 
+								enteredStreet, enteredZipCode, enteredCity, enteredPassword);
 		System.out.println(newUser);
 		try {
 			UserManager.getInstance().createUser(newUser);

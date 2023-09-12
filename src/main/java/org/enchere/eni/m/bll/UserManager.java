@@ -25,10 +25,6 @@ public class UserManager {
 		
 		// Email duplicity check
 		emailCheck(newUser.getEmail(), be);				
-		//si une erreur lors de la validation -> Lève l'exception
-		if(be.hasErreur()) {
-			throw be;
-		}
 		
 		// Alias duplicity check	
 		aliasCheck(newUser.getAlias(), be);

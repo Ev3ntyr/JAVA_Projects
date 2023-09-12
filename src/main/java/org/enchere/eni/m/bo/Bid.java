@@ -1,14 +1,17 @@
 package org.enchere.eni.m.bo;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+
+
+
+
 import java.time.LocalDateTime;
 
 public class Bid implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private int idBid;
-	private LocalDate bidDate;
+	private LocalDateTime bidDate;
 	private int bidAmount;
 	private User user;
 	private Item itemSold;
@@ -20,10 +23,10 @@ public class Bid implements Serializable {
 	public void setIdBid(int idBid) {
 		this.idBid = idBid;
 	}
-	public LocalDate getBidDate() {
+	public LocalDateTime getBidDate() {
 		return bidDate;
 	}
-	public void setBidDate(LocalDate bidDate) {
+	public void setBidDate(LocalDateTime bidDate) {
 		this.bidDate = bidDate;
 	}
 	public int getBidAmount() {
@@ -48,7 +51,7 @@ public class Bid implements Serializable {
 	// CONSTRUCTORS
 	public Bid() {}
 	
-	public Bid(LocalDate bidDate, int bidAmount, Item itemSold, User user) {
+	public Bid(LocalDateTime bidDate, int bidAmount, Item itemSold, User user) {
 		this();
 		this.bidDate = bidDate;
 		this.bidAmount = bidAmount;
@@ -57,7 +60,7 @@ public class Bid implements Serializable {
 	}
 	
 
-	public Bid(int idBid, LocalDate bidDate, int bidAmount,Item itemSold,  User user) {
+	public Bid(int idBid, LocalDateTime bidDate, int bidAmount,Item itemSold,  User user) {
 		this(bidDate, bidAmount, itemSold, user);
 		this.idBid = idBid;
 	

@@ -29,5 +29,9 @@ public class CategoryManager {
 	public Category selectById(int idCategory) {
 		return DAOFactory.getCategoryDAO().selectById(idCategory);
 	}
+	
+	public Category selectByWording(String wording) {
+		return DAOFactory.getCategoryDAO().selectByWording(wording);
+	}
 
 }
