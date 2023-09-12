@@ -153,9 +153,8 @@
 					</div>
 					<input id="idItem" type="hidden" name="idItem" value="${requestScope.item.idItem}">
 					
-					<input type="number" maxlength="10" class="col col-lg-2 mr-auto"
-						id="bidAmount" name="bidAmount"
-						min="${requestScope.item.sellingPrice}" required> 
+					<input type="number" maxlength="10" class="col col-lg-2 mr-auto" value="${requestScope.item.sellingPrice+1}"
+						id="bidAmount" name="bidAmount" min="${requestScope.item.sellingPrice+1}" required> 
 						
 						<input
 						class="btn btn-success mr-4 col-3 mr-auto" type=submit
