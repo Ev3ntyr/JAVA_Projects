@@ -25,6 +25,8 @@ public class BidDetails extends HttpServlet {
 			throws ServletException, IOException {
 
 		
+		
+		
 		// COLLECTING CURRENT ITEM INFO
 		
 		int idItem = 0;
@@ -39,6 +41,10 @@ public class BidDetails extends HttpServlet {
 		
 		Item item = ItemManager.getInstance().selectById(idItem);
 
+		Bid bid = BidManager.getInstance().selectMaxBid(item);
+		request.setAttribute("bid", bid);
+		
+		
 		System.out.println(item);
 		
 		// COLLECTING WITHDRAW AND CHANGING ITEM STATUS
