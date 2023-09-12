@@ -96,4 +96,19 @@ public class CategoryDAOJdbcImpl implements CategoryDAO {
 		return category;
 		
 	}
+	
+	public static final String SELECT_CATEGORY_BY_WORDING = """
+			SELECT idCategory, wording FROM Categories WHERE wording = ?;
+			""";
+	
+//	public Category selectByWording(String wording) {
+//		
+//		
+//		
+//	}
+	
+	
+	
+	
+	
 }
