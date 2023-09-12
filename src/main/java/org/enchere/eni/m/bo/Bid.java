@@ -1,6 +1,10 @@
 package org.enchere.eni.m.bo;
 
 import java.io.Serializable;
+
+
+
+
 import java.time.LocalDateTime;
 
 public class Bid implements Serializable {

@@ -9,4 +9,5 @@ public interface BidDAO {
 	
 	void insert(Bid bid);
 	List<Bid> selectAllByItem(Item item);
+	Bid selectMaxBid(Item item);
 }

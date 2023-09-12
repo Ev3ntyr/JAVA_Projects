@@ -1,14 +1,18 @@
 package org.enchere.eni.m.dal.jdbc;
 
+import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import java.sql.Timestamp;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.enchere.eni.m.bll.ItemManager;
 import org.enchere.eni.m.bll.UserManager;
 import org.enchere.eni.m.bo.Bid;
 import org.enchere.eni.m.bo.Item;
@@ -86,5 +90,48 @@ public class BidDAOJdbcImpl implements BidDAO {
 		return bids;
 		
 	}
+	
+	public static final String SELECT_MAX_BID = """		
+	SELECT idBid, bidDate, MAX(bidAmount)
+	as HighestBid, idItem, idUser 
+	FROM BIDS WHERE idItem = ? GROUP BY idBid, bidDate, idItem, idUser;
+	""";
+	
+	public Bid selectMaxBid(Item item) {
+	
+	
+	Bid maxBid = new Bid();
+	
+	try ( Connection cnx = ConnectionProvider.getConnection()){
+		
+		PreparedStatement pStmt = cnx.prepareStatement(SELECT_MAX_BID);
 
+		pStmt.setInt(1, item.getIdItem());
+		
+		ResultSet rs = pStmt.executeQuery();
+		
+		while(rs.next()) {
+			
+			int idBid = rs.getInt("idBid");
+			
+			
+			LocalDateTime bidDate = rs.getObject("bidDate", LocalDateTime.class);
+			
+			int bidAmount = rs.getInt("bidAmount");
+			
+			User user = UserManager.getInstance().selectById(rs.getInt("idUser"));
+			
+			maxBid.setIdBid(idBid);
+           // maxBid.setBidDate(bidDate);
+            maxBid.setBidAmount(bidAmount);
+            maxBid.setUser(user);
+		}
+	}
+	catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+	return maxBid;
+}
+	
 }

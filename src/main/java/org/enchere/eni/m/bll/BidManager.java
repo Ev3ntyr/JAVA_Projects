@@ -27,4 +27,7 @@ public class BidManager {
 		return DAOFactory.getBidDAO().selectAllByItem(item);
 	}
 
+	public Bid selectMaxBid(Item item) {
+		return DAOFactory.getBidDAO().selectMaxBid(item);
+	}
 }
