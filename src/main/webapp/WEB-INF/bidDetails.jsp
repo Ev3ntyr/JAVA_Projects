@@ -91,7 +91,7 @@
 			<h5>Mise à prix :</h5>
 		</div>
 		<div class="col col-lg-8 ">
-			<h5>${requestScope.item.initialPrice}points</h5>
+			<h5>${requestScope.item.initialPrice} points</h5>
 		</div>
 	</div>
 	<div class="form-row">
@@ -151,19 +151,20 @@
 					<div class="col col-lg-2 mr-auto">
 						<h5>Ma proposition :</h5>
 					</div>
-
-					<input type="number" maxlength="10" class="col col-lg-2 mr-auto"
-						id="bidAmount" name="bidAmount"
-						min="${requestScope.item.sellingPrice}" required> <input
+					<input id="idItem" type="hidden" name="idItem" value="${requestScope.item.idItem}">
+					
+					<input type="number" maxlength="10" class="col col-lg-2 mr-auto" value="${requestScope.item.sellingPrice+1}"
+						id="bidAmount" name="bidAmount" min="${requestScope.item.sellingPrice+1}" required> 
+						
+						<input
 						class="btn btn-success mr-4 col-3 mr-auto" type=submit
 						id="formSubmitBtn" value="Enchérir">
-					<input class="hidden" name="idItem" value="${requestScope.item.idItem }">
 				</div>
 			</form>
 		</c:when>
 
 		<c:otherwise>
-			<div class="form ">
+			<div class="form">
 				<div class="col col-4 mx-auto text-center">
 					<br> <a href="home" class="btn btn-danger col-4">Retour</a>
 				</div>

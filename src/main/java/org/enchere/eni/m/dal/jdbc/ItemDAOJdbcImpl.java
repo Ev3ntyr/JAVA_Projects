@@ -20,6 +20,7 @@ import org.enchere.eni.m.bo.Item;
 import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.bo.Withdraw;
 import org.enchere.eni.m.dal.ItemDAO;
+import org.enchere.eni.m.security.BCrypt;
 
 public class ItemDAOJdbcImpl implements ItemDAO {
 
@@ -339,4 +340,27 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 
 		return currentItem;
 	}
-}
+
+	public static final String UPDATE_SELLING_PRICE = """
+	UPDATE SOLD_ITEMS SET sellingPrice = ? WHERE idItem = ?;
+	""";
+	
+	@Override
+	public void updateSellingPrice(Item item) {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(UPDATE_SELLING_PRICE);
+			pStmt.setInt(1, item.getSellingPrice());
+			pStmt.setInt(2, item.getIdItem());		
+			pStmt.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN UPDATING SELLING PRICE");
+			sqle.printStackTrace();
+		}
+		
+	}
+		
+	}
+	
+	
