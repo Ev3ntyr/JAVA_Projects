@@ -12,8 +12,9 @@ function updateCategory(element) {
 	let newLabel = window.prompt('Quel est le nouveau nom de la catégorie ?', currentLabel);
 	
 	if (newLabel != null) {
-		document.getElemenetById('oldCategoryLabel').value = currentLabel;
-		document.getElemenetById('newCategoryLabel').value = newLabel;
+		document.getElementById('oldCategoryLabel').value = currentLabel;
+		document.getElementById('newCategoryLabel').value = newLabel;
+		console.log("let's submit");
 		document.getElementById('updateCategory').submit();
 	} 
 	

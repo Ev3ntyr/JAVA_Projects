@@ -57,7 +57,7 @@ type="text/javascript" defer></script>
 						<td class="row">
 							<input type="hidden" name="wording" value="${pageScope.category.wording}">
 							<button class="btn btn-outline-warning rounded-circle" title="Modifier la catégorie" id="update" value="${pageScope.category.wording}" type="button" onclick="updateCategory(this)"><i class="bi bi-pencil-square"></i></button>
-							<a href="" class="btn btn-outline-danger rounded-circle" title="Supprimer la catégorie" id="delete"><i class="bi bi-x-lg"></i></a>
+							<a href="deleteCategory?idCategory=${pageScope.category.idCategory}" class="btn btn-outline-danger rounded-circle" title="Supprimer la catégorie" id="delete"><i class="bi bi-x-lg"></i></a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -71,7 +71,7 @@ type="text/javascript" defer></script>
 	<br>
 		<h2 class="text-center">Nouvelle catégorie</h2>
 	<br>
-	<form action="./categories" method="POST" id="formCreateCategory">
+	<form action="categories" method="POST" id="formCreateCategory">
 		<div class="form-row justify-content-start">
 			<div class="form-group mx-auto">
 				<label for="label">Libellé de la nouvelle catégorie : </label>
