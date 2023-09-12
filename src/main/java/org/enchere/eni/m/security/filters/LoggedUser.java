@@ -21,6 +21,7 @@ public class LoggedUser extends HttpFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
+
 		chain.doFilter(request, response);
 		/*
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
@@ -41,8 +42,8 @@ public class LoggedUser extends HttpFilter implements Filter {
 			System.out.println("filtered");
 			HttpServletResponse httpResponse = (HttpServletResponse) response;
 			httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
-		}
-		*/
+		} */
+		
 
 	}
 

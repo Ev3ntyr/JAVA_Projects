@@ -88,54 +88,69 @@
 			</select>
 		</form>
 	</div>
-		<form action="" method="POST">
-			<div class="row d-flex justify-content-center mx-auto">
-			<!-- TODO CENTRER CE BOUT DE FORMULAIRE A LA C0N :D -->
-				<div class="col">
-					<div class="row">
-						<div class="col">
-							<input type="radio" id="buy" name="filter" onclick="handleFilter(this)" checked>
-							<label for="buy" class="p-1 ml-1">Achats</label>
+	
+		<c:if test="${sessionScope.idUser != null }">
+
+
+			<form action="" method="POST">
+				<div class="row d-flex justify-content-center mx-auto ">
+					<!-- TODO CENTRER CE BOUT DE FORMULAIRE A LA C0N :D -->
+					<div class="col ">
+						<div class="row ">
+							<div class="col ">
+								<input type="radio" id="buy" name="filter"
+									onclick="handleFilter(this)" checked> <label for="buy"
+									class="p-1 ml-1 ">Achats</label>
+							</div>
+							<div class="col">
+								<input type="radio" id="sell" name="filter"
+									onclick="handleFilter(this)"> <label for="sell"
+									class="p-1 ml-1">Mes Ventes</label>
+							</div>
 						</div>
-						<div class="col">
-							<input type="radio" id="sell" name="filter" onclick="handleFilter(this)">
-							<label for="sell" class="p-1 ml-1">Mes Ventes</label>
+						<div class="row ml-2">
+							<div class="col">
+								<input type="checkbox" id="openBids"
+									onclick="handleCheckboxFilter()" checked /> <label
+									for="openBids" class="ml-1">enchères ouvertes</label>
+							</div>
+							<div class="col">
+								<input type="checkbox" id="currentSell"
+									onclick="handleCheckboxFilter()" disabled /> <label
+									for="currentSell" class="ml-1">mes ventes en cours</label>
+							</div>
 						</div>
-					</div> 
-					<div class="row ml-2">
-						<div class="col">
-							<input type="checkbox" id="openBids" onclick="handleCheckboxFilter()" checked/>
-							<label for="openBids" class="ml-1">enchères ouvertes</label>
+						<div class="row ml-2">
+							<div class="col">
+								<input type="checkbox" id="myBids"
+									onclick="handleCheckboxFilter()" /> <label for="myBids"
+									class="ml-1">mes enchères</label>
+							</div>
+							<div class="col">
+								<input type="checkbox" id="pendingSell"
+									onclick="handleCheckboxFilter()" disabled /> <label
+									for="pendingSell" class="ml-1">ventes non débutées</label>
+							</div>
 						</div>
-						<div class="col">
-							<input type="checkbox" id="currentSell" onclick="handleCheckboxFilter()" disabled/>
-							<label for="currentSell" class="ml-1">mes ventes en cours</label>
+						<div class="row ml-2">
+							<div class="col">
+								<input type="checkbox" id="myWonBids"
+									onclick="handleCheckboxFilter()" /> <label for="myWonBids"
+									class="ml-1">mes enchères remportées</label>
+							</div>
+							<div class="col">
+								<input type="checkbox" id="concludedSell"
+									onclick="handleCheckboxFilter()" disabled /> <label
+									for="concludedSell" class="ml-1">ventes terminées</label>
+							</div>
 						</div>
-					</div> 
-					<div class="row ml-2">
-						<div class="col">
-							<input type="checkbox" id="myBids" onclick="handleCheckboxFilter()"/>
-							<label for="myBids" class="ml-1">mes enchères</label>
-						</div>
-						<div class="col">
-							<input type="checkbox" id="pendingSell" onclick="handleCheckboxFilter()" disabled/>
-							<label for="pendingSell" class="ml-1">ventes non débutées</label>
-						</div>
-					</div> 
-					<div class="row ml-2">
-						<div class="col">
-							<input type="checkbox" id="myWonBids" onclick="handleCheckboxFilter()"/>
-							<label for="myWonBids" class="ml-1">mes enchères remportées</label>
-						</div>
-						<div class="col">
-							<input type="checkbox" id="concludedSell" onclick="handleCheckboxFilter()" disabled/>
-							<label for="concludedSell" class="ml-1">ventes terminées</label>
-						</div>
-					</div> 
+					</div>
 				</div>
-			</div>
-		</form>
-		
+				</form>
+		</c:if>
+	
+	
+
 	<!--<c:if test="${sessionScope.idUser != null}">-->
 	<!--</c:if>-->
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,22 +35,54 @@ type="text/javascript" defer></script>
 		<a href="../home"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail mr-3 align-self-left" style="width:100px;"></a>
 		<h1 class="">ENI-Enchères</h1>
 	</div>
-	<br>
-		<h2 class="text-center">Gestion des catégories</h2>
-	<br>
-
 	
-	<form action="admin/categories" method="POST" id="formCreateCategory">
-		<div class="form-row ">
-			<div class="form-group mx-auto col-md-5">
-				<label for="label">Libellé de la catégorie : </label>
-				<input type="email"
+		<br>
+			<h2 class="text-center">Gestion des catégories</h2>
+		<br>
+
+
+		<table class="table">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">CATEGORY ID</th>
+					<th scope="col">CATEGORY LABEL</th>
+					<th scope="col">ACTIONS</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${requestScope.categories}" var="category">
+					<tr>
+						<th scope="row">${pageScope.category.idCategory}</th>
+						<td>${pageScope.category.wording}</td>
+						<td>
+							<form>
+							Modifier la catégorie
+							Consulter la liste des articles
+							Supprimer la catégorie
+							</form>
+						</td>
+					</tr>
+				</c:forEach>
+			
+			</tbody>
+		
+		</table>
+	<div>
+	<br>
+		<h2 class="text-center">Nouvelle catégorie</h2>
+	<br>
+	<form action="./categories" method="POST" id="formCreateCategory">
+		<div class="form-row justify-content-start">
+			<div class="form-group mx-auto">
+				<label for="label">Libellé de la nouvelle catégorie : </label>
+				<input type="text"
 					maxlength="50" class="form-control" id="label" name="label"
 					placeholder="Nom de la catégorie" required>
-				<button type="button" class="btn btn-outline-success ml-5 mt-2"><i class="bi bi-plus"></i> Ajouter</button>
+				<button type="submit" class="btn btn-outline-success mt-2"><i class="bi bi-plus"></i> Ajouter</button>
 			</div>
 		</div>
 	</form>
+	</div>
 		<br>
 
 
