@@ -47,4 +47,8 @@ public class ItemManager {
 	public boolean hasWithdraw(Item item) {
 		return DAOFactory.getItemSoldDAO().hasWithdraw(item);
 	}
+
+	public void updateSellingPrice(Item itemSold) {
+		DAOFactory.getItemSoldDAO().updateSellingPrice(itemSold);
+	}
 }
