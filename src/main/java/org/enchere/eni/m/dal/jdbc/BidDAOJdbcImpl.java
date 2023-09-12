@@ -122,7 +122,7 @@ public class BidDAOJdbcImpl implements BidDAO {
 			User user = UserManager.getInstance().selectById(rs.getInt("idUser"));
 			
 			maxBid.setIdBid(idBid);
-           // maxBid.setBidDate(bidDate);
+            maxBid.setBidDate(bidDate);
             maxBid.setBidAmount(bidAmount);
             maxBid.setUser(user);
 		}
