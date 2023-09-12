@@ -146,7 +146,7 @@
 		</c:when>
 		<c:when
 			test="${requestScope.item.stateItem==1 && sessionScope.idUser!=requestScope.item.user.idUser}">
-			<form action="??" method="POST" id="??">
+			<form action="bidDetails" method="POST" id="BidDetails">
 				<div class="form-row">
 					<div class="col col-lg-2 mr-auto">
 						<h5>Ma proposition :</h5>
@@ -155,9 +155,9 @@
 					<input type="number" maxlength="10" class="col col-lg-2 mr-auto"
 						id="bidAmount" name="bidAmount"
 						min="${requestScope.item.sellingPrice}" required> <input
-						class="btn btn-success mr-4 col-3 mr-auto" type=button
+						class="btn btn-success mr-4 col-3 mr-auto" type=submit
 						id="formSubmitBtn" value="Enchérir">
-
+					<input class="hidden" name="idItem" value="${requestScope.item.idItem }">
 				</div>
 			</form>
 		</c:when>

@@ -1,10 +1,11 @@
 package org.enchere.eni.m.dal.jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class BidDAOJdbcImpl implements BidDAO {
 			
 			PreparedStatement pStmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			
-			pStmt.setDate(1, Date.valueOf(bid.getBidDate()));
+			pStmt.setTimestamp(1, Timestamp.valueOf(bid.getBidDate()));
 			pStmt.setInt(2, bid.getBidAmount());
 			pStmt.setInt(3, bid.getItemSold().getIdItem());
 			pStmt.setInt(4, bid.getUser().getIdUser());
@@ -68,8 +69,8 @@ public class BidDAOJdbcImpl implements BidDAO {
 				Bid bid = new Bid();
 				
 				bid.setIdBid(rs.getInt("idBid"));
-				//bid.setBidDate(rs.getTimestamp("bidDate"));
-				// TODO Modify bid object to handle new date / time format
+				LocalDateTime bidDate = rs.getObject("bidDate", LocalDateTime.class);
+				bid.setBidDate(bidDate);
 				bid.setBidAmount(rs.getInt("bidAmount"));
 				bid.setItemSold(item);
 				User user = UserManager.getInstance().selectById(item.getUser().getIdUser());

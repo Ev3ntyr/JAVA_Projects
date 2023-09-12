@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.tags.shaded.org.apache.xalan.xsltc.compiler.sym;
 import org.enchere.eni.m.bll.BidManager;
 import org.enchere.eni.m.bll.CategoryManager;
 import org.enchere.eni.m.bll.ItemManager;
