@@ -1,6 +1,7 @@
 package org.enchere.eni.m.bo;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,8 +66,17 @@ public class Item implements Serializable {
 		this.sellingPrice = sellingPrice;
 	}
 	public int getStateItem() {
+		LocalDateTime today = LocalDateTime.now();
+		if (bidStartDate.isBefore(today) && (bidEndDate.isAfter(today))) {
+			stateItem = 1;
+		} else if  (bidEndDate.isBefore(today) ){
+			stateItem=2;
+		} else {
+			stateItem=0;
+		}
 		return stateItem;
 	}
+	
 	public void setStateItem(int stateItem) {
 		this.stateItem = stateItem;
 	}
@@ -99,6 +109,8 @@ public class Item implements Serializable {
 	public void addBid(Bid bid) {
 		bids.add(bid);
 	}
+	
+	//TODO UpdateStatus method
 	
 	// CONSTRUCTORS
 	public Item() {}

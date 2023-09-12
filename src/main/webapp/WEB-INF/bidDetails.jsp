@@ -21,7 +21,7 @@
 	crossorigin="anonymous"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	integrity="sha384-JZR6Spejh5U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 
@@ -38,72 +38,139 @@
 		<h1 class="">ENI-Enchères</h1>
 	</div>
 	<br>
-	<h2 class="text-center">Détail vente</h2>
-	<br>
-	<br>
+	<%-- 	<c:choose>
+		<c:when test="${requestScope.item.stateItem==2 && sessionScope.idUser==requestScope.item.bids.idUser}">
+		<h4>Vous avez remporté la vente !</h4>
+		</c:when>
+		<c:when test="${requestScope.item.stateItem==2 && sessionScope.idUser!=requestScope.item.bids.idUser}">
+		<h4> ${requestScope.item.bids.alias} a remporté la vente !</h4>
+		</c:when>
 
-	<div class="row">
-		<div class="col mx-auto col-12">
+
+		<c:otherwise>
+			<h2 class="text-center">Détail vente</h2>
+			<br>
+			<br>
+		</c:otherwise> 	
+		</c:choose>--%>
+
+
+	<div class="form ">
+		<div class="col col-4 mx-auto text-center">
 			<h4>${requestScope.item.nameItem}</h4>
 		</div>
 	</div>
-	<br>
 
-	<div class="row">
+	<div class="form-row">
 		<div class="col col-lg-2 mx-auto">
-			<h4>Description :</h4>
+			<h5>Description :</h5>
 		</div>
 		<div class="col col-lg-8 ">
-			<h4>${requestScope.item.descriptionItem}</h4>
+			<h5>${requestScope.item.descriptionItem}</h5>
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="form-row">
 		<div class="col col-lg-2 mx-auto">
-			<h4>Catégorie :</h4>
+			<h5>Catégorie :</h5>
 		</div>
 		<div class="col col-lg-8 ">
-			<h4>${requestScope.item.category.wording}</h4>
+			<h5>${requestScope.item.category.wording}</h5>
 		</div>
 	</div>
-	<div class="row">
+	<div class="form-row">
 		<div class="col col-lg-2 mx-auto">
-			<h4>Meilleure offre :</h4>
+			<h5>Meilleure offre :</h5>
 		</div>
 		<div class="col col-lg-8 ">
-			<h4>! à coder !</h4>
+			<h5>! à coder !</h5>
 		</div>
 	</div>
-	<div class="row">
+	<div class="form-row">
 		<div class="col col-lg-2 mx-auto">
-			<h4>Mise à prix :</h4>
+			<h5>Mise à prix :</h5>
 		</div>
 		<div class="col col-lg-8 ">
-			<h4>${requestScope.item.initialPrice}points</h4>
+			<h5>${requestScope.item.initialPrice}points</h5>
 		</div>
 	</div>
-	<div class="row">
+	<div class="form-row">
 		<div class="col col-lg-2 mx-auto">
-			<h4>Fin de l'enchère :</h4>
+			<h5>Fin de l'enchère :</h5>
 		</div>
 		<div class="col col-lg-8 ">
 			<fmt:parseDate value="${requestScope.item.bidEndDate}"
 				pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
-			<h4>
+			<h5>
 				<fmt:formatDate pattern="dd/MM/yyyy' - 'HH:mm"
 					value="${pageScope.parsedDateTime}" />
-			</h4>
+			</h5>
 		</div>
 	</div>
-	<div class="row">
+	<div class="form-row">
 		<div class="col col-lg-2 mx-auto">
-			<h4>Retrait :</h4>
+			<h5>Retrait :</h5>
 		</div>
 		<div class="col col-lg-8 ">
-					<h4>${requestScope.item.withdraw.street}</h4>
-					<h4>${requestScope.item.withdraw.zipCode} ${requestScope.item.withdraw.street}</h4>
+			<h5>${requestScope.item.withdraw.street}</h5>
+			<h5>${requestScope.item.withdraw.zipCode}
+				${requestScope.item.withdraw.street}</h5>
 		</div>
 	</div>
+
+	<div class="form-row">
+		<div class="col col-lg-2 mx-auto">
+			<h5>Vendeur :</h5>
+		</div>
+		<div class="col col-lg-8 ">
+			<h5>
+				<a href="userProfile?idUser=${requestScope.item.user.idUser}"
+					class="bidDetails">${requestScope.item.user.alias}</a>
+			</h5>
+		</div>
+	</div>
+	<br>
+	<c:choose>
+		<c:when test="${requestScope.item.stateItem==0}">
+
+			<div class="form-row">
+				<fmt:parseDate value="${requestScope.item.bidStartDate}"
+					pattern="yyyy-MM-dd'T'HH:mm" var="parsedStartDateTime" type="both" />
+
+				<h5 class="col col-lg-10 mr-auto">
+					La vente débutera le
+					<fmt:formatDate pattern="dd/MM/yyyy' - 'HH:mm"
+						value="${pageScope.parsedStartDateTime}" />
+				</h5>
+			</div>
+		</c:when>
+		<c:when
+			test="${requestScope.item.stateItem==1 && sessionScope.idUser!=requestScope.item.user.idUser}">
+			<form action="??" method="POST" id="??">
+				<div class="form-row">
+					<div class="col col-lg-2 mr-auto">
+						<h5>Ma proposition :</h5>
+					</div>
+
+					<input type="number" maxlength="10" class="col col-lg-2 mr-auto"
+						id="bidAmount" name="bidAmount"
+						min="${requestScope.item.sellingPrice}" required> <input
+						class="btn btn-success mr-4 col-3 mr-auto" type=button
+						id="formSubmitBtn" value="Enchérir">
+
+				</div>
+			</form>
+		</c:when>
+
+		<c:otherwise>
+			<div class="form ">
+				<div class="col col-4 mx-auto text-center">
+					<br> <a href="home" class="btn btn-danger col-4">Retour</a>
+				</div>
+			</div>
+		</c:otherwise>
+
+	</c:choose>
 
 
 </body>
