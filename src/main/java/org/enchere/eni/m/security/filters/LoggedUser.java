@@ -20,10 +20,12 @@ public class LoggedUser extends HttpFilter implements Filter {
 	private static final long serialVersionUID = 1L;
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
 		
 
 		chain.doFilter(request, response);
 		/*
+>>>>>>> branch 'master' of https://github.com/Ev3ntyr/JAVA_Projects.git
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession();
 		

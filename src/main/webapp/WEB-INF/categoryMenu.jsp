@@ -21,18 +21,18 @@
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
 <script 
-src="resources/js/scriptCreateAccount.js"
+src="../resources/js/scriptAdminCategory.js"
 type="text/javascript" defer></script>
 
 <meta charset="UTF-8">
 <title>Administration - Catégories</title>
-<link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
+<link rel="icon" type="image/x-icon" href="../resources/assets/logo.ico">
 </head>
 <body class="container" max-width=80%>
 	<br>
 	<br>
 	<div class="d-flex justify-content-center align-text-middle my-5">
-		<a href="../home"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail mr-3 align-self-left" style="width:100px;"></a>
+		<a href="../home"><img alt="Logo Application" src="../resources/assets/logo.png" class="img-thumbnail mr-3 align-self-left" style="width:100px;"></a>
 		<h1 class="">ENI-Enchères</h1>
 	</div>
 	
@@ -54,19 +54,19 @@ type="text/javascript" defer></script>
 					<tr>
 						<th scope="row">${pageScope.category.idCategory}</th>
 						<td>${pageScope.category.wording}</td>
-						<td>
-							<form>
-							Modifier la catégorie
-							Consulter la liste des articles
-							Supprimer la catégorie
-							</form>
+						<td class="row">
+							<input type="hidden" name="wording" value="${pageScope.category.wording}">
+							<button class="btn btn-outline-warning rounded-circle" title="Modifier la catégorie" id="update" value="${pageScope.category.wording}" type="button" onclick="updateCategory(this)"><i class="bi bi-pencil-square"></i></button>
+							<a href="" class="btn btn-outline-danger rounded-circle" title="Supprimer la catégorie" id="delete"><i class="bi bi-x-lg"></i></a>
 						</td>
 					</tr>
 				</c:forEach>
-			
 			</tbody>
-		
 		</table>
+		<form method="POST" action="updateCategory" id="updateCategory">
+			<input type="hidden" id="oldCategoryLabel" name="oldCategoryLabel" value=""/>
+			<input type="hidden" id="newCategoryLabel" name="newCategoryLabel" value=""/>
+		</form>
 	<div>
 	<br>
 		<h2 class="text-center">Nouvelle catégorie</h2>
