@@ -201,6 +201,11 @@
 			</tbody>
 		</c:when>
 	</c:choose>
-	<footer>Logo by: <a href="https://pixabay.com/fr/users/geralt-9301/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=728409">Gerd Altmann</a> de <a href="https://pixabay.com/fr//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=728409">Pixabay</a></footer>
+	<footer>
+		<p>
+			Logo by: <a href="https://pixabay.com/fr/users/geralt-9301/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=728409">Gerd Altmann</a> de <a href="https://pixabay.com/fr//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=728409">Pixabay</a>
+		</p>
+		<a href="admin">admin Panel</a>
+	</footer>
 </body>
 </html>

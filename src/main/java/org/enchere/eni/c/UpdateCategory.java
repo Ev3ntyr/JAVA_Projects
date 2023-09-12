@@ -2,7 +2,6 @@ package org.enchere.eni.c;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,11 +24,13 @@ public class UpdateCategory extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String wording = request.getParameter("oldCategoryLabel");
+		String newWording = request.getParameter("newCategoryLabel");
 		Category category = CategoryManager.getInstance().selectByWording(wording);
+		category.setWording(newWording);
 		
-//		CategoryManager.getInstance().update(category);
+		CategoryManager.getInstance().update(category);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("admin/category");
+		RequestDispatcher rd = request.getRequestDispatcher("/admin/categories");
 		rd.forward(request, response);
 	}
 

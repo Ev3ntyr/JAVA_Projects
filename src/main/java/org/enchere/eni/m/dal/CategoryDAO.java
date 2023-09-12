@@ -11,4 +11,6 @@ public interface CategoryDAO {
 	List<Category> select();
 	Category selectById(int idCategory);
 	Category selectByWording(String wording);
+	void update(Category category);
+	void deleteById(int idCategory);
 }

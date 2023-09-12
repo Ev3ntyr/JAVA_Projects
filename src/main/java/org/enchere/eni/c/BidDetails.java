@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+import org.enchere.eni.m.bll.BidManager;
 import org.enchere.eni.m.bll.ItemManager;
 import org.enchere.eni.m.bll.UserManager;
 import org.enchere.eni.m.bo.Bid;
@@ -65,7 +66,7 @@ public class BidDetails extends HttpServlet {
 		
 		Bid bid = new Bid(bidDate, bidAmount, item, user);
 		System.out.println("created bid in servlet : " + bid);
-		
+		BidManager.getInstance().insert(bid);
 		
 		doGet(request, response);
 	}
