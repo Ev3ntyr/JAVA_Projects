@@ -14,5 +14,6 @@ public interface ItemDAO {
 	boolean hasWithdraw(Item item);
 	Withdraw selectWithdraw(Item item);
 	Item selectById (int idItem);
+	void updateSellingPrice (Item item);
 	
 }

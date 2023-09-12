@@ -47,6 +47,8 @@ public class BidDAOJdbcImpl implements BidDAO {
 			}
 			
 			bid.getItemSold().setSellingPrice(bid.getBidAmount());
+			ItemManager.getInstance().updateSellingPrice(bid.getItemSold());
+			
 		} catch (SQLException sqle) {
 			System.out.println("ERROR WHEN INSERTING Bid IN DATABASE");
 			sqle.printStackTrace();
