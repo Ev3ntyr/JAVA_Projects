@@ -83,7 +83,7 @@
 			<h5>Meilleure offre :</h5>
 		</div>
 		<div class="col col-lg-8 ">
-			<h5>! à coder !</h5>
+			<h5>${requestScope.bid.bidAmount }</h5>
 		</div>
 	</div>
 	<div class="form-row">

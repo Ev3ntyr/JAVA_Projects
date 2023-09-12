@@ -53,7 +53,7 @@ type="text/javascript" defer></script>
 		</div>
 
 	</c:if>
-	<form action="create" method="POST" id="formCreate">
+	<form action="creation" method="POST" id="formCreate">
 
 		<div class="form-row ">
 			<div class="form-group mx-auto col-md-5">

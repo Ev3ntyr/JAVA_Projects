@@ -95,11 +95,11 @@ public class BidDAOJdbcImpl implements BidDAO {
 	}
 	
 	public static final String SELECT_MAX_BID = """		
-	SELECT idBid, bidDate, MAX(bidAmount)
-	as HighestBid, idItem, idUser 
-	FROM BIDS WHERE idItem = ? GROUP BY idBid, bidDate, idItem, idUser;
-	""";
+		SELECT idBid, bidDate, bidAmount as HighestBid, idItem, idUser FROM BIDS 
+		WHERE (SELECT MAX(bidAmount) FROM BIDS WHERE idItem = ?) = bidAmount;
+		""";
 	
+	@Override
 	public Bid selectMaxBid(Item item) {
 	
 	
@@ -120,7 +120,7 @@ public class BidDAOJdbcImpl implements BidDAO {
 			
 			LocalDateTime bidDate = rs.getObject("bidDate", LocalDateTime.class);
 			
-			int bidAmount = rs.getInt("bidAmount");
+			int bidAmount = rs.getInt("HighestBid");
 			
 			User user = UserManager.getInstance().selectById(rs.getInt("idUser"));
 			
