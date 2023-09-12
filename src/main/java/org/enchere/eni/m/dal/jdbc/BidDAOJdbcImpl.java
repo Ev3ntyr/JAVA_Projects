@@ -42,6 +42,7 @@ public class BidDAOJdbcImpl implements BidDAO {
 				bid.setIdBid(rs.getInt(1));
 			}
 			
+			bid.getItemSold().setSellingPrice(bid.getBidAmount());
 		} catch (SQLException sqle) {
 			System.out.println("ERROR WHEN INSERTING Bid IN DATABASE");
 			sqle.printStackTrace();
@@ -86,5 +87,6 @@ public class BidDAOJdbcImpl implements BidDAO {
 		return bids;
 		
 	}
+
 
 }
