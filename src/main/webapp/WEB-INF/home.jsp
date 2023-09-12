@@ -88,8 +88,8 @@
 			</select>
 		</form>
 	</div>
-	<c:choose>
-		<c:when test="${sessionScope.idUser != null }">
+	
+		<c:if test="${sessionScope.idUser != null }">
 
 
 			<form action="" method="POST">
@@ -146,12 +146,10 @@
 						</div>
 					</div>
 				</div>
-		</c:when>
-		<c:otherwise>
-
-		</c:otherwise>
-	</c:choose>
-	</form>
+				</form>
+		</c:if>
+	
+	
 
 	<!--<c:if test="${sessionScope.idUser != null}">-->
 	<!--</c:if>-->
