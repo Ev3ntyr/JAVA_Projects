@@ -37,10 +37,12 @@ public class LoggedAdmin extends HttpFilter implements Filter {
 			}
 			
 			
+		} else {
+			HttpServletResponse httpResponse = (HttpServletResponse) response;
+			httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
 		}
 		
-		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
+		
 		
 	}
 
