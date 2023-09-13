@@ -184,4 +184,24 @@
     <servlet-name>DeleteCategory</servlet-name>
     <url-pattern>/admin/deleteCategory</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BidDelete</display-name>
+    <servlet-name>BidDelete</servlet-name>
+    <servlet-class>org.enchere.eni.c.BidDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BidDelete</servlet-name>
+    <url-pattern>/deleteBid</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BidUpdate</display-name>
+    <servlet-name>BidUpdate</servlet-name>
+    <servlet-class>org.enchere.eni.c.BidUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BidUpdate</servlet-name>
+    <url-pattern>/updateBid</url-pattern>
+  </servlet-mapping>
 </web-app>

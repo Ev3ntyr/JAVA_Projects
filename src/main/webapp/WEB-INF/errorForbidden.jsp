@@ -35,7 +35,9 @@
 			    <h1 class="display-4 text-danger">Accès interdit</h1>
 			    <p class="lead">Vous ne pouvez pas accéder à cette ressource sans avoir de compte utilisateur.</p>
 			    <p class="lead">Veuillez créer votre compte ou vous connecter.</p>
-			    
+			</div>
+			<div class="justify-content-center text-center d-flex m-0 p-0">
+				<img alt="Erreur rencontrée" src="resources/assets/error.png" style="width:200px;height:auto">
 			</div>
 		</div>
 	</body>

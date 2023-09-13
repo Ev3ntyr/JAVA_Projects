@@ -13,4 +13,5 @@ public interface UserDAO {
 	void update(User user);
 	void delete(int idUser);
 	void deactivate(int idUser);
+	
 }

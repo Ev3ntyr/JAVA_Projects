@@ -7,12 +7,25 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class AdminPanel extends HttpServlet {
+import org.enchere.eni.m.bll.ItemManager;
+
+public class BidDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/adminMenu.jsp");
+		
+		int idItem = 0;
+		
+		try {
+			idItem = Integer.valueOf(request.getParameter("idItem"));
+		} catch (NumberFormatException nfe) {
+			System.out.println("ERROR WHEN PARSING idItem FROM REQUEST");
+			nfe.printStackTrace();
+		}
+		
+		ItemManager.getInstance().delete(idItem);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("home");
 		rd.forward(request, response);
 		
 	}

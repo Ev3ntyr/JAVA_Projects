@@ -22,6 +22,7 @@ public class UserProfile extends HttpServlet {
 			throws ServletException, IOException {
 
 		int idUser = 0;
+		
 		if (request.getParameter("idUser") != null) {
 			try {
 				idUser = Integer.valueOf(request.getParameter("idUser"));
@@ -31,11 +32,14 @@ public class UserProfile extends HttpServlet {
 			}
 		} else {
 			HttpSession session = request.getSession();
-			idUser = (int) session.getAttribute("idUser");
+			
+			if (session.getAttribute("idUser") != null) {
+				idUser = (int) session.getAttribute("idUser");
+			}
 		}
 
 		User user = UserManager.getInstance().selectById(idUser);
-
+		
 		System.out.println(user);
 
 		request.setAttribute("user", user);

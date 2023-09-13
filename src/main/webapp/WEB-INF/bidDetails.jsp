@@ -37,6 +37,20 @@
 			class="img-thumbnail mr-3 align-self-left" style="width: 100px;"></a>
 		<h1 class="">ENI-Enchères</h1>
 	</div>
+	<c:if test="${!empty errorCodesList }">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4 text-danger">Erreur lors de l'enchère</h1>
+				<c:forEach items="${errorCodesList}" var="code">
+					<p class="lead">${MessageReader.getErrorMessage(code)}</p>
+				</c:forEach>
+				<div class="justify-content-center text-center d-flex m-0 p-0">
+					<img alt="Erreur rencontrée" src="resources/assets/error.png" style="width:200px;height:auto">
+				</div>
+			</div>
+		</div>
+
+	</c:if>
 	<br>
  	<c:choose>
 		<c:when test="${requestScope.item.stateItem==2 && sessionScope.idUser==requestScope.bid.user.idUser}">
@@ -131,7 +145,19 @@
 	</div>
 	<br>
 	<c:choose>
-		<c:when test="${requestScope.item.stateItem==0}">
+		<c:when test="${requestScope.item.stateItem == 0 && sessionScope.idUser != requestScope.item.user.idUser}">
+			<div class="form-row">
+				<fmt:parseDate value="${requestScope.item.bidStartDate}"
+					pattern="yyyy-MM-dd'T'HH:mm" var="parsedStartDateTime" type="both" />
+
+				<h5 class="col col-lg-10 mr-auto">
+					La vente débutera le
+					<fmt:formatDate pattern="dd/MM/yyyy' - 'HH:mm"
+						value="${pageScope.parsedStartDateTime}" />
+				</h5>
+			</div>
+		</c:when>
+		<c:when test="${requestScope.item.stateItem == 0 && sessionScope.idUser == requestScope.item.user.idUser}">
 
 			<div class="form-row">
 				<fmt:parseDate value="${requestScope.item.bidStartDate}"
@@ -142,6 +168,8 @@
 					<fmt:formatDate pattern="dd/MM/yyyy' - 'HH:mm"
 						value="${pageScope.parsedStartDateTime}" />
 				</h5>
+				<a href="updateBid?idItem=${requestScope.item.idItem}" class="btn btn-warning col-4 ml-4">Modifier ma vente</a>
+				<a href="deleteBid?idItem=${requestScope.item.idItem}" class="btn btn-danger col-4 ml-4">Supprimer ma vente</a>
 			</div>
 		</c:when>
 		<c:when

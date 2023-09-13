@@ -6,9 +6,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 import org.enchere.eni.m.bll.BidManager;
+import org.enchere.eni.m.bll.ErrorCodesBLL;
+import org.enchere.eni.m.bll.ItemManager;
 import org.enchere.eni.m.bll.UserManager;
+import org.enchere.eni.m.bo.Bid;
+import org.enchere.eni.m.bo.Item;
 import org.enchere.eni.m.bo.User;
 
 public class DeleteAccount extends HttpServlet {
@@ -17,10 +22,32 @@ public class DeleteAccount extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int idUser = Integer.valueOf(request.getParameter("idUser"));
-		UserManager.getInstance().deactivate(idUser);
+		User user = UserManager.getInstance().selectById(idUser);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("logout");
-		rd.forward(request, response);
+		// CHECK IF USER HAS PENDING SELLS
+		List<Item> pendingSells = ItemManager.getInstance().selectAllByUser(user);
+		BusinessException be = new BusinessException();
+		
+		if (pendingSells.size() > 0) {
+			
+			be.addErrorCode(ErrorCodesBLL.ACCOUNT_DELETION_PENDING_SELLS);
+			request.setAttribute("errorCodesList", be.getErrorCodeList());
+			request.setAttribute("pendingSells", pendingSells);
+			request.setAttribute("user", user);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/userProfile.jsp");
+			rd.forward(request, response);
+			
+		} else {
+			
+			BidManager.getInstance().deleteUserBids(user);
+			UserManager.getInstance().delete(idUser);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("logout");
+			rd.forward(request, response);
+			
+		}
+		
+		
 		
 	}
 

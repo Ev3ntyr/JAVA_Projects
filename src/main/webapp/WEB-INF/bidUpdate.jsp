@@ -21,15 +21,12 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
-<link href="resources/CSS/style.css" rel="stylesheet" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-
-<title>Nouvelle mise aux enchères</title>
+<title>Modifier ma mise aux enchères</title>
 <link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
-<body class="container-fluid  justify-content-center text-center">
-	<h1>Nouvelle mise aux enchères</h1>
+<body class="container" max-width=80%>
+	<h1>Modification de ma mise aux enchères</h1>
 
 	<br>
 	<br>
@@ -51,20 +48,22 @@
 
 	</c:if>
 
-	<form action="bidNew" method="POST">
+	<form action="updateBid" method="POST">
 
 		<div class="form container">
-			<div class="row justify-content-center">
-				<label for="nameItem" class="col-lg-2 col-md-3 col-sm-4 col-xs-11">Nom de l'article
-					:</label> <input type="text" maxlength="30" class="col-lg-2 col-md-3 col-sm-4 col-xs-11"
-					id="nameItem" name="nameItem" required>
+			<div class="row justify-content-md-center">
+				<label for="nameItem" class="col col-lg-2">Nom de l'article
+					:</label> 
+					<input type="text" maxlength="30" class="col col-lg-4"
+					id="nameItem" name="nameItem" value="${requestScope.item.nameItem}" required>
 			</div>
 			<br>
-			<div class="row justify-content-center">
-				<label class="col-lg-2 col-md-3 col-sm-4 col-xs-11" for="descriptionItem">Description
-					:</label> <input type="textarea" maxlength="300" class="col-lg-2 col-md-3 col-sm-4 col-xs-11"
+			<div class="row justify-content-md-center">
+				<label class="col col-lg-2" for="descriptionItem">Description
+					:</label> 
+					<input type="textarea" maxlength="300" class="col col-lg-4"
 					id="descriptionItem" name="descriptionItem"
-					placeholder="Décrivez au maximum votre article (matière, couleur, état, fonctions...)"
+					value="${requestScope.item.descriptionItem}"
 					required>
 			</div>
 			<br>
@@ -73,11 +72,17 @@
 				<label for="category" class="col col-lg-2">Catégorie : </label> 
 					<select name="category" id="category">
 					<c:forEach items="${listCategory}" var="category">
-						<option value="${category.idCategory }">${category.wording}</option>
+						<option value="${category.idCategory}"
+							<c:if test="${pageScope.category.idCategory == requestScope.item.category.idCategory}">
+							selected
+							</c:if>
+						>
+							${category.wording}
+						</option>
 					</c:forEach>
 				</select>
 			</div>
-<br>
+			<br>
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="">Photo de l'article :</label> <input
 					type="file" class="col col-lg-4" id="" name="">
@@ -86,19 +91,24 @@
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="initialPrice">Mise à prix :</label>
 				<input type="number" maxlength="10" class="col col-lg-2"
-					id="initialPrice" name="initialPrice" min="0" required>
+					   id="initialPrice" name="initialPrice" min="0" 
+					   value="${requestScope.item.initialPrice}" required>
 			</div>
 			<br>
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="bidStartDate">Début de
-					l'enchère :</label> <input type="datetime-local" class="col col-lg-2"
-					id="bidStartDate" name="bidStartDate" required>
+					l'enchère :</label> 
+				<input type="datetime-local" class="col col-lg-2"
+					   id="bidStartDate" name="bidStartDate" 
+					   value="${requestScope.item.bidStartDate}"required>
 			</div>
 			<br>
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="bidEndDate">Fin de
-					l'enchère :</label> <input type="datetime-local" class="col col-lg-2"
-					id="bidEndDate" name="bidEndDate" required>
+					l'enchère :</label> 
+				<input type="datetime-local" class="col col-lg-2"
+					   id="bidEndDate" name="bidEndDate" 
+					   value="${requestScope.item.bidEndDate}" required>
 			</div>
 		</div>
 		<br>
@@ -106,29 +116,30 @@
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="street">Rue :</label> <input
 					type="text" maxlength="30" class="col col-lg-2" id="street"
-					name="street" value="${requestScope.user.street}" required>
+					name="street" value="${requestScope.item.withdraw.street}" required>
 			</div>
 			<br>
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="bidEndDate">Code postal :</label> <input
 					type="text" maxlength="15" class="col col-lg-2" id="zipCode"
-					name="zipCode" value="${requestScope.user.zipCode}" required>
+					name="zipCode" value="${requestScope.item.withdraw.zipCode}" required>
 			</div>
 			<br>
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="city">Ville :</label> <input
 					type="text" maxlength="30" class="col col-lg-2" id="city"
-					name="city" value="${requestScope.user.city}" required>
+					name="city" value="${requestScope.item.withdraw.city}" required>
 			</div>
 		</div>
-		<br> <br>
+		<br> 
+		<br>
+		<input type="hidden" name="itemID" value="${requestScope.item.idItem}">
 		<div class="d-flex justify-content-center">
-
 			<input class="btn btn-success mr-4 col-3" type="submit"
-				value="Enregistrer"> <a href="home"
-				class="btn btn-danger col-3">Annuler</a>
-
+				value="Enregistrer"> 
+			<a href="home" class="btn btn-danger col-3">Annuler</a>
 		</div>
+		
 	</form>
 	<br>
 	<br>

@@ -44,6 +44,32 @@
 	<br>
 	<h2 class="text-center">Profil</h2>
 	<br>
+	<c:if test="${!empty errorCodesList}">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4 text-danger">Erreur lors de la suppression de
+					compte</h1>
+				<c:forEach items="${errorCodesList}" var="code">
+					<p class="lead">${MessageReader.getErrorMessage(code)}</p>
+				</c:forEach>
+				<p class="lead">Ventes en cours :</p>
+				<ul>
+					<c:forEach items="${requestScope.pendingSells}" var="sell">
+						<li>${pageScope.sell.nameItem}</li>
+					</c:forEach>
+				</ul>
+				<div class="justify-content-center text-center d-flex m-0 p-0">
+					<img alt="Erreur rencontrée" src="resources/assets/error.png" style="width:200px;height:auto">
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="justify-content-center text-center">
+			<p>Image par <a href="https://pixabay.com/fr/users/prawny-162579/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7705903">Prawny</a> de <a href="https://pixabay.com/fr//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7705903">Pixabay</a></p>
+		</div>
+
+	</c:if>
 
 
 

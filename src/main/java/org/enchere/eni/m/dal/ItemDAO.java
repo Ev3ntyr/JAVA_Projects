@@ -3,6 +3,7 @@ package org.enchere.eni.m.dal;
 import java.util.List;
 
 import org.enchere.eni.m.bo.Item;
+import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.bo.Withdraw;
 
 public interface ItemDAO {
@@ -15,5 +16,8 @@ public interface ItemDAO {
 	Withdraw selectWithdraw(Item item);
 	Item selectById (int idItem);
 	void updateSellingPrice (Item item);
-	
+	void delete(int idItem);
+	void update(Item item);
+	void updateWithdraw(Withdraw withdraw);
+	List<Item> selectAllOpenByUser(User user);
 }

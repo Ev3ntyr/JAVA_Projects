@@ -19,8 +19,10 @@ public class CreateAccount extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/accountCreation.jsp");
 		rd.forward(request, response);
+		
 	}
 
 
@@ -44,17 +46,17 @@ public class CreateAccount extends HttpServlet {
 		
 		User newUser = new User(enteredAlias,enteredSurname, enteredFirstName, enteredEmail,enteredPhone, 
 								enteredStreet, enteredZipCode, enteredCity, enteredPassword);
-		System.out.println(newUser);
 		try {
 			UserManager.getInstance().createUser(newUser);
 			session.setAttribute("idUser", newUser.getIdUser());
+			RequestDispatcher rd = request.getRequestDispatcher("home");
+			rd.forward(request, response);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			request.setAttribute("errorCodesList", e.getErrorCodeList());
 			doGet(request, response);
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("home");
-		rd.forward(request, response);
+		
 	}
 
 }

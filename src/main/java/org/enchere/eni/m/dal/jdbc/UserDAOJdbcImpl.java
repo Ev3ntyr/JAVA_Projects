@@ -191,7 +191,8 @@ public class UserDAOJdbcImpl implements UserDAO {
 			street = ?,
 			zipCode = ?,
 			city = ?,
-			passwordUser = ?
+			passwordUser = ?,
+			credit = ?
 			WHERE idUser = ?;
 			""";
 	@Override
@@ -213,7 +214,8 @@ public class UserDAOJdbcImpl implements UserDAO {
 				userPassword = BCrypt.hashpw(userPassword, BCrypt.gensalt());
 			}
 			pStmt.setString(9,  userPassword);
-			pStmt.setInt(10,  user.getIdUser());
+			pStmt.setInt(10, user.getCredit());
+			pStmt.setInt(11,  user.getIdUser());
 			
 			pStmt.executeUpdate();
 			

@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
@@ -20,60 +21,61 @@ import org.enchere.eni.m.bo.Item;
 import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.bo.Withdraw;
 
-/**
- * Servlet implementation class AuctionNew
- */
-public class BidNew extends HttpServlet {
+
+public class BidUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
+		int idItem = 0;
+
+		try {
+			idItem = Integer.valueOf(request.getParameter("idItem"));
+		} catch (NumberFormatException nfe) {
+			System.out.println("ERROR WHEN PARSING idItem FROM REQUEST");
+			nfe.printStackTrace();
+		}
 		
-		if(session.getAttribute("idUser") != null) {
-			
-			int idUser = (int) session.getAttribute("idUser");	
-			User user = UserManager.getInstance().selectById(idUser);		
-			request.setAttribute("user", user);
-			
-			// GETTING CATEGORY LIST FROM DATABASE
-			List<Category> listCategory = CategoryManager.getInstance().select();
-			request.setAttribute("listCategory", listCategory);
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/bidNew.jsp");
-			rd.forward(request, response);
-			
-		} else {
+		Item item = ItemManager.getInstance().selectById(idItem);
+		request.setAttribute("item", item);
+		
+		// GETTING CATEGORY LIST FROM DATABASE
+		List<Category> listCategory = CategoryManager.getInstance().select();
+		request.setAttribute("listCategory", listCategory);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/bidUpdate.jsp");
+		rd.forward(request, response);
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		if (session.getAttribute("idUser") == null) {
 			
 			RequestDispatcher rd = request.getRequestDispatcher("home");
 			rd.forward(request, response);
 			
-		}
-		
-		
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("idUser") != null) {
-		
+		} else {
+			
 			int idCurrentUser = (int) session.getAttribute("idUser");
 			User currentUser = UserManager.getInstance().selectById(idCurrentUser);
 			
-			// GETTING FORM PARAMETERS FROM JSP
+			int idItem = 0;
+			try {
+				idItem = Integer.valueOf(request.getParameter("itemID"));
+			} catch (NumberFormatException nfe) {
+				nfe.printStackTrace();
+			}
 			
+			Item item = ItemManager.getInstance().selectById(idItem);
+			
+			// GETTING FORM PARAMETERS FROM JSP
 			String enteredName = request.getParameter("nameItem");
 			String enteredDescript = request.getParameter("descriptionItem");
 			int enteredCategory = Integer.valueOf(request.getParameter("category"));
 			Category currentCategory = CategoryManager.getInstance().selectById(enteredCategory);
-			System.out.println("catégorie :" + enteredCategory);
 			//TODO Récupérer la photo et la stocker
 			int enteredInitialPrice = Integer.valueOf(request.getParameter("initialPrice"));
 			String enteredBidStartDate = request.getParameter("bidStartDate");
@@ -100,28 +102,19 @@ public class BidNew extends HttpServlet {
 					BusinessException be = new BusinessException(ErrorCodesBLL.BID_END_DATE_ERROR);		
 				}
 			}
-			System.out.println(bidStartDate);
 			
 			//  CHECKING BID START DATE FOR ITEM STATUT
-			
 			int statut = 0;
 			if (bidStartDate.isBefore(LocalDateTime.now()) ) {
 				statut = 1;
 			}		
 	
-			// CREATING NEW ITEM
+			// CREATING UPDATED ITEM
+			Item updatedItem = new Item(enteredName, enteredDescript, bidStartDate, bidEndDate, enteredInitialPrice, 0, statut, currentUser, currentCategory);
+			updatedItem.setIdItem(idItem);
 			
-			Item newItem = new Item(enteredName, enteredDescript, bidStartDate, bidEndDate, enteredInitialPrice, 0, statut, currentUser, currentCategory);
-			System.out.println(newItem);
-			
-			try {
-				ItemManager.getInstance().insert(newItem);		
-			} catch (BusinessException e) {
-				System.out.println(e.getMessage());
-				e.printStackTrace();
-				request.setAttribute("errorCodesList", e.getErrorCodeList());
-				doGet(request, response);
-			}
+			ItemManager.getInstance().update(updatedItem);		
+	
 			
 			// COMPARING USER ADRESS VS FORM WITHDRAW ADRESSE TO CREATE A NEW WITHDRAW OR NOT
 	
@@ -129,24 +122,26 @@ public class BidNew extends HttpServlet {
 			String enteredZipCode = request.getParameter("zipCode");
 			String enteredCity = request.getParameter("city");
 			
-			
-			if (!(enteredStreet.equalsIgnoreCase(currentUser.getStreet())) 
-				|| !(enteredCity.equalsIgnoreCase(currentUser.getCity())) 
-				|| !(enteredZipCode.equalsIgnoreCase(currentUser.getZipCode()))) {
-				Withdraw newWithdraw = new Withdraw(newItem,enteredStreet, enteredZipCode, enteredCity);
-				System.out.println(newWithdraw);
-				ItemManager.getInstance().insertWithdraw(newWithdraw);
+			if (ItemManager.getInstance().hasWithdraw(item)) {
+				if (!(enteredStreet.equalsIgnoreCase(item.getWithdraw().getStreet())) 
+					|| !(enteredCity.equalsIgnoreCase(item.getWithdraw().getCity())) 
+					|| !(enteredZipCode.equalsIgnoreCase(item.getWithdraw().getZipCode()))) {
+					Withdraw updatedWithdraw = new Withdraw(updatedItem, enteredStreet, enteredZipCode, enteredCity);
+					ItemManager.getInstance().updateWithdraw(updatedWithdraw);
+				}
+			} else {
+				if (!(enteredStreet.equalsIgnoreCase(currentUser.getStreet())) 
+					|| !(enteredCity.equalsIgnoreCase(currentUser.getCity())) 
+					|| !(enteredZipCode.equalsIgnoreCase(currentUser.getZipCode()))) {
+					Withdraw newWithdraw = new Withdraw(updatedItem, enteredStreet, enteredZipCode, enteredCity);
+					ItemManager.getInstance().insertWithdraw(newWithdraw);
+				}
 			}
-			
+					
 			RequestDispatcher rd = request.getRequestDispatcher("home");
 			rd.forward(request, response);
-			
-		} else {
-			
-			RequestDispatcher rd = request.getRequestDispatcher("home");
-			rd.forward(request, response);
-			
 		}
+		
 	}
 
 }
