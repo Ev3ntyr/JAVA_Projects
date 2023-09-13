@@ -39,8 +39,10 @@
 					l'article</h1>
 				<c:forEach items="${errorCodesList }" var="code">
 					<p class="lead">${MessageReader.getErrorMessage(code) }</p>
-
 				</c:forEach>
+				<div class="justify-content-center text-center d-flex m-0 p-0">
+					<img alt="Erreur rencontrée" src="resources/assets/error.png" style="width:200px;height:auto">
+				</div>
 			</div>
 		</div>
 

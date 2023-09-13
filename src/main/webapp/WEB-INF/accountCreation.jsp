@@ -49,7 +49,15 @@ type="text/javascript" defer></script>
 					<p class="lead">${MessageReader.getErrorMessage(code) }</p>
 
 				</c:forEach>
+				<div class="justify-content-center text-center d-flex m-0 p-0">
+					<img alt="Erreur rencontrée" src="resources/assets/error.png" style="width:200px;height:auto">
+				</div>
 			</div>
+			
+		</div>
+		
+		<div class="justify-content-center text-center">
+			<p>Image par <a href="https://pixabay.com/fr/users/prawny-162579/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7705903">Prawny</a> de <a href="https://pixabay.com/fr//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7705903">Pixabay</a></p>
 		</div>
 
 	</c:if>

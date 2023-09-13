@@ -46,18 +46,16 @@ public class CreateAccount extends HttpServlet {
 		
 		User newUser = new User(enteredAlias,enteredSurname, enteredFirstName, enteredEmail,enteredPhone, 
 								enteredStreet, enteredZipCode, enteredCity, enteredPassword);
-		System.out.println(newUser);
 		try {
 			UserManager.getInstance().createUser(newUser);
 			session.setAttribute("idUser", newUser.getIdUser());
+			RequestDispatcher rd = request.getRequestDispatcher("home");
+			rd.forward(request, response);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			request.setAttribute("errorCodesList", e.getErrorCodeList());
 			doGet(request, response);
 		}
-		
-		RequestDispatcher rd = request.getRequestDispatcher("home");
-		rd.forward(request, response);
 		
 	}
 
