@@ -1,5 +1,6 @@
 package org.enchere.eni.m.dal;
 
+import org.enchere.eni.m.dal.jdbc.ApplicationDAOJdbcImpl;
 import org.enchere.eni.m.dal.jdbc.BidDAOJdbcImpl;
 import org.enchere.eni.m.dal.jdbc.CategoryDAOJdbcImpl;
 import org.enchere.eni.m.dal.jdbc.ItemDAOJdbcImpl;
@@ -7,6 +8,10 @@ import org.enchere.eni.m.dal.jdbc.UserDAOJdbcImpl;
 
 public class DAOFactory {
 
+	public static ApplicationDAO getApplicationDAO() {
+		return new ApplicationDAOJdbcImpl();
+	}
+	
 	public static UserDAO getUserDAO() {
 		return new UserDAOJdbcImpl();
 	}

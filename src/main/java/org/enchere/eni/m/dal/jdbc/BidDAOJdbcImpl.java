@@ -103,38 +103,58 @@ public class BidDAOJdbcImpl implements BidDAO {
 	public Bid selectMaxBid(Item item) {
 	
 	
-	Bid maxBid = new Bid();
+		Bid maxBid = new Bid();
+		
+		try ( Connection cnx = ConnectionProvider.getConnection()){
+			
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_MAX_BID);
 	
-	try ( Connection cnx = ConnectionProvider.getConnection()){
-		
-		PreparedStatement pStmt = cnx.prepareStatement(SELECT_MAX_BID);
-
-		pStmt.setInt(1, item.getIdItem());
-		
-		ResultSet rs = pStmt.executeQuery();
-		
-		while(rs.next()) {
+			pStmt.setInt(1, item.getIdItem());
 			
-			int idBid = rs.getInt("idBid");
+			ResultSet rs = pStmt.executeQuery();
 			
-			
-			LocalDateTime bidDate = rs.getObject("bidDate", LocalDateTime.class);
-			
-			int bidAmount = rs.getInt("HighestBid");
-			
-			User user = UserManager.getInstance().selectById(rs.getInt("idUser"));
-			
-			maxBid.setIdBid(idBid);
-            maxBid.setBidDate(bidDate);
-            maxBid.setBidAmount(bidAmount);
-            maxBid.setUser(user);
+			while(rs.next()) {
+				
+				int idBid = rs.getInt("idBid");
+				
+				
+				LocalDateTime bidDate = rs.getObject("bidDate", LocalDateTime.class);
+				
+				int bidAmount = rs.getInt("HighestBid");
+				
+				User user = UserManager.getInstance().selectById(rs.getInt("idUser"));
+				
+				maxBid.setIdBid(idBid);
+	            maxBid.setBidDate(bidDate);
+	            maxBid.setBidAmount(bidAmount);
+	            maxBid.setUser(user);
+			}
 		}
-	}
-	catch (SQLException e) {
-		e.printStackTrace();
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+		return maxBid;
 	}
 	
-	return maxBid;
-}
+	public static final String DELETE_USER_BIDS = """
+			DELETE FROM BIDS WHERE idUser = ?;
+			""";
+	@Override
+	public void deleteUserBids(User user) {
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(DELETE_USER_BIDS);
+			pStmt.setInt(1, user.getIdUser());
+			
+			pStmt.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN DELETING USER BIDS");
+			sqle.printStackTrace();
+		}
+		
+	}
 	
 }

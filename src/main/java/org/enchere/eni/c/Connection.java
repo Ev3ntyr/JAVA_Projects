@@ -15,6 +15,7 @@ import org.enchere.eni.m.bo.User;
 
 public class Connection extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final int SESSION_MAX_MINUTES = 5;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -30,7 +31,6 @@ public class Connection extends HttpServlet {
 		boolean rememberMe = request.getParameter("rememberMe") != null;
 		
 		User user = UserManager.getInstance().selectByAlias(alias);
-		System.out.println("remember check ? " + rememberMe);
 		
 		if (UserManager.getInstance().checkPassword(password, user.getPasswordUser()) && user.isActive()) {
 			System.out.println("Password OK");
@@ -39,6 +39,9 @@ public class Connection extends HttpServlet {
 			
 			if (rememberMe) {
 				session.setMaxInactiveInterval(Integer.MAX_VALUE);
+			} else {
+				// The user session can last up to 5 minutes. Method setMaxInactiveInterval() takes seconds as parameter
+				session.setMaxInactiveInterval(SESSION_MAX_MINUTES * 60);
 			}
 			
 			

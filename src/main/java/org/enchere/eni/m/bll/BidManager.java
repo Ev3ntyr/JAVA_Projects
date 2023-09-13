@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.enchere.eni.m.bo.Bid;
 import org.enchere.eni.m.bo.Item;
+import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.dal.DAOFactory;
 
 public class BidManager {
@@ -29,5 +30,9 @@ public class BidManager {
 
 	public Bid selectMaxBid(Item item) {
 		return DAOFactory.getBidDAO().selectMaxBid(item);
+	}
+	
+	public void deleteUserBids(User user) {
+		DAOFactory.getBidDAO().deleteUserBids(user);
 	}
 }

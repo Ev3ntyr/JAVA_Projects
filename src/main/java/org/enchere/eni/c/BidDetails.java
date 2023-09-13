@@ -25,7 +25,8 @@ public class BidDetails extends HttpServlet {
 			throws ServletException, IOException {
 
 		
-		
+		// TODO SI LA VENTE N'A PAS DEBUTE, IL EST POSSIBLE DE LA MODIFIER OU DE LA SUPPRIMER
+		// --> IL FAUT GERER CET AFFICHAGE DANS LA JSP :)
 		
 		// COLLECTING CURRENT ITEM INFO
 		

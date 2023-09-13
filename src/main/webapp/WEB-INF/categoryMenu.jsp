@@ -87,11 +87,6 @@ type="text/javascript" defer></script>
 
 
 		<br>
-		<div class="d-flex justify-content-center">
 
-			<input class="btn btn-success mr-4 col-3" type=button id="formSubmitBtn" value="Créer">
-			<a href="home" class="btn btn-danger col-3">Annuler</a>
-
-		</div>
 </body>
 </html>

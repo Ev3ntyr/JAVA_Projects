@@ -21,16 +21,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 	private static final String CREATE_USER = """
 			INSERT INTO USERS VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1);
 			""";
-	private static final String SELECT_BY_ID = """
-			SELECT alias, surname, firstName, email, phone, street, zipCode,
-			city, passwordUser, credit, isAdmin, isActive
-			FROM USERS WHERE idUser = ?;
-			""";
-	private static final String SELECT_BY_EMAIL = """
-			SELECT email FROM USERS WHERE email = ?;
-			""";
 
-	
 	@Override
 	public void createUser(User newUser) {
 
@@ -72,6 +63,11 @@ public class UserDAOJdbcImpl implements UserDAO {
 
 	}
 
+	private static final String SELECT_BY_ID = """
+			SELECT alias, surname, firstName, email, phone, street, zipCode,
+			city, passwordUser, credit, isAdmin, isActive
+			FROM USERS WHERE idUser = ?;
+			""";
 	public User selectById(int idUser) {
 
 		User user = null;
@@ -112,6 +108,9 @@ public class UserDAOJdbcImpl implements UserDAO {
 		return BCrypt.checkpw(password, encryptedPassword);
 	}
 
+	private static final String SELECT_BY_EMAIL = """
+			SELECT email FROM USERS WHERE email = ?;
+			""";
 	@Override
 	public boolean checkEmail(String email) {
 

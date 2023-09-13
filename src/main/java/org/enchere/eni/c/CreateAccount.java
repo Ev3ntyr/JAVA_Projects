@@ -49,7 +49,6 @@ public class CreateAccount extends HttpServlet {
 			UserManager.getInstance().createUser(newUser);
 			session.setAttribute("idUser", newUser.getIdUser());
 		} catch (BusinessException e) {
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 			request.setAttribute("errorCodesList", e.getErrorCodeList());
 			doGet(request, response);

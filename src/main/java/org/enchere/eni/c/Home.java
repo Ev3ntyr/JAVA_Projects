@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import org.enchere.eni.m.bll.ApplicationManager;
 import org.enchere.eni.m.bll.CategoryManager;
 import org.enchere.eni.m.bll.ItemManager;
 import org.enchere.eni.m.bo.Category;
@@ -16,10 +17,12 @@ import org.enchere.eni.m.bo.Item;
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+//	@Override
+//	public void init() throws ServletException {
+//		ApplicationManager.getInstance().initDB();
+//	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	
 		
 		if (request.getAttribute("listItem") != null) {
 			@SuppressWarnings("unchecked")
