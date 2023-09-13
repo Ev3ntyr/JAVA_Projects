@@ -76,7 +76,7 @@ public class BidDetails extends HttpServlet {
 			be = new BusinessException(ErrorCodesBLL.UNSUFFICIENT_CREDIT_AMOUNT);
 		}
 		
-		if (be.hasErreur()) {
+		if (be != null) {
 			request.setAttribute("errorCodesList", be.getErrorCodeList());
 			
 		} else {
@@ -84,6 +84,9 @@ public class BidDetails extends HttpServlet {
 			System.out.println("created bid in servlet : " + bid);
 			BidManager.getInstance().insert(bid);
 			
+			user.setCredit(user.getCredit() - bidAmount);
+			
+			UserManager.getInstance().update(user);
 			
 		}
 		

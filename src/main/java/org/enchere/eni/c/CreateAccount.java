@@ -19,8 +19,10 @@ public class CreateAccount extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/accountCreation.jsp");
 		rd.forward(request, response);
+		
 	}
 
 
@@ -53,8 +55,10 @@ public class CreateAccount extends HttpServlet {
 			request.setAttribute("errorCodesList", e.getErrorCodeList());
 			doGet(request, response);
 		}
+		
 		RequestDispatcher rd = request.getRequestDispatcher("home");
 		rd.forward(request, response);
+		
 	}
 
 }
