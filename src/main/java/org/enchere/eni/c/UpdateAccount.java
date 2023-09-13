@@ -47,7 +47,6 @@ public class UpdateAccount extends HttpServlet {
 		String zipCode = request.getParameter("zipCode");
 		String city = request.getParameter("city");
 		String newPasswordUser = request.getParameter("newPasswordUser");
-		// TODO CHECK IF NEW PASSWORD MATCHES CONFIRMATION PASSWORD
 		
 		if (!alias.isBlank()) {
 			user.setAlias(alias);

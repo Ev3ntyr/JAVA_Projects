@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 import org.enchere.eni.m.bll.BidManager;
+import org.enchere.eni.m.bll.ErrorCodesBLL;
 import org.enchere.eni.m.bll.ItemManager;
 import org.enchere.eni.m.bll.UserManager;
 import org.enchere.eni.m.bo.Bid;
@@ -23,10 +24,6 @@ public class BidDetails extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		
-		// TODO SI LA VENTE N'A PAS DEBUTE, IL EST POSSIBLE DE LA MODIFIER OU DE LA SUPPRIMER
-		// --> IL FAUT GERER CET AFFICHAGE DANS LA JSP :)
 		
 		// COLLECTING CURRENT ITEM INFO
 		
@@ -73,13 +70,22 @@ public class BidDetails extends HttpServlet {
 		int idUser = (int)session.getAttribute("idUser");
 		User user = UserManager.getInstance().selectById(idUser);
 		
-		//TODO VERIF CREDIT 
+		//TODO VERIF CREDIT
+		BusinessException be = null;
+		if (user.getCredit() < bidAmount) {
+			be = new BusinessException(ErrorCodesBLL.UNSUFFICIENT_CREDIT_AMOUNT);
+		}
 		
-		
-		
-		Bid bid = new Bid(bidDate, bidAmount, item, user);
-		System.out.println("created bid in servlet : " + bid);
-		BidManager.getInstance().insert(bid);
+		if (be.hasErreur()) {
+			request.setAttribute("errorCodesList", be.getErrorCodeList());
+			
+		} else {
+			Bid bid = new Bid(bidDate, bidAmount, item, user);
+			System.out.println("created bid in servlet : " + bid);
+			BidManager.getInstance().insert(bid);
+			
+			
+		}
 		
 		doGet(request, response);
 	}

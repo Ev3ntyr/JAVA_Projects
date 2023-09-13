@@ -110,8 +110,6 @@ public class Item implements Serializable {
 		bids.add(bid);
 	}
 	
-	//TODO UpdateStatus method
-	
 	// CONSTRUCTORS
 	public Item() {}
 	

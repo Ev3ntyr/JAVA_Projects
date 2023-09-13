@@ -9,4 +9,6 @@ public abstract class ErrorCodesBLL {
 	public final static int FORMAT_BID_END_DATE_ERROR = 30_002;
 	public final static int BID_END_DATE_ERROR = 30_003;
 	
+	public final static int UNSUFFICIENT_CREDIT_AMOUNT = 50_000;
+	
 }

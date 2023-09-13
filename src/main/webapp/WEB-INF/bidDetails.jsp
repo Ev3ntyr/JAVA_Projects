@@ -37,6 +37,17 @@
 			class="img-thumbnail mr-3 align-self-left" style="width: 100px;"></a>
 		<h1 class="">ENI-Enchères</h1>
 	</div>
+	<c:if test="${!empty errorCodesList }">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4 text-danger">Erreur lors de l'enchère</h1>
+				<c:forEach items="${errorCodesList}" var="code">
+					<p class="lead">${MessageReader.getErrorMessage(code)}</p>
+				</c:forEach>
+			</div>
+		</div>
+
+	</c:if>
 	<br>
  	<c:choose>
 		<c:when test="${requestScope.item.stateItem==2 && sessionScope.idUser==requestScope.bid.user.idUser}">

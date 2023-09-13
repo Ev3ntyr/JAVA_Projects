@@ -254,7 +254,7 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("ERROR WHEN SELECTING ALL ITEMS FROM DB");
 			e.printStackTrace();
 		}
 
