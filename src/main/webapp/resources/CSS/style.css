@@ -50,9 +50,6 @@ background-image: linear-gradient(to left bottom, #4ecfc3, #3eceeb, #76c8ff, #b8
 			h2{
 		font-size: 7vw;
 	}	
-	.entete img {
-		align-self:center;
-	}
 }
 
 h1, form{

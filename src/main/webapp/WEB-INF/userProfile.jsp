@@ -29,15 +29,16 @@
 </head>
 <body class="container-fluid  justify-content-center text-center">
 
-	<div class="row justify-content-center g-1 my-5 entete">
-
-		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 my-auto">
-			<a href="home"><img alt="Logo Application" align="right"
-				src="resources/assets/logo.png"
-				class="img-thumbnail mr-3 align-self-right" style="width: 100px;"></a>
-		</div>
+	<div class="row justify-content-center g-1 my-5">
+	
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 my-auto">
+        <a href="home" class="d-none d-sm-block"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail" style="width: 100px;"></a>
+        <a href="home" class="d-sm-none mx-auto"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail" style="width: 100px;"></a>
+    </div>
+    
 		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 p-0">
-			<h1 align="left">ENI-Enchères</h1>
+      <h1 align="left" class="d-none d-sm-block">ENI-Enchères</h1>
+        <h1 class="d-sm-none">ENI-Enchères</h1>
 		</div>
 	</div>
 
