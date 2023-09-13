@@ -21,11 +21,14 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
+<link href="resources/CSS/style.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
+
 <title>Nouvelle mise aux enchères</title>
 <link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
-<body class="container" max-width=80%>
+<body class="container-fluid  justify-content-center text-center">
 	<h1>Nouvelle mise aux enchères</h1>
 
 	<br>
@@ -49,15 +52,15 @@
 	<form action="bidNew" method="POST">
 
 		<div class="form container">
-			<div class="row justify-content-md-center">
-				<label for="nameItem" class="col col-lg-2">Nom de l'article
-					:</label> <input type="text" maxlength="30" class="col col-lg-4"
+			<div class="row justify-content-center">
+				<label for="nameItem" class="col-lg-2 col-md-3 col-sm-4 col-xs-11">Nom de l'article
+					:</label> <input type="text" maxlength="30" class="col-lg-2 col-md-3 col-sm-4 col-xs-11"
 					id="nameItem" name="nameItem" required>
 			</div>
 			<br>
-			<div class="row justify-content-md-center">
-				<label class="col col-lg-2" for="descriptionItem">Description
-					:</label> <input type="textarea" maxlength="300" class="col col-lg-4"
+			<div class="row justify-content-center">
+				<label class="col-lg-2 col-md-3 col-sm-4 col-xs-11" for="descriptionItem">Description
+					:</label> <input type="textarea" maxlength="300" class="col-lg-2 col-md-3 col-sm-4 col-xs-11"
 					id="descriptionItem" name="descriptionItem"
 					placeholder="Décrivez au maximum votre article (matière, couleur, état, fonctions...)"
 					required>

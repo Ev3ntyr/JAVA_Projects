@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+
+body{
+font-family: Helvetica , sans-serif;
+height: 100vh;	
+background-image: linear-gradient(to left bottom, #4ecfc3, #3eceeb, #76c8ff, #b8bdff, #ebb1eb);
+}
+
+@media (min-width: 1200px) {
+	h4,h3 {
+		font-size: 1.7vw;
+	}
+	h2{
+		font-size: 3vw;
+	}
+}
+
+@media (max-width: 1199.98px) {
+	h4,h3 {
+		font-size: 2.1vw;
+	}
+		h2{
+		font-size: 3.5vw;
+	}
+}
+
+@media (max-width: 991.98px) {
+	h4,h3 {
+		font-size: 3vw;
+	}
+		h2{
+		font-size: 4.5vw;
+	}	
+}
+
+@media (max-width: 767.98px) {
+	h4,h3 {
+		font-size: 5vw;
+	}
+			h2{
+		font-size: 6vw;
+	}	
+}
+
+@media (max-width: 575.98px) {
+	h4,h3 {
+		font-size: 6vw;
+	}
+			h2{
+		font-size: 7vw;
+	}	
+	.entete img {
+		align-self:center;
+	}
+}
+
+h1, form{
+	color: white;
+}
+
+h2{
+	text-shadow: 2px 3px 0px #898999;
+}
+
+h3{
+	font-weight: 500;
+		color : white;
+}
+
+h4,h2{
+	font-weight: bold;
+	color : white;
+}
+
+
+
+.btn-warning{
+	color:white;
+	font-weight: bold;
+	border-radius: 40px;
+	box-shadow: 10px 10px 14px 1px rgba(00,00,00,0.2);
+	letter-spacing: 0.094em;
+	background-color: #FCD615;
+}
+
+
+.btn-warning:hover{
+	color:white;
+	font-weight: bold;
+	border-radius: 40px;
+	box-shadow: 0px 0px 0px 0px rgba(00,00,00,0.2);
+	letter-spacing: 0.094em;
+	transition : 0.3s ;
+	background-color: #FCD615;
+}
