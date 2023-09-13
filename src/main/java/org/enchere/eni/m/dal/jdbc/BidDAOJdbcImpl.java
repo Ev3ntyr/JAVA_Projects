@@ -155,7 +155,6 @@ public class BidDAOJdbcImpl implements BidDAO {
 			System.out.println("ERROR WHEN DELETING USER BIDS");
 			sqle.printStackTrace();
 		}
-		
 	}
 	
 }

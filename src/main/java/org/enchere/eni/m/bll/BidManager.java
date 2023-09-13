@@ -35,4 +35,5 @@ public class BidManager {
 	public void deleteUserBids(User user) {
 		DAOFactory.getBidDAO().deleteUserBids(user);
 	}
+
 }

@@ -449,6 +449,39 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			System.out.println("ERROR WHEN UPDATING WITHDRAW");
 			sqle.printStackTrace();
 		}
+	}
+	
+	public static final String SELECT_ALL_BY_USER = """
+			SELECT idItem, nameItem FROM SOLD_ITEMS WHERE idUser = ? AND bidStartDate < GETDATE() AND bidEndDate > GETDATE();
+			""";
+	
+	public List<Item> selectAllOpenByUser(User user) {
 		
+		List<Item> items = new ArrayList<Item>();
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_ALL_BY_USER);
+			pStmt.setInt(1, user.getIdUser());
+			
+			ResultSet rs = pStmt.executeQuery();
+			
+			while (rs.next()) {
+				Item item = new Item();
+				int idItem = rs.getInt("idItem");
+				String nameItem = rs.getString("nameItem");
+				
+				item.setIdItem(idItem);
+				item.setNameItem(nameItem);
+				
+				items.add(item);
+			}
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN SELECTING OPEN SELL FOR USER");
+			sqle.printStackTrace();
+		}
+		
+		return items;
 	}
 }

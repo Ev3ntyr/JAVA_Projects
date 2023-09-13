@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.enchere.eni.c.BusinessException;
 import org.enchere.eni.m.bo.Item;
+import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.bo.Withdraw;
 import org.enchere.eni.m.dal.DAOFactory;
 
@@ -61,5 +62,8 @@ public class ItemManager {
 	}
 	public void updateWithdraw(Withdraw withdraw) {
 		DAOFactory.getItemSoldDAO().updateWithdraw(withdraw);
+	}
+	public List<Item> selectAllByUser(User user) {
+		return DAOFactory.getItemSoldDAO().selectAllOpenByUser(user);
 	}
 }

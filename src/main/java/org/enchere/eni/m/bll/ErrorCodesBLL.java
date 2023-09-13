@@ -11,4 +11,7 @@ public abstract class ErrorCodesBLL {
 	
 	public final static int UNSUFFICIENT_CREDIT_AMOUNT = 50_000;
 	
+	public final static int ACCOUNT_DELETION_PENDING_SELLS = 60_000;
+	public final static int ACCOUNT_DELETION_WINNING_BIDS = 60_001;
+	
 }

@@ -70,7 +70,6 @@ public class BidDetails extends HttpServlet {
 		int idUser = (int)session.getAttribute("idUser");
 		User user = UserManager.getInstance().selectById(idUser);
 		
-		//TODO VERIF CREDIT
 		BusinessException be = null;
 		if (user.getCredit() < bidAmount) {
 			be = new BusinessException(ErrorCodesBLL.UNSUFFICIENT_CREDIT_AMOUNT);
