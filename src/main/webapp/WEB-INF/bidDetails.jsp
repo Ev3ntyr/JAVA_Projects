@@ -38,12 +38,12 @@
 		<h1 class="">ENI-Enchères</h1>
 	</div>
 	<br>
-	<%-- 	<c:choose>
-		<c:when test="${requestScope.item.stateItem==2 && sessionScope.idUser==requestScope.item.bids.idUser}">
+ 	<c:choose>
+		<c:when test="${requestScope.item.stateItem==2 && sessionScope.idUser==requestScope.bid.user.idUser}">
 		<h4>Vous avez remporté la vente !</h4>
 		</c:when>
-		<c:when test="${requestScope.item.stateItem==2 && sessionScope.idUser!=requestScope.item.bids.idUser}">
-		<h4> ${requestScope.item.bids.alias} a remporté la vente !</h4>
+		<c:when test="${requestScope.item.stateItem==2 && sessionScope.idUser!=requestScope.bid.user.idUser}">
+		<h4> ${requestScope.bid.user.alias} a remporté la vente !</h4>
 		</c:when>
 
 
@@ -52,7 +52,7 @@
 			<br>
 			<br>
 		</c:otherwise> 	
-		</c:choose>--%>
+		</c:choose>
 
 
 	<div class="form ">
