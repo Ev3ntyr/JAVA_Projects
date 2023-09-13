@@ -51,4 +51,15 @@ public class ItemManager {
 	public void updateSellingPrice(Item itemSold) {
 		DAOFactory.getItemSoldDAO().updateSellingPrice(itemSold);
 	}
+	
+	public void delete(int idItem) {
+		DAOFactory.getItemSoldDAO().delete(idItem);
+	}
+	
+	public void update(Item updatedItem) {
+		DAOFactory.getItemSoldDAO().update(updatedItem);
+	}
+	public void updateWithdraw(Withdraw withdraw) {
+		DAOFactory.getItemSoldDAO().updateWithdraw(withdraw);
+	}
 }

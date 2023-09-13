@@ -38,7 +38,9 @@ public class BidDetails extends HttpServlet {
 				System.out.println("ERROR - Cannot get the requested item ID");
 				nfe.printStackTrace();
 			}
-		} 
+		} else {
+			idItem = (int) request.getAttribute("idItem");
+		}
 		
 		Item item = ItemManager.getInstance().selectById(idItem);
 

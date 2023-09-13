@@ -360,7 +360,95 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 		}
 		
 	}
+	
+	public static final String DELETE_WITHDRAW = "DELETE FROM WITHDRAW WHERE idItem = ?;";
+	public static final String DELETE = "DELETE FROM SOLD_ITEMS WHERE idItem = ?;";
+	
+	@Override
+	public void delete(int idItem) {
+		Item item = selectById(idItem);
+		PreparedStatement pStmt = null;
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			// If deleted item has a withdraw in db, this withdraw is also deleted beforehand (FK constraint)
+			if (hasWithdraw(item)) {
+				pStmt = cnx.prepareStatement(DELETE_WITHDRAW);
+				pStmt.setInt(1, idItem);
+			
+				pStmt.executeUpdate();
+			}
+			pStmt = cnx.prepareStatement(DELETE);
+			pStmt.setInt(1, idItem);
+			
+			pStmt.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN DELETING ITEM AND/OR WITHDRAW FROM DB");
+			sqle.printStackTrace();
+		}
+	}
+	
+	public static final String UPDATE = """
+			UPDATE SOLD_ITEMS SET 
+			nameItem = ?, 
+			descriptionItem = ?,
+			bidStartDate = ?,
+			bidEndDate = ?,
+			initialPrice = ?,
+			sellingPrice = ?,
+			stateItem = ?,
+			idCategory = ?
+			WHERE idItem = ?;
+			""";
+	@Override
+	public void update(Item item) {
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(UPDATE);
+			pStmt.setString(1, item.getNameItem());
+			pStmt.setString(2, item.getDescriptionItem());
+			pStmt.setTimestamp(3, Timestamp.valueOf(item.getBidStartDate()));
+			pStmt.setTimestamp(4, Timestamp.valueOf(item.getBidEndDate()));
+			pStmt.setInt(5, item.getInitialPrice());
+			pStmt.setInt(6, item.getInitialPrice());
+			pStmt.setInt(7, item.getStateItem());
+			pStmt.setInt(8, item.getCategory().getIdCategory());
+			pStmt.setInt(9, item.getIdItem());
+			
+			pStmt.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN UPDATING ITEM");
+			sqle.printStackTrace();
+		}
 		
 	}
 	
-	
+	public static final String UPDATE_WITHDRAW = """
+			UPDATE WITHDRAW SET
+			street = ?,
+			zipCode = ?,
+			city = ?
+			WHERE idItem = ?;
+			""";
+	@Override
+	public void updateWithdraw(Withdraw withdraw) {
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(UPDATE_WITHDRAW);
+			pStmt.setString(1, withdraw.getStreet());
+			pStmt.setString(2, withdraw.getZipCode());
+			pStmt.setString(3, withdraw.getCity());
+			pStmt.setInt(4, withdraw.getItemSold().getIdItem());
+			
+			pStmt.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN UPDATING WITHDRAW");
+			sqle.printStackTrace();
+		}
+		
+	}
+}

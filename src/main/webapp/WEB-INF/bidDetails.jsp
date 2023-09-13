@@ -131,7 +131,19 @@
 	</div>
 	<br>
 	<c:choose>
-		<c:when test="${requestScope.item.stateItem==0}">
+		<c:when test="${requestScope.item.stateItem == 0 && sessionScope.idUser != requestScope.item.user.idUser}">
+			<div class="form-row">
+				<fmt:parseDate value="${requestScope.item.bidStartDate}"
+					pattern="yyyy-MM-dd'T'HH:mm" var="parsedStartDateTime" type="both" />
+
+				<h5 class="col col-lg-10 mr-auto">
+					La vente débutera le
+					<fmt:formatDate pattern="dd/MM/yyyy' - 'HH:mm"
+						value="${pageScope.parsedStartDateTime}" />
+				</h5>
+			</div>
+		</c:when>
+		<c:when test="${requestScope.item.stateItem == 0 && sessionScope.idUser == requestScope.item.user.idUser}">
 
 			<div class="form-row">
 				<fmt:parseDate value="${requestScope.item.bidStartDate}"
@@ -142,6 +154,8 @@
 					<fmt:formatDate pattern="dd/MM/yyyy' - 'HH:mm"
 						value="${pageScope.parsedStartDateTime}" />
 				</h5>
+				<a href="updateBid?idItem=${requestScope.item.idItem}" class="btn btn-warning col-4 ml-4">Modifier ma vente</a>
+				<a href="deleteBid?idItem=${requestScope.item.idItem}" class="btn btn-danger col-4 ml-4">Supprimer ma vente</a>
 			</div>
 		</c:when>
 		<c:when

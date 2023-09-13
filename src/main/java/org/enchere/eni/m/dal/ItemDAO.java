@@ -15,5 +15,8 @@ public interface ItemDAO {
 	Withdraw selectWithdraw(Item item);
 	Item selectById (int idItem);
 	void updateSellingPrice (Item item);
+	void delete(int idItem);
+	void update(Item item);
+	void updateWithdraw(Withdraw withdraw);
 	
 }
