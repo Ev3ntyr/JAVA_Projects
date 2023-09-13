@@ -96,7 +96,7 @@ public class BidDAOJdbcImpl implements BidDAO {
 	
 	public static final String SELECT_MAX_BID = """		
 		SELECT idBid, bidDate, bidAmount as HighestBid, idItem, idUser FROM BIDS 
-		WHERE (SELECT MAX(bidAmount) FROM BIDS WHERE idItem = ?) = bidAmount;
+		WHERE (SELECT MAX(bidAmount) FROM BIDS WHERE idItem = ?) = bidAmount AND idItem = ?;
 		""";
 	
 	@Override
@@ -110,6 +110,7 @@ public class BidDAOJdbcImpl implements BidDAO {
 			PreparedStatement pStmt = cnx.prepareStatement(SELECT_MAX_BID);
 	
 			pStmt.setInt(1, item.getIdItem());
+			pStmt.setInt(2, item.getIdItem());
 			
 			ResultSet rs = pStmt.executeQuery();
 			

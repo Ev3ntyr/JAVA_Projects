@@ -71,6 +71,10 @@ public class BidDetails extends HttpServlet {
 		int idUser = (int)session.getAttribute("idUser");
 		User user = UserManager.getInstance().selectById(idUser);
 		
+		//TODO VERIF CREDIT 
+		
+		
+		
 		Bid bid = new Bid(bidDate, bidAmount, item, user);
 		System.out.println("created bid in servlet : " + bid);
 		BidManager.getInstance().insert(bid);
