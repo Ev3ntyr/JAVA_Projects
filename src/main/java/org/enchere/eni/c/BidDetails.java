@@ -25,6 +25,12 @@ public class BidDetails extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
+		
+		int idUser = (int) session.getAttribute("idUser");
+		User userConnected = UserManager.getInstance().selectById(idUser);
+		request.setAttribute("userConnected", userConnected);
+		
 		// COLLECTING CURRENT ITEM INFO
 		
 		int idItem = 0;

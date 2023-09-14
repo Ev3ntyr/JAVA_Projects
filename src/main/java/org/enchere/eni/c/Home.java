@@ -13,13 +13,15 @@ import org.enchere.eni.m.bll.CategoryManager;
 import org.enchere.eni.m.bll.ItemManager;
 import org.enchere.eni.m.bo.Category;
 import org.enchere.eni.m.bo.Item;
+import org.enchere.eni.m.bo.User;
 
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 //	@Override
-//	public void init() throws ServletException {
+//	public void init() throws ServletException {		
 //		ApplicationManager.getInstance().initDB();
+//		ApplicationManager.getInstance().initDataset();
 //	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

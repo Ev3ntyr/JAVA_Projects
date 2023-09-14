@@ -173,7 +173,7 @@
 			</div>
 		</c:when>
 		<c:when
-			test="${requestScope.item.stateItem==1 && sessionScope.idUser!=requestScope.item.user.idUser}">
+			test="${requestScope.item.stateItem==1 && sessionScope.idUser!=requestScope.item.user.idUser && requestScope.userConnected.isActive}">
 			<form action="bidDetails" method="POST" id="BidDetails">
 				<div class="form-row">
 					<div class="col col-lg-2 mr-auto">
@@ -191,7 +191,6 @@
 				</div>
 			</form>
 		</c:when>
-
 		<c:otherwise>
 			<div class="form">
 				<div class="col col-4 mx-auto text-center">

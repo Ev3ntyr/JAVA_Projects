@@ -43,7 +43,7 @@
 	</div>
 
 	<br>
-	<h2 class="text-center">Profil</h2>
+	<h2 class="text-center">Profil <c:if test="${not requestScope.user.isActive}">désactivé</c:if></h2>
 	<br>
 	<c:if test="${!empty errorCodesList}">
 		<div class="jumbotron jumbotron-fluid">
