@@ -76,7 +76,8 @@
 		</div>
 		<br>
 		<div class="row justify-content-center">
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 d-flex align-items-center">
+			<div
+				class="col-lg-4 col-md-4 col-sm-4 col-xs-12 d-flex align-items-center">
 
 				<label for="category" class="mr-2 mb-2">Catégorie :</label>
 
@@ -91,11 +92,13 @@
 		</div>
 		<br>
 		<div class="row justify-content-center">
-			<label class="col-lg-3 col-md-3 col-sm-6 col-xs-12" for="">Photo de l'article :</label> <input
-				type="file" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 " id="" name="">
-		</div>
-		<br>
-<div class="row justify-content-center">
+			<label class="col-lg-3 col-md-3 col-sm-6 col-xs-12" for="">Photo
+				de l'article :</label> <input type="file"
+				class="col-lg-4 col-md-4 col-sm-6 col-xs-12 " id="" name="file">
+	</form>
+	</div>
+	<br>
+	<div class="row justify-content-center">
     <label class="col-lg-2 col-md-3 col-sm-4 col-12" for="initialPrice">Mise à prix :</label>
     <input type="number" maxlength="10" class="col-lg-2 col-md-2 col-sm-5 col-12 form-control"
         id="initialPrice" name="initialPrice" min="0" required>
