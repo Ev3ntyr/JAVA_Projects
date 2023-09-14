@@ -21,16 +21,20 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
+<link href="resources/CSS/style.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
+
 <title>Nouvelle mise aux enchères</title>
 <link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
-<body class="container" max-width=80%>
+<body class="container-fluid  justify-content-center text-center">
+	<br>
 	<h1>Nouvelle mise aux enchères</h1>
 
 	<br>
 	<br>
-	<br>
+
 
 	<c:if test="${!empty errorCodesList }">
 		<div class="jumbotron jumbotron-fluid">
@@ -41,7 +45,8 @@
 					<p class="lead">${MessageReader.getErrorMessage(code) }</p>
 				</c:forEach>
 				<div class="justify-content-center text-center d-flex m-0 p-0">
-					<img alt="Erreur rencontrée" src="resources/assets/error.png" style="width:200px;height:auto">
+					<img alt="Erreur rencontrée" src="resources/assets/error.png"
+						style="width: 200px; height: auto">
 				</div>
 			</div>
 		</div>
@@ -50,53 +55,63 @@
 
 	<form action="bidNew" method="POST">
 
-		<div class="form container">
-			<div class="row justify-content-md-center">
-				<label for="nameItem" class="col col-lg-2">Nom de l'article
-					:</label> <input type="text" maxlength="30" class="col col-lg-4"
-					id="nameItem" name="nameItem" required>
+		<div class="row justify-content-center">
+			<label for="nameItem" class="col-lg-2 col-md-3 col-sm-4 col-xs-12">Nom
+				de l'article :</label>
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<input type="text" maxlength="30" class="form-control" id="nameItem"
+					name="nameItem" required>
 			</div>
-			<br>
-			<div class="row justify-content-md-center">
-				<label class="col col-lg-2" for="descriptionItem">Description
-					:</label> <input type="textarea" maxlength="300" class="col col-lg-4"
-					id="descriptionItem" name="descriptionItem"
+		</div>
+		<br>
+		<div class="row justify-content-center">
+			<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12"
+				for="descriptionItem">Description :</label>
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<textarea maxlength="300" class="form-control" id="descriptionItem"
+					name="descriptionItem"
 					placeholder="Décrivez au maximum votre article (matière, couleur, état, fonctions...)"
-					required>
+					required></textarea>
 			</div>
-			<br>
+		</div>
+		<br>
+		<div class="row justify-content-center">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 d-flex align-items-center">
 
-			<div class="row justify-content-md-center">
-				<label for="category" class="col col-lg-2">Catégorie : </label> 
-					<select name="category" id="category">
-					<c:forEach items="${listCategory}" var="category">
-						<option value="${category.idCategory }">${category.wording}</option>
-					</c:forEach>
-				</select>
+				<label for="category" class="mr-2 mb-2">Catégorie :</label>
+
+				<div class="col-auto">
+					<select name="category" class="form-control" id="category" required>
+						<c:forEach items="${listCategory}" var="category">
+							<option value="${category.idCategory}">${category.wording}</option>
+						</c:forEach>
+					</select>
+				</div>
 			</div>
-<br>
-			<div class="row justify-content-md-center">
-				<label class="col col-lg-2" for="">Photo de l'article :</label> <input
-					type="file" class="col col-lg-4" id="" name="">
-			</div>
-			<br>
-			<div class="row justify-content-md-center">
-				<label class="col col-lg-2" for="initialPrice">Mise à prix :</label>
-				<input type="number" maxlength="10" class="col col-lg-2"
-					id="initialPrice" name="initialPrice" min="0" required>
-			</div>
-			<br>
-			<div class="row justify-content-md-center">
-				<label class="col col-lg-2" for="bidStartDate">Début de
-					l'enchère :</label> <input type="datetime-local" class="col col-lg-2"
-					id="bidStartDate" name="bidStartDate" required>
-			</div>
-			<br>
-			<div class="row justify-content-md-center">
-				<label class="col col-lg-2" for="bidEndDate">Fin de
-					l'enchère :</label> <input type="datetime-local" class="col col-lg-2"
-					id="bidEndDate" name="bidEndDate" required>
-			</div>
+		</div>
+		<br>
+		<div class="row justify-content-center">
+			<label class="col-lg-3 col-md-3 col-sm-6 col-xs-12" for="">Photo de l'article :</label> <input
+				type="file" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 " id="" name="">
+		</div>
+		<br>
+<div class="row justify-content-center">
+    <label class="col-lg-2 col-md-3 col-sm-4 col-12" for="initialPrice">Mise à prix :</label>
+    <input type="number" maxlength="10" class="col-lg-2 col-md-2 col-sm-5 col-12 form-control"
+        id="initialPrice" name="initialPrice" min="0" required>
+</div>
+		<br>
+		<div class="row justify-content-center">
+			<label class="col col-lg-2" for="bidStartDate">Début de
+				l'enchère :</label> <input type="datetime-local" class="col col-lg-2"
+				id="bidStartDate" name="bidStartDate" required>
+		</div>
+		<br>
+		<div class="row justify-content-center">
+			<label class="col col-lg-2" for="bidEndDate">Fin de l'enchère
+				:</label> <input type="datetime-local" class="col col-lg-2" id="bidEndDate"
+				name="bidEndDate" required>
+		</div>
 		</div>
 		<br>
 		<div class="container border m-2 p-2" max-width=60%>

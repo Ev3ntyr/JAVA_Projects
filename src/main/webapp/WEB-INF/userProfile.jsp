@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="org.enchere.eni.m.messages.MessageReader"%>
 <!DOCTYPE html>
@@ -20,18 +21,29 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
+<link href="resources/CSS/style.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <title>Profil</title>
 <link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
-<body class="container" max-width=80%>
+<body class="container-fluid  justify-content-center text-center">
 
-	<div class="d-flex justify-content-center align-text-middle my-5">
-		<a href="home"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail mr-3 align-self-left" style="width:100px;"></a>
-		<h1 class="">ENI-Enchères</h1>
+	<div class="row justify-content-center g-1 my-5">
+	
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 my-auto">
+        <a href="home" class="d-none d-sm-block"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail" style="width: 100px;"></a>
+        <a href="home" class="d-sm-none mx-auto"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail" style="width: 100px;"></a>
+    </div>
+    
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 p-0">
+      <h1 align="left" class="d-none d-sm-block">ENI-Enchères</h1>
+        <h1 class="d-sm-none">ENI-Enchères</h1>
+		</div>
 	</div>
+
 	<br>
-		<h2 class="text-center">Profil</h2>
+	<h2 class="text-center">Profil</h2>
 	<br>
 	<c:if test="${!empty errorCodesList}">
 		<div class="jumbotron jumbotron-fluid">
@@ -60,75 +72,76 @@
 
 	</c:if>
 
-	
-	<div class="row">
-		<div class="col mr-2 col-3">
-			<h4>Pseudo : </h4>
+
+
+	<div class="row justify-content-center">
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h4>Pseudo :</h4>
 		</div>
-		<div class="col mx-auto col-5">
-			<h4>${requestScope.user.alias}</h4>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col mr-2 col-3">
-			<h6>Nom : </h6>
-		</div>
-		<div class="col mx-auto col-5">
-			<h6>${requestScope.user.surname}</h6>
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11 ">
+			<h3>${requestScope.user.alias}</h3>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col mr-2 col-3">
-			<h6>Prénom : </h6>
+	<div class="row justify-content-center">
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h4>Nom :</h4>
 		</div>
-		<div class="col mx-auto col-5">
-			<h6>${requestScope.user.firstName}</h6>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col mr-2 col-3">
-			<h6>Email : </h6>
-		</div>
-		<div class="col mx-auto col-5">
-			<h6>${requestScope.user.email}</h6>
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h3>${requestScope.user.surname}</h3>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col mr-2 col-3">
-			<h6>Téléphone : </h6>
+	<div class="row justify-content-center">
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h4>Prénom :</h4>
 		</div>
-		<div class="col mx-auto col-5">
-			<h6>${requestScope.user.phone}</h6>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col mr-2 col-3">
-			<h6>Rue : </h6>
-		</div>
-		<div class="col mx-auto col-5">
-			<h6>${requestScope.user.street}</h6>
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h3>${requestScope.user.firstName}</h3>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col mr-2 col-3">
-			<h6>Code Postal : </h6>
+	<div class="row justify-content-center">
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h4>Email :</h4>
 		</div>
-		<div class="col mx-auto col-5">
-			<h6>${requestScope.user.zipCode}</h6>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col mr-2 col-3">
-			<h6>Ville : </h6>
-		</div>
-		<div class="col mx-auto col-5">
-			<h6>${requestScope.user.city}</h6>
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h3>${requestScope.user.email}</h3>
 		</div>
 	</div>
-		
+	<div class="row justify-content-center">
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h4>Téléphone :</h4>
+		</div>
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h3>${requestScope.user.phone}</h3>
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h4>Rue :</h4>
+		</div>
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h3>${requestScope.user.street}</h3>
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h4>Code postal :</h4>
+		</div>
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h3>${requestScope.user.zipCode}</h3>
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h4>Ville :</h4>
+		</div>
+		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-11">
+			<h3>${requestScope.user.city}</h3>
+		</div>
+	</div>
+
 	<c:if test="${sessionScope.idUser == requestScope.user.idUser}">
 		<div class="d-flex justify-content-center">
-			<a href="update" class="btn btn-warning mt-5 mr-4 col-3">Modifier</a> 
+			<a href="update" class="btn btn-warning mt-5 mr-4 col-3">MODIFIER</a>
 		</div>
 	</c:if>
 </body>
