@@ -72,7 +72,6 @@ public class DeleteAccount extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// TODO Admin menu to completely delete User from DB
 		int idUser = Integer.valueOf(request.getParameter("idUser"));
 		User user = UserManager.getInstance().selectById(idUser);
 		BidManager.getInstance().deleteUserBids(user);
