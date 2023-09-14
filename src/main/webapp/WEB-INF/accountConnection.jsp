@@ -21,6 +21,8 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
+<link href="resources/CSS/style.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Connexion</title>
 <link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
@@ -28,13 +30,18 @@
 <body class="container" max-width=80%>
 	<br>
 	<br>
-	<div class="d-flex justify-content-center align-text-middle my-5">
-		<a href="home"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail mr-3 align-self-left" style="width:100px;"></a>
-		<h1 class="">ENI-Enchères</h1>
+	<div class="row justify-content-center g-1 my-5">
+	
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 my-auto">
+        <a href="home" class="d-none d-sm-block"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail" style="width: 100px;"></a>
+        <a href="home" class="d-sm-none mx-auto"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail" style="width: 100px;"></a>
+    </div>
+    
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 p-0">
+      <h1 align="left" class="d-none d-sm-block">ENI-Enchères</h1>
+        <h1 class="d-sm-none">ENI-Enchères</h1>
+		</div>
 	</div>
-	<br>
-	<h2 class="text-center">Connexion à mon compte</h2>
-	<br>
 	
 	<br>
 
@@ -81,11 +88,11 @@
 		</div>
 		<br>
 		<br>
-		<div class="d-flex justify-content-center">
+		<div class="row justify-content-center">
 
-			<input class="btn btn-success mr-3 col-3" type="submit" value="Connexion">
-			<a href="creation" class="btn btn-info mr-3 col-3">Créer mon compte</a>
-			<a href="home" class="btn btn-danger col-3">Annuler</a>
+			<input class="btn btn-success mr-3 mb-3 col-lg-3 col-md-6 col-sm-6 col-xs-9" type="submit" value="CONNEXION">
+			<a href="creation" class="btn btn-info mr-3 mb-3 col-lg-3 col-md-6 col-sm-6 col-xs-9">CREER UN COMPTE</a>
+			<a href="home" class="btn btn-danger mr-3 mb-3 col-lg-3 col-md-6 col-sm-6 col-xs-9">ANNULER</a>
 
 		</div>
 	</form>
