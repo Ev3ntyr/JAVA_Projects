@@ -204,4 +204,24 @@
     <servlet-name>BidUpdate</servlet-name>
     <url-pattern>/updateBid</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminUser</display-name>
+    <servlet-name>AdminUser</servlet-name>
+    <servlet-class>org.enchere.eni.c.AdminUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminUser</servlet-name>
+    <url-pattern>/admin/users</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PasswordAccount</display-name>
+    <servlet-name>PasswordAccount</servlet-name>
+    <servlet-class>org.enchere.eni.c.PasswordAccount</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PasswordAccount</servlet-name>
+    <url-pattern>/forgottenPwd</url-pattern>
+  </servlet-mapping>
 </web-app>

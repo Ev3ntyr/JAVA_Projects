@@ -6,6 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.tomcat.dbcp.dbcp2.SQLExceptionList;
 import org.enchere.eni.m.bo.User;
@@ -99,7 +103,6 @@ public class UserDAOJdbcImpl implements UserDAO {
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-
 		return user;
 	}
 
@@ -153,11 +156,11 @@ public class UserDAOJdbcImpl implements UserDAO {
 	
 	
 	private static final String SELECT_BY_ALIAS = """
-			SELECT idUser, alias, passwordUser, isActive FROM USERS WHERE alias = ?;
+			SELECT idUser, alias, email, passwordUser, isActive FROM USERS WHERE alias = ?;
 			""";
 	@Override
 	public User selectByAlias(String alias) {
-		User u = new User();
+		User u = null;
 		
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			
@@ -167,10 +170,12 @@ public class UserDAOJdbcImpl implements UserDAO {
 			ResultSet rs = pStmt.executeQuery();
 			
 			if (rs.next()) {
+				u = new User();
 				u.setIdUser(rs.getInt("idUser"));
 				u.setAlias(alias);
 				u.setPasswordUser(rs.getString("passwordUser"));
-				u.setActive(rs.getBoolean("isActive"));
+				u.setEmail(rs.getString("email"));
+				u.setIsActive(rs.getBoolean("isActive"));
 			}
 			
 		} catch (SQLException sqle) {
@@ -192,7 +197,8 @@ public class UserDAOJdbcImpl implements UserDAO {
 			zipCode = ?,
 			city = ?,
 			passwordUser = ?,
-			credit = ?
+			credit = ?, 
+			isActive = ?
 			WHERE idUser = ?;
 			""";
 	@Override
@@ -210,12 +216,13 @@ public class UserDAOJdbcImpl implements UserDAO {
 			pStmt.setString(7,  user.getZipCode());
 			pStmt.setString(8,  user.getCity());
 			String userPassword = user.getPasswordUser();
-			if (userPassword.length() < 20) {
+			if (userPassword.length() <= 20) {
 				userPassword = BCrypt.hashpw(userPassword, BCrypt.gensalt());
 			}
 			pStmt.setString(9,  userPassword);
 			pStmt.setInt(10, user.getCredit());
-			pStmt.setInt(11,  user.getIdUser());
+			pStmt.setInt(11, user.getIsActive() == true ? 1 : 0);
+			pStmt.setInt(12,  user.getIdUser());
 			
 			pStmt.executeUpdate();
 			
@@ -266,7 +273,33 @@ public class UserDAOJdbcImpl implements UserDAO {
 			System.out.println("ERROR WHEN DEACTIVATING USER id=" + idUser);
 			sqle.printStackTrace();
 		}
+	}
+	
+	private static final String SELECT_ALL = """
+			SELECT idUser FROM USERS;
+			""";
+	@Override
+	public List<User> selectAll() {
 		
+		List<User> users = new ArrayList<User>();
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			Statement stmt = cnx.createStatement();
+			ResultSet rs = stmt.executeQuery(SELECT_ALL);
+			
+			while (rs.next()) {
+				User user = selectById(rs.getInt("idUser"));
+				users.add(user);
+			}
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN SELECTING ALL USERS");
+			sqle.printStackTrace();
+		}
+		
+		
+		return users;
 	}
   
 }
