@@ -70,6 +70,15 @@ public class BidDetails extends HttpServlet {
 		int idUser = (int)session.getAttribute("idUser");
 		User user = UserManager.getInstance().selectById(idUser);
 		
+		int idCurrentBidder = 0;
+		
+		try {
+			idCurrentBidder = Integer.valueOf(request.getParameter("currentBidder"));
+		} catch (NumberFormatException nfe) {
+			System.out.println("ERROR WHEN PARSING CURRENT BIDDER ID");
+			nfe.printStackTrace();
+		}
+		
 		BusinessException be = null;
 		if (user.getCredit() < bidAmount) {
 			be = new BusinessException(ErrorCodesBLL.UNSUFFICIENT_CREDIT_AMOUNT);
@@ -80,12 +89,23 @@ public class BidDetails extends HttpServlet {
 			
 		} else {
 			Bid bid = new Bid(bidDate, bidAmount, item, user);
-			System.out.println("created bid in servlet : " + bid);
 			BidManager.getInstance().insert(bid);
 			
 			user.setCredit(user.getCredit() - bidAmount);
-			
 			UserManager.getInstance().update(user);
+			
+			if (idCurrentBidder != 0) {
+				User currentBidder = UserManager.getInstance().selectById(idCurrentBidder);
+				int currentBidAmount = 0;
+				try {
+					currentBidAmount = Integer.valueOf(request.getParameter("currentBidAmount"));
+				} catch (NumberFormatException nfe) {
+					System.out.println("ERROR WHEN PARSING CURRENT BID AMOUNT");
+					nfe.printStackTrace();
+				}
+				currentBidder.setCredit(user.getCredit() + currentBidAmount);
+				UserManager.getInstance().update(currentBidder);
+			}
 			
 		}
 		

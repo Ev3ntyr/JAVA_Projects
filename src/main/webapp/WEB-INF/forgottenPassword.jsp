@@ -21,34 +21,30 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
-<link href="resources/CSS/style.css" rel="stylesheet" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Connexion</title>
+<script 
+src="resources/js/scriptForgottenPassword.js"
+type="text/javascript" defer></script>
 <link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
 
 <body class="container" max-width=80%>
 	<br>
 	<br>
-	<div class="row justify-content-center g-1 my-5">
-	
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 my-auto">
-        <a href="home" class="d-none d-sm-block"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail" style="width: 100px;"></a>
-        <a href="home" class="d-sm-none mx-auto"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail" style="width: 100px;"></a>
-    </div>
-    
-		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 p-0">
-      <h1 align="left" class="d-none d-sm-block">ENI-Enchères</h1>
-        <h1 class="d-sm-none">ENI-Enchères</h1>
-		</div>
+	<div class="d-flex justify-content-center align-text-middle my-5">
+		<a href="home"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail mr-3 align-self-left" style="width:100px;"></a>
+		<h1 class="">ENI-Enchères</h1>
 	</div>
+	<br>
+	<h2 class="text-center">Réinitialisation du mot de passe</h2>
+	<br>
 	
 	<br>
 
 	<c:if test="${!empty errorCodesList }">
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
-				<h1 class="display-4 text-danger">Erreur lors de la création de
+				<h1 class="display-4 text-danger">Erreur lors de la connexion au
 					compte</h1>
 					<c:forEach items="${errorCodesList }" var="code">
 					<p class="lead">${MessageReader.getErrorMessage(code) }</p>
@@ -61,7 +57,7 @@
 		</div>
 
 	</c:if>
-	<form action="connection" method="POST">
+	<form action="forgottenPwd" method="POST" id="formResetPwd">
 
 		<div class="form-row ">
 
@@ -72,33 +68,35 @@
 			</div>
 		</div>
 		<br>
+		<div class="form-row ">
+
+			<div class="form-group mx-auto col-md-5">
+				<label for="alias">Email</label> <input type="email" maxlength="30"
+					class="form-control" id="email" name="email"
+					placeholder="Votre email" required>
+			</div>
+		</div>
+		<br>
 		<div class="form-row">
 			<div class="form-group mx-auto col-md-5">
-				<label for="passwordUser">Mot de passe</label> <input
-					type="password" maxlength="128" class="form-control"
+				<label for="passwordUser">Nouveau mot de passe</label> <input
+					type="password" maxlength="20" class="form-control"
 					name="passwordUser" id="passwordUser" placeholder="Votre mot de passe" required>
 			</div>
 		</div>
 		<br>
 		<div class="form-row">
 			<div class="form-group mx-auto col-md-5">
-				<input type="checkbox" id="rememberMe" name="rememberMe">
-				<label for="rememberMe">Se souvenir de moi</label>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group mx-auto col-md-5">
-				<a href="forgottenPwd">Mot de passe oublié</a>
+				<label for="passwordUser">Confirmation du mot de passe</label> <input
+					type="password" maxlength="20" class="form-control"
+					name="passwordUserCheck" id="passwordUserCheck" placeholder="Votre mot de passe" required>
 			</div>
 		</div>
 		<br>
 		<br>
-		<div class="row justify-content-center">
-
-			<input class="btn btn-success mr-3 mb-3 col-lg-3 col-md-6 col-sm-6 col-xs-9" type="submit" value="CONNEXION">
-			<a href="creation" class="btn btn-info mr-3 mb-3 col-lg-3 col-md-6 col-sm-6 col-xs-9">CREER UN COMPTE</a>
-			<a href="home" class="btn btn-danger mr-3 mb-3 col-lg-3 col-md-6 col-sm-6 col-xs-9">ANNULER</a>
-
+		<div class="d-flex justify-content-center">
+			<input class="btn btn-success mr-3 col-3" type="button" id="updatePwd" value="Valider">
+			<a href="home" class="btn btn-danger col-3">Annuler</a>
 		</div>
 	</form>
 

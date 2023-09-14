@@ -1,11 +1,17 @@
 package org.enchere.eni.c;
 
 import jakarta.servlet.RequestDispatcher;
+
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+
+import java.io.File;
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
@@ -20,12 +26,18 @@ import org.enchere.eni.m.bo.Item;
 import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.bo.Withdraw;
 
+
+
 /**
  * Servlet implementation class AuctionNew
  */
 public class BidNew extends HttpServlet {
+	
+
+
 	private static final long serialVersionUID = 1L;
        
+	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -75,6 +87,9 @@ public class BidNew extends HttpServlet {
 			Category currentCategory = CategoryManager.getInstance().selectById(enteredCategory);
 			System.out.println("catégorie :" + enteredCategory);
 			//TODO Récupérer la photo et la stocker
+			
+		
+			
 			int enteredInitialPrice = Integer.valueOf(request.getParameter("initialPrice"));
 			String enteredBidStartDate = request.getParameter("bidStartDate");
 			String enteredBidEndDate = request.getParameter("bidEndDate");

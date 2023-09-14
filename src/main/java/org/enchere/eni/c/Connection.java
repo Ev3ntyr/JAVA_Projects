@@ -32,7 +32,7 @@ public class Connection extends HttpServlet {
 		
 		User user = UserManager.getInstance().selectByAlias(alias);
 		
-		if (UserManager.getInstance().checkPassword(password, user.getPasswordUser()) && user.isActive()) {
+		if (UserManager.getInstance().checkPassword(password, user.getPasswordUser()) && user.getIsActive()) {
 			System.out.println("Password OK");
 			HttpSession session = request.getSession();
 			session.setAttribute("idUser", user.getIdUser());

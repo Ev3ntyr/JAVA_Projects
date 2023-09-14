@@ -91,16 +91,16 @@ public class User implements Serializable {
 	public void setCredit(int credit) {
 		this.credit = credit;
 	}
-	public boolean isAdmin() {
+	public boolean getIsAdmin() {
 		return isAdmin;
 	}
-	public void setAdmin(boolean isAdmin) {
+	public void setIsAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-	public boolean isActive() {
+	public boolean getIsActive() {
 		return isActive;
 	}
-	public void setActive(boolean isActive) {
+	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
 	public List<Item> getItemsSold() {
@@ -154,6 +154,7 @@ public class User implements Serializable {
 		
 		this.credit = credit;
 		this.isAdmin = isAdmin;
+		this.isActive = isActive;
 		
 	}
 	
@@ -172,8 +173,8 @@ public class User implements Serializable {
 	public String toString() {
 		return "User [idUser=" + idUser + ", alias=" + alias + ", surname=" + surname + ", firstName=" + firstName
 				+ ", email=" + email + ", phone=" + phone + ", street=" + street + ", zipCode=" + zipCode + ", city="
-				+ city + ", passwordUser=" + passwordUser + ", credit=" + credit + ", isAdmin=" + isAdmin
-				+ ", bids=" + bids + "]";
+				+ city + ", passwordUser=" + passwordUser + ", credit=" + credit + ", isAdmin=" + isAdmin + ", isActive="
+				+ isActive + ", bids=" + bids + "]";
 	}
 	
 	

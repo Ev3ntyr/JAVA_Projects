@@ -198,8 +198,13 @@
 					<div class="col-lg-3 col-md-4 col-sm-7 col-xs-11 mx-auto text-right">
 						<h4>Ma proposition :</h4>
 					</div>
+
 					<input id="idItem" type="hidden" name="idItem"
-						value="${requestScope.item.idItem}"> <input type="number"
+						value="${requestScope.item.idItem}"> 				
+					<input type="hidden" id="currentBidder" name="currentBidder" value="${requestScope.bid.user.idUser}">
+					<input type="hidden" id="currentBidAmount" name="currentBidAmount" value="${requestScope.bid.bidAmount}">
+				
+					<input type="number"
 						maxlength="10" class="mb-4 col-lg-6 col-md-4 col-sm-4 col-xs-11 mx-auto text-left"
 						value="${requestScope.item.sellingPrice+1}" id="bidAmount"
 						name="bidAmount" min="${requestScope.item.sellingPrice+1}"

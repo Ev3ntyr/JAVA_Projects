@@ -1,5 +1,7 @@
 package org.enchere.eni.m.bll;
 
+import java.util.List;
+
 import org.enchere.eni.c.BusinessException;
 import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.dal.DAOFactory;
@@ -67,8 +69,16 @@ public class UserManager {
 	public void delete(int idUser) {
 		DAOFactory.getUserDAO().delete(idUser);
 	}
+	
+	public void adminDelete(int idUser) {
+		DAOFactory.getUserDAO().adminDelete(idUser);
+	}
+	
 	public void deactivate(int idUser) {
 		DAOFactory.getUserDAO().deactivate(idUser);
+	}
+	public List<User> selectAll() {
+		return DAOFactory.getUserDAO().selectAll();
 	}
 
 }

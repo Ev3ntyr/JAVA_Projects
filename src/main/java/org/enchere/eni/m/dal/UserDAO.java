@@ -1,5 +1,7 @@
 package org.enchere.eni.m.dal;
 
+import java.util.List;
+
 import org.enchere.eni.m.bo.User;
 
 public interface UserDAO {
@@ -13,5 +15,7 @@ public interface UserDAO {
 	void update(User user);
 	void delete(int idUser);
 	void deactivate(int idUser);
+	List<User> selectAll();
+	void adminDelete(int idUser);
 	
 }
