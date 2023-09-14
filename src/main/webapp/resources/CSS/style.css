@@ -139,7 +139,8 @@ label {
 
 .btn-success:hover,
 .btn-danger:hover,
-.btn-info:hover {
+.btn-info:hover
+.btn-light:hover {
 	color: white;
 	font-weight: bold;
 	border-radius: 40px;
@@ -161,4 +162,16 @@ label {
 	font-size: 1.4em;
 	text-align: left;
 	text-decoration: underline;
+}
+
+.nav-item{
+	color: white;
+}
+
+.card-text, .card-title{
+	color:black;
+}
+
+.cardtxt{
+	color: black;
 }
