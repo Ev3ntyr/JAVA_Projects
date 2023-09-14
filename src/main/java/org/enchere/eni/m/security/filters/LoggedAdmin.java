@@ -32,10 +32,12 @@ public class LoggedAdmin extends HttpFilter implements Filter {
 		if (session.getAttribute("idUser") != null) {
 			int idUser = (int) session.getAttribute("idUser");
 			User user = UserManager.getInstance().selectById(idUser);
-			if (user.isAdmin()) {
+			if (user.getIsAdmin()) {
 				chain.doFilter(request, response);
+			} else {
+				HttpServletResponse httpResponse = (HttpServletResponse) response;
+				httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
 			}
-			
 			
 		} else {
 			HttpServletResponse httpResponse = (HttpServletResponse) response;

@@ -32,13 +32,13 @@
 	</div>
 	<br>
 	<h2 class="text-center">Panneau d'administration</h2>
-	
-	<a href="admin/categories" class="btn btn-dark">Gestion des catégories</a>
-	<br>
-	<a href="admin/users" class="btn btn-dark">Gestion des utilisateurs</a>
-	<br>
-	<a href="admin/logs" class="btn btn-dark">Logs d'erreurs</a>
-	
+	<div class="">
+		<a href="admin/categories" class="btn btn-dark my-2">Gestion des catégories</a>
+		<br>
+		<a href="admin/users" class="btn btn-dark my-2">Gestion des utilisateurs</a>
+		<br>
+		<a href="admin/logs" class="btn btn-dark my-2">Logs d'erreurs</a>
+	</div>
 
 </body>
 </html>
