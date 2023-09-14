@@ -24,15 +24,17 @@
 <script 
 src="resources/js/scriptUpdateAccount.js"
 type="text/javascript" defer></script>
+<link href="resources/CSS/style.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta charset="UTF-8">
 <title>Modification de Compte</title>
 <link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
-<body class="container" max-width=80%>
+<body class="container-fluid  justify-content-center text-center">
 	<br>
 	<br>
-	<div class="d-flex justify-content-center align-text-middle my-5">
+	<div class="d-flex justify-content-center align-text-middle">
 		<a href="home"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail mr-3 align-self-left" style="width:100px;"></a>
 		<h1 class="">ENI-Enchères</h1>
 	</div>
@@ -137,12 +139,12 @@ type="text/javascript" defer></script>
 		<br>
 		<br>
 		
-		<div class="d-flex justify-content-center">
+		<div class="row justify-content-center">
 
-			<input class="btn btn-warning mr-4 col-3" type="button" value="Modifier" id="formSubmitBtn">
+			<input class="btn btn-warning mr-4 ml-4 mb-3 col-lg-3 col-md-4 col-sm-6 col-xs-9" type="button" value="MODIFIER" id="formSubmitBtn">
 			<input type="hidden" value="${sessionScope.idUser}" id="userID">
-			<button class="btn btn-danger mr-4 col-3" id="deleteAccountBtn" type="button">Supprimer mon compte</button>
-			<a href="home" class="btn btn-info col-3">Annuler</a>
+			<button class="btn btn-danger mr-4 ml-4 mb-3 col-lg-3 col-md-4 col-sm-6 col-xs-9" id="deleteAccountBtn" type="button">SUPPRIMER MON COMPTE</button>
+			<a href="home" class="btn btn-info mr-4 ml-4 mb-3 col-lg-3 col-md-4 col-sm-6 col-xs-9">ANNULER</a>
 		</div>
 	</form>
 	<br>

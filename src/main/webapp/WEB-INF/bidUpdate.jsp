@@ -22,10 +22,13 @@
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8">
+<link href="resources/CSS/style.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Modifier ma mise aux enchères</title>
 <link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
-<body class="container" max-width=80%>
+<body class="container-fluid  justify-content-center text-center">
 	<h1>Modification de ma mise aux enchères</h1>
 
 	<br>
@@ -50,22 +53,30 @@
 
 	<form action="updateBid" method="POST">
 
-		<div class="form container">
-			<div class="row justify-content-md-center">
-				<label for="nameItem" class="col col-lg-2">Nom de l'article
+		<div class="row justify-content-center">
+				<label for="nameItem" class="col-lg-2 col-md-3 col-sm-4 col-xs-12">Nom de l'article
 					:</label> 
-					<input type="text" maxlength="30" class="col col-lg-4"
+					<input type="text" maxlength="30" class="form-control col-lg-4 col-md-4 col-sm-6 col-xs-12"
 					id="nameItem" name="nameItem" value="${requestScope.item.nameItem}" required>
-			</div>
+			</div>	
+
+		
 			<br>
-			<div class="row justify-content-md-center">
-				<label class="col col-lg-2" for="descriptionItem">Description
+			
+			<div class="row justify-content-center">
+				<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12" for="descriptionItem">Description
 					:</label> 
-					<input type="textarea" maxlength="300" class="col col-lg-4"
+			
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<textarea maxlength="300" class="form-control" id="descriptionItem"
+					name="descriptionItem" value="${requestScope.item.descriptionItem}"
+					required></textarea>
+								
+					<input type="textarea" maxlength="300" class="col-lg-4 col-md-4 col-sm-6 col-xs-12"
 					id="descriptionItem" name="descriptionItem"
 					value="${requestScope.item.descriptionItem}"
 					required>
-			</div>
+			</div>	</div>
 			<br>
 
 			<div class="row justify-content-md-center">

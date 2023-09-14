@@ -29,8 +29,8 @@
 <link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
 <body class="container-fluid  justify-content-center text-center">
-	<br>
-	<h1>Nouvelle mise aux enchères</h1>
+	<br><br>
+	<h2 class="m2">Nouvelle mise aux enchères</h2>
 
 	<br>
 	<br>
@@ -100,48 +100,51 @@
 	<br>
 	<div class="row justify-content-center">
     <label class="col-lg-2 col-md-3 col-sm-4 col-12" for="initialPrice">Mise à prix :</label>
-    <input type="number" maxlength="10" class="col-lg-2 col-md-2 col-sm-5 col-12 form-control"
+    <input type="number" maxlength="10" class="custom-width-input col-lg-2 col-md-2 col-sm-5 form-control"
         id="initialPrice" name="initialPrice" min="0" required>
 </div>
 		<br>
 		<div class="row justify-content-center">
-			<label class="col col-lg-2" for="bidStartDate">Début de
-				l'enchère :</label> <input type="datetime-local" class="col col-lg-2"
+			<label class="col-lg-2 col-md-3 col-sm-4" for="bidStartDate">Début de
+				l'enchère :</label> <input type="datetime-local" class="custom-width-input col-lg-2 col-md-3 col-sm-4 form-control"
 				id="bidStartDate" name="bidStartDate" required>
 		</div>
 		<br>
 		<div class="row justify-content-center">
-			<label class="col col-lg-2" for="bidEndDate">Fin de l'enchère
-				:</label> <input type="datetime-local" class="col col-lg-2" id="bidEndDate"
+			<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12" for="bidEndDate">Fin de l'enchère
+				:</label> <input type="datetime-local" class="custom-width-input col-lg-2 col-md-3 col-sm-4 col-xs-12 form-control" id="bidEndDate"
 				name="bidEndDate" required>
 		</div>
 		</div>
 		<br>
-		<div class="container border m-2 p-2" max-width=60%>
-			<div class="row justify-content-md-center">
-				<label class="col col-lg-2" for="street">Rue :</label> <input
-					type="text" maxlength="30" class="col col-lg-2" id="street"
+		<div class="container border p-4 col-lg-6 col-md-7 col-sm-9 col-xs-10 justify-content-md-center" >
+			<p class="imptxt">Retrait : </p>
+			
+			
+			<div class="row justify-content-center">
+				<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12" for="street">Rue :</label> <input
+					type="text" maxlength="30" class="custom-width-input col-lg-6 col-md-6 col-sm-8 col-xs-10 form-control" id="street"
 					name="street" value="${requestScope.user.street}" required>
 			</div>
 			<br>
-			<div class="row justify-content-md-center">
-				<label class="col col-lg-2" for="bidEndDate">Code postal :</label> <input
-					type="text" maxlength="15" class="col col-lg-2" id="zipCode"
+			<div class="row justify-content-center">
+				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-12 justify-content-center" for="bidEndDate">Code postal :</label> <input
+					type="text" maxlength="15" class="custom-width-input col-lg-4 col-md-4 col-sm-6 col-xs-10 form-control" id="zipCode"
 					name="zipCode" value="${requestScope.user.zipCode}" required>
 			</div>
 			<br>
-			<div class="row justify-content-md-center">
-				<label class="col col-lg-2" for="city">Ville :</label> <input
-					type="text" maxlength="30" class="col col-lg-2" id="city"
+			<div class="row justify-content-center">
+				<label class="col-lg-3 col-md-3 col-sm-4 col-xs-12 m-0" for="city">Ville :</label> <input
+					type="text" maxlength="30" class="custom-width-input col-lg-5 col-md-6 col-sm-7 col-xs-10 form-control" id="city"
 					name="city" value="${requestScope.user.city}" required>
 			</div>
 		</div>
 		<br> <br>
-		<div class="d-flex justify-content-center">
+		<div class="row justify-content-center">
 
-			<input class="btn btn-success mr-4 col-3" type="submit"
-				value="Enregistrer"> <a href="home"
-				class="btn btn-danger col-3">Annuler</a>
+			<input class="btn btn-success mr-4 ml-4 mb-3 col-lg-3 col-md-4 col-sm-6 col-xs-9 " type="submit"
+				value="ENREGISTRER"> <a href="home"
+				class="btn btn-danger mb-3 mr-4 ml-4 col-lg-3 col-md-4 col-sm-6 col-xs-9">ANNULER</a>
 
 		</div>
 	</form>

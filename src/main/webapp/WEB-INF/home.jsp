@@ -95,7 +95,7 @@
 			<form action="" method="POST">
 				<div class="row d-flex justify-content-center mx-auto ">
 					<!-- TODO CENTRER CE BOUT DE FORMULAIRE A LA C0N :D -->
-					<div class="col ">
+					<div class="col " align="middle">
 						<div class="row ">
 							<div class="col ">
 								<input type="radio" id="buy" name="filter"
