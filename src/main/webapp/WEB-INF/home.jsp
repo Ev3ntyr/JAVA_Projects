@@ -25,11 +25,13 @@
 <script 
 	type="text/javascript"
 	src="resources/js/scriptHome.js" defer></script>
+<link href="resources/CSS/style.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 <title>Accueil</title>
 <link rel="icon" type="image/x-icon" href="resources/assets/logo.ico">
 </head>
-<body class="container" max-width="80%">
+<body class="container-fluid  justify-content-center text-center">
 	
 	<div class="d-flex justify-content-center align-text-middle my-5">
 		<a href="home"><img alt="Logo Application" src="resources/assets/logo.png" class="img-thumbnail mr-3 align-self-left" style="width:100px;"></a>
@@ -69,11 +71,12 @@
 
 	<form action="home" method="post">
 		<div class="row justify-content-center m-4">
+			
 			<label for="site-search"></label> <input type="search"
 				id="site-search" name="itemName" placeholder="Rechercher sur le site…"
-				class="form-control col-5" />
+				class="form-control col-lg-5 col-md-5 col-sm-4 col-xs-10 d-flex align-items-center" />
 
-			<button class="form-control col-2 btn btn-outline-success" type=submit>Search</button>
+			<button class="form-control col-lg-2 col-md-2 col-sm-4 col-xs-3 btn btn-light" type=submit>Search</button>
 		</div>
 	</form>
 
@@ -91,62 +94,52 @@
 	
 		<c:if test="${sessionScope.idUser != null }">
 
-
-			<form action="" method="POST">
-				<div class="row d-flex justify-content-center mx-auto ">
-					<!-- TODO CENTRER CE BOUT DE FORMULAIRE A LA C0N :D -->
-					<div class="col " align="middle">
-						<div class="row ">
-							<div class="col ">
-								<input type="radio" id="buy" name="filter"
-									onclick="handleFilter(this)" checked> <label for="buy"
-									class="p-1 ml-1 ">Achats</label>
-							</div>
-							<div class="col">
-								<input type="radio" id="sell" name="filter"
-									onclick="handleFilter(this)"> <label for="sell"
-									class="p-1 ml-1">Mes Ventes</label>
-							</div>
-						</div>
-						<div class="row ml-2">
-							<div class="col">
-								<input type="checkbox" id="openBids"
-									onclick="handleCheckboxFilter()" checked /> <label
-									for="openBids" class="ml-1">enchères ouvertes</label>
-							</div>
-							<div class="col">
-								<input type="checkbox" id="currentSell"
-									onclick="handleCheckboxFilter()" disabled /> <label
-									for="currentSell" class="ml-1">mes ventes en cours</label>
-							</div>
-						</div>
-						<div class="row ml-2">
-							<div class="col">
-								<input type="checkbox" id="myBids"
-									onclick="handleCheckboxFilter()" /> <label for="myBids"
-									class="ml-1">mes enchères</label>
-							</div>
-							<div class="col">
-								<input type="checkbox" id="pendingSell"
-									onclick="handleCheckboxFilter()" disabled /> <label
-									for="pendingSell" class="ml-1">ventes non débutées</label>
-							</div>
-						</div>
-						<div class="row ml-2">
-							<div class="col">
-								<input type="checkbox" id="myWonBids"
-									onclick="handleCheckboxFilter()" /> <label for="myWonBids"
-									class="ml-1">mes enchères remportées</label>
-							</div>
-							<div class="col">
-								<input type="checkbox" id="concludedSell"
-									onclick="handleCheckboxFilter()" disabled /> <label
-									for="concludedSell" class="ml-1">ventes terminées</label>
-							</div>
-						</div>
-					</div>
-				</div>
-				</form>
+<form action="" method="POST">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="row">
+                <div class="col-6">
+                    <input type="radio" id="buy" name="filter" onclick="handleFilter(this)" checked>
+                    <label for="buy" class="p-1 ml-1">Achats</label>
+                </div>
+                <div class="col-6">
+                    <input type="radio" id="sell" name="filter" onclick="handleFilter(this)">
+                    <label for="sell" class="p-1 ml-1">Mes Ventes</label>
+                </div>
+            </div>
+            <div class="row ml-2">
+                <div class="col-6">
+                    <input type="checkbox" id="openBids" onclick="handleCheckboxFilter()" checked />
+                    <label for="openBids" class="ml-1">enchères ouvertes</label>
+                </div>
+                <div class="col-6">
+                    <input type="checkbox" id="currentSell" onclick="handleCheckboxFilter()" disabled />
+                    <label for="currentSell" class="ml-1">mes ventes en cours</label>
+                </div>
+            </div>
+            <div class="row ml-2">
+                <div class="col-6">
+                    <input type="checkbox" id="myBids" onclick="handleCheckboxFilter()" />
+                    <label for="myBids" class="ml-1">mes enchères</label>
+                </div>
+                <div class="col-6">
+                    <input type="checkbox" id="pendingSell" onclick="handleCheckboxFilter()" disabled />
+                    <label for="pendingSell" class="ml-1">ventes non débutées</label>
+                </div>
+            </div>
+            <div class="row ml-2">
+                <div class="col-6">
+                    <input type="checkbox" id="myWonBids" onclick="handleCheckboxFilter()" />
+                    <label for="myWonBids" class="ml-1">mes enchères remportées</label>
+                </div>
+                <div class="col-6">
+                    <input type="checkbox" id="concludedSell" onclick="handleCheckboxFilter()" disabled />
+                    <label for="concludedSell" class="ml-1">ventes terminées</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 		</c:if>
 	
 	
@@ -158,9 +151,9 @@
 		<c:when test="${listItem.size() > 0 }">
 			<tbody>
 				<div class="container">
-					<div class="row justify-content-md-center">
+					<div class="row justify-content-center">
 						<c:forEach items="${requestScope.listItem }" var="itemSold">
-							<div class="card col-3 m-4" style="width: 18rem;display:block" name="${pageScope.itemSold.category.idCategory}">
+							<div class="card m-3 col-lg-3 col-md-4 col-sm-8 col-xs-10" style="width: 18rem;display:block" name="${pageScope.itemSold.category.idCategory}">
 								<input type="hidden" value="itemSold.user.idUser">
 								<img class="card-img-top" src="..." alt="">
 								<div class="card-body">
@@ -179,12 +172,12 @@
 									<fmt:parseDate value="${pageScope.itemSold.bidEndDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
 									
 									<p class="card-text">Fin de l'enchère :</p>
-									<p>
+									<p class="cardtxt">
 										<fmt:formatDate pattern="dd/MM/yyyy' - 'HH:mm" value="${pageScope.parsedDateTime}" />
 									</p>
 									<p class="card-text">
 									<c:choose>
-										<c:when test="${sessionScope.idUser == null }">
+										<c:when  test="${sessionScope.idUser == null }">
 											Vendeur : ${pageScope.itemSold.user.alias}
 										</c:when>
 										<c:otherwise>

@@ -69,19 +69,19 @@
 			
 					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 				<textarea maxlength="300" class="form-control" id="descriptionItem"
-					name="descriptionItem" value="${requestScope.item.descriptionItem}"
-					required></textarea>
+					name="descriptionItem" 
+					required>${requestScope.item.descriptionItem}</textarea>
 								
-					<input type="textarea" maxlength="300" class="col-lg-4 col-md-4 col-sm-6 col-xs-12"
-					id="descriptionItem" name="descriptionItem"
-					value="${requestScope.item.descriptionItem}"
-					required>
+
 			</div>	</div>
 			<br>
 
-			<div class="row justify-content-md-center">
-				<label for="category" class="col col-lg-2">Catégorie : </label> 
-					<select name="category" id="category">
+			<div class="row justify-content-center">
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 d-flex align-items-center">
+			
+				<label for="category" class="mr-2 mb-2">Catégorie : </label> 
+								<div class="col-auto">
+					<select name="category" id="category" class="form-control">
 					<c:forEach items="${listCategory}" var="category">
 						<option value="${category.idCategory}"
 							<c:if test="${pageScope.category.idCategory == requestScope.item.category.idCategory}">
@@ -93,6 +93,8 @@
 					</c:forEach>
 				</select>
 			</div>
+			</div>
+		</div>
 			<br>
 			<div class="row justify-content-md-center">
 				<label class="col col-lg-2" for="">Photo de l'article :</label> <input
