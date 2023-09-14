@@ -25,7 +25,35 @@ public class AdminUser extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO DEACTIVATE, ACTIVATE, DELETE USER
+		
+		String idRequest = request.getParameter("userID");
+		int idUser = 0;
+		try {
+			idUser = Integer.valueOf(idRequest);
+		} catch (NumberFormatException nfe) {
+			System.out.println("ERROR WHEN PARSING USER ID");
+			nfe.printStackTrace();
+		}
+		
+		
+		if (request.getParameter("deactivate") != null) {
+			
+			User user = UserManager.getInstance().selectById(idUser);
+			user.setIsActive(false);
+			UserManager.getInstance().update(user);
+			
+		} else if (request.getParameter("activate") != null) {
+
+			User user = UserManager.getInstance().selectById(idUser);
+			user.setIsActive(true);
+			UserManager.getInstance().update(user);
+			
+		} else {
+			
+			System.out.println("delete : ");
+			
+		}
+		
 		doGet(request, response);
 	}
 

@@ -197,7 +197,8 @@ public class UserDAOJdbcImpl implements UserDAO {
 			zipCode = ?,
 			city = ?,
 			passwordUser = ?,
-			credit = ?
+			credit = ?, 
+			isActive = ?
 			WHERE idUser = ?;
 			""";
 	@Override
@@ -220,7 +221,8 @@ public class UserDAOJdbcImpl implements UserDAO {
 			}
 			pStmt.setString(9,  userPassword);
 			pStmt.setInt(10, user.getCredit());
-			pStmt.setInt(11,  user.getIdUser());
+			pStmt.setInt(11, user.getIsActive() == true ? 1 : 0);
+			pStmt.setInt(12,  user.getIdUser());
 			
 			pStmt.executeUpdate();
 			

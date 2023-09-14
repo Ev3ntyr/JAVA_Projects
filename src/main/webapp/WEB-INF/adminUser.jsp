@@ -57,16 +57,17 @@ type="text/javascript" defer></script>
 						<td>${pageScope.user.alias}</td>
 						<td>${pageScope.user.email}</td>
 						<td class="row">
-							<form>
+							<form action="" method="POST">
+								<input type="hidden" name="userID" value="${pageScope.user.idUser}">
 								<c:choose>
 									<c:when test="${pageScope.user.isActive}">
-										<button class="btn btn-outline-warning rounded-circle mr-2" title="Désactiver l'utilisateur" id="deactivate" type="button"><i class="bi bi-pause-fill"></i></button>
+										<button class="btn btn-outline-warning rounded-circle mr-2" title="Désactiver l'utilisateur" id="deactivate" name="deactivate" type="submit"><i class="bi bi-pause-fill"></i></button>
 									</c:when>
 									<c:otherwise>
-										<button class="btn btn-outline-success rounded-circle mr-2" title="Réactiver l'utilisateur" id="activate" type="button"><i class="bi bi-arrow-clockwise"></i></button>
+										<button class="btn btn-outline-success rounded-circle mr-2" title="Réactiver l'utilisateur" id="activate" name="activate" type="submit"><i class="bi bi-arrow-clockwise"></i></button>
 									</c:otherwise>
 								</c:choose>
-								<button class="btn btn-outline-danger rounded-circle" title="Supprimer l'utilisateur" id="delete" type="button"><i class="bi bi-x-lg"></i></button>
+								<button class="btn btn-outline-danger rounded-circle" title="Supprimer l'utilisateur" id="delete" name="delete" type="submit"><i class="bi bi-x-lg"></i></button>
 							</form>
 						</td>
 					</tr>

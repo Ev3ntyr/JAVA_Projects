@@ -29,6 +29,7 @@ public class LoggedAdmin extends HttpFilter implements Filter {
 	
 		System.out.println("filtered admin");
 		
+		
 		if (session.getAttribute("idUser") != null) {
 			int idUser = (int) session.getAttribute("idUser");
 			User user = UserManager.getInstance().selectById(idUser);

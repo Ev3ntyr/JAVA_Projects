@@ -180,7 +180,8 @@
 						<h5>Ma proposition :</h5>
 					</div>
 					<input id="idItem" type="hidden" name="idItem" value="${requestScope.item.idItem}">
-					
+					<input type="hidden" id="currentBidder" name="currentBidder" value="${requestScope.bid.user.idUser}">
+					<input type="hidden" id="currentBidAmount" name="currentBidAmount" value="${requestScope.bid.bidAmount}">
 					<input type="number" maxlength="10" class="col col-lg-2 mr-auto" value="${requestScope.item.sellingPrice+1}"
 						id="bidAmount" name="bidAmount" min="${requestScope.item.sellingPrice+1}" required> 
 						
