@@ -12,4 +12,7 @@ public interface BidDAO {
 	List<Bid> selectAllByItem(Item item);
 	Bid selectMaxBid(Item item);
 	void deleteUserBids(User user);
+	List<Bid> selectWinningBids();
+	Bid select(int idBid);
+	List<Bid> selectUserWinningBids(User user);
 }

@@ -69,8 +69,20 @@ SELECT * FROM CATEGORIES;
 USE AUCTION_DB
 SELECT * FROM USERS;
 SELECT * FROM SOLD_ITEMS;
-SELECT * FROM SOLD_ITEMS WHERE idUser = 1;
+SELECT * FROM BIDS;
+SELECT * FROM SOLD_ITEMS INNER JOIN WITHDRAW ON SOLD_ITEMS.idItem= withdraw.idItem
+SELECT * FROM SOLD_ITEMS WHERE idItem = 2;
+SELECT * FROM SOLD_ITEMS JOIN WITHDRAW ON SOLD_ITEMS.idItem= withdraw.idItem AND sold_items.idItem = 10;
 SELECT * FROM WITHDRAW;
 SELECT * FROM USERS INNER JOIN SOLD_ITEMS ON users.idUser= sold_items.idUser;
 SELECT * FROM USERS JOIN SOLD_ITEMS ON users.idUser= sold_items.idUser AND Users.idUser = 1;
 SELECT * FROM BIDS;
+USE AUCTION_DB
+SELECT idItem, nameItem, descriptionItem, bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem idUser, idCategory FROM SOLD_ITEMS WHERE idItem = 2;
+UPDATE SOLD_ITEMS SET sellingPrice = 370  WHERE idItem = 7;
+	SELECT idBid, bidDate, bidAmount as HighestBid, idItem, idUser FROM BIDS 
+		WHERE (SELECT MAX(bidAmount) FROM BIDS WHERE idItem = 7) = bidAmount AND idItem=7;
+
+UPDATE BIDS SET idUser=6 where idBid=2
+
+UPDATE USERS SET isAdmin=1 WHERE IdUser=6;

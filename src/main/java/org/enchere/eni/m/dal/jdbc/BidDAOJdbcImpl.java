@@ -1,17 +1,17 @@
 package org.enchere.eni.m.dal.jdbc;
 
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.sql.Statement;
 import java.sql.Timestamp;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.enchere.eni.m.bll.BidManager;
 import org.enchere.eni.m.bll.ItemManager;
 import org.enchere.eni.m.bll.UserManager;
 import org.enchere.eni.m.bo.Bid;
@@ -118,7 +118,6 @@ public class BidDAOJdbcImpl implements BidDAO {
 				
 				int idBid = rs.getInt("idBid");
 				
-				
 				LocalDateTime bidDate = rs.getObject("bidDate", LocalDateTime.class);
 				
 				int bidAmount = rs.getInt("HighestBid");
@@ -155,6 +154,124 @@ public class BidDAOJdbcImpl implements BidDAO {
 			System.out.println("ERROR WHEN DELETING USER BIDS");
 			sqle.printStackTrace();
 		}
+	}
+	
+	private static final String SELECT_WINNING_BIDS = """
+			SELECT idItem, MAX(bidAmount) as highestBid FROM BIDS GROUP BY idItem;
+			""";
+	@Override
+	public List<Bid> selectWinningBids() {
+		List<Bid> winningBids = new ArrayList<Bid>();
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			Statement stmt = cnx.createStatement();
+			ResultSet rs = stmt.executeQuery(SELECT_WINNING_BIDS);
+			
+			while (rs.next()) {
+				
+				Bid bid = new Bid();
+				Item item = new Item();
+				
+				int idItem = rs.getInt("idItem");
+				item.setIdItem(idItem);
+				
+				int highestBid = rs.getInt("highestBid");
+				
+				bid.setItemSold(item);
+				bid.setBidAmount(highestBid);
+				
+				winningBids.add(bid);
+				
+			}
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN SELECTING WINNING BIDS");
+			sqle.printStackTrace();
+		}
+		
+		return winningBids;
+	}
+	
+	public static final String SELECT_BY_ID = "SELECT * FROM BIDS WHERE idBid = ?;";
+	
+	@Override
+	public Bid select(int idBid) {
+		
+		Bid bid = null;
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_ID);
+			pStmt.setInt(1, idBid);
+			
+			ResultSet rs = pStmt.executeQuery();
+			
+			if (rs.next()) {
+				bid = new Bid();
+				
+				LocalDateTime bidDate = rs.getObject("bidDate", LocalDateTime.class);
+				int bidAmount = rs.getInt("bidAmount");
+				Item item = ItemManager.getInstance().selectById(rs.getInt("idItem"));
+				User user = UserManager.getInstance().selectById(rs.getInt("idUser"));
+				
+				bid.setIdBid(idBid);
+				bid.setBidDate(bidDate);
+				bid.setBidAmount(bidAmount);
+				bid.setUser(user);
+			}
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN SELECT BID id=" + idBid);
+			sqle.printStackTrace();
+		}
+		
+		return bid;
+		
+	}
+	
+	private static final String SELECT_USER_WINNING_BIDS = """
+			SELECT idUser, idBid FROM BIDS WHERE bidAmount = ? AND idItem = ?;
+			""";
+	@Override
+	public List<Bid> selectUserWinningBids(User user) {
+		
+		List<Bid> userWinningBids = new ArrayList<Bid>();
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			List<Bid> winningBids = BidManager.getInstance().selectWinningBids();
+			
+			PreparedStatement pStmt = null;
+			
+			for (Bid bid : winningBids) {
+				
+				pStmt = cnx.prepareStatement(SELECT_USER_WINNING_BIDS);
+				pStmt.setInt(1, bid.getBidAmount());
+				pStmt.setInt(2, bid.getItemSold().getIdItem());
+				
+				ResultSet rs = pStmt.executeQuery();
+				if (rs.next()) {
+					int idWinningUser = rs.getInt("idUser");
+					int idBid = rs.getInt("idBid");
+					
+					if (idWinningUser == user.getIdUser()) {
+						Bid b = BidManager.getInstance().select(idBid);
+						userWinningBids.add(b);
+					}
+					
+				}
+			}
+			
+		} catch (SQLException sqle) {
+			
+			System.out.println("ERROR WHEN SELECT USER'S WINNING BIDS");
+			sqle.printStackTrace();
+			
+		}
+		
+		return userWinningBids;
+		
 	}
 	
 }

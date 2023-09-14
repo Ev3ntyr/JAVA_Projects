@@ -16,5 +16,6 @@ public interface UserDAO {
 	void delete(int idUser);
 	void deactivate(int idUser);
 	List<User> selectAll();
+	void adminDelete(int idUser);
 	
 }
