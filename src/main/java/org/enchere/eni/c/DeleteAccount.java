@@ -25,7 +25,7 @@ public class DeleteAccount extends HttpServlet {
 		User user = UserManager.getInstance().selectById(idUser);
 		
 		// CHECK IF USER HAS PENDING SELLS
-		List<Item> pendingSells = ItemManager.getInstance().selectAllByUser(user);
+		List<Item> pendingSells = ItemManager.getInstance().selectAllOpenByUser(user);
 		List<Bid> pendingBids = BidManager.getInstance().selectUserWinningBids(user);
 		BusinessException be = new BusinessException();
 		
@@ -59,11 +59,10 @@ public class DeleteAccount extends HttpServlet {
 				
 			} else {
 				
-			BidManager.getInstance().deleteUserBids(user);
-			UserManager.getInstance().delete(idUser);
-			
-			RequestDispatcher rd = request.getRequestDispatcher("logout");
-			rd.forward(request, response);
+				UserManager.getInstance().delete(idUser);
+				
+				RequestDispatcher rd = request.getRequestDispatcher("logout");
+				rd.forward(request, response);
 				
 			}
 			

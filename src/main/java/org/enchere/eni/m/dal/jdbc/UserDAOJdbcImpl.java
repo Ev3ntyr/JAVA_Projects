@@ -13,7 +13,10 @@ import java.util.List;
 
 import org.apache.tomcat.dbcp.dbcp2.SQLExceptionList;
 import org.enchere.eni.m.bll.BidManager;
+import org.enchere.eni.m.bll.ItemManager;
+import org.enchere.eni.m.bll.UserManager;
 import org.enchere.eni.m.bo.Bid;
+import org.enchere.eni.m.bo.Item;
 import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.dal.UserDAO;
 import org.enchere.eni.m.security.BCrypt;
@@ -304,8 +307,60 @@ public class UserDAOJdbcImpl implements UserDAO {
 		return users;
 	}
 	
-
+	public static final String ADMIN_DELETE_BID = """
+			DELETE FROM BIDS WHERE idUser = ?;
+			""";
+	public static final String ADMIN_DELETE_WITHDRAW = """
+			DELETE FROM WITHDRAW WHERE idItem = ?;
+			""";
+	public static final String ADMIN_DELETE_ITEM = """
+			DELETE FROM SOLD_ITEMS WHERE idItem = ?;
+			""";
+	public static final String ADMIN_DELETE_USER = """
+			DELETE FROM USERS WHERE idUser = ?;
+			""";
 	
+	@Override
+	public void adminDelete(int idUser) {
+		
+		User deletedUser = UserManager.getInstance().selectById(idUser);
+		System.out.println("user deleted : " + deletedUser);
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			// DELETE ALL USER BIDS
+			PreparedStatement pStmt = cnx.prepareStatement(ADMIN_DELETE_BID);
+			pStmt.setInt(1, idUser);
+			
+			pStmt.executeUpdate();
+			
+			// DELETE ITEMS AND WITHDRAWS IF EXISTS
+			List<Item> items = ItemManager.getInstance().selectAllByUser(deletedUser);
+			
+			for (Item item : items) {
+				item = ItemManager.getInstance().selectById(item.getIdItem());
+				if (ItemManager.getInstance().hasWithdraw(item)) {
+					pStmt = cnx.prepareStatement(ADMIN_DELETE_WITHDRAW);
+					pStmt.setInt(1, item.getIdItem());
+					
+					pStmt.executeUpdate();
+				}
+				pStmt = cnx.prepareStatement(ADMIN_DELETE_ITEM);
+				pStmt.setInt(1, item.getIdItem());
+				
+				pStmt.executeUpdate();
+			}
+			
+			pStmt = cnx.prepareStatement(ADMIN_DELETE_USER);
+			pStmt.setInt(1, idUser);
+			
+			pStmt.executeUpdate();
+			
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN FULLY DELETING USER FROM DB");
+		}
+		
+	}
 	
   
 }

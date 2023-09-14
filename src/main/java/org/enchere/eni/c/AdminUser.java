@@ -50,7 +50,7 @@ public class AdminUser extends HttpServlet {
 			
 		} else {
 			
-			UserManager.getInstance().delete(idUser);
+			UserManager.getInstance().adminDelete(idUser);
 			
 		}
 		

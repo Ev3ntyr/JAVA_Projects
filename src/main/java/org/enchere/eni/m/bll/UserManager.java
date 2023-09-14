@@ -69,6 +69,11 @@ public class UserManager {
 	public void delete(int idUser) {
 		DAOFactory.getUserDAO().delete(idUser);
 	}
+	
+	public void adminDelete(int idUser) {
+		DAOFactory.getUserDAO().adminDelete(idUser);
+	}
+	
 	public void deactivate(int idUser) {
 		DAOFactory.getUserDAO().deactivate(idUser);
 	}

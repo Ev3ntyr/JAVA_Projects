@@ -451,7 +451,7 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 		}
 	}
 	
-	public static final String SELECT_ALL_BY_USER = """
+	public static final String SELECT_ALL_OPEN_BY_USER = """
 			SELECT idItem, nameItem FROM SOLD_ITEMS WHERE idUser = ? AND bidStartDate < GETDATE() AND bidEndDate > GETDATE();
 			""";
 	
@@ -461,7 +461,7 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 		
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			
-			PreparedStatement pStmt = cnx.prepareStatement(SELECT_ALL_BY_USER);
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_ALL_OPEN_BY_USER);
 			pStmt.setInt(1, user.getIdUser());
 			
 			ResultSet rs = pStmt.executeQuery();
@@ -479,6 +479,36 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			
 		} catch (SQLException sqle) {
 			System.out.println("ERROR WHEN SELECTING OPEN SELL FOR USER");
+			sqle.printStackTrace();
+		}
+		
+		return items;
+	}
+	
+	public static final String SELECT_ALL_BY_USER = "SELECT idItem FROM SOLD_ITEMS WHERE idUser = ?;";
+	
+	@Override
+	public List<Item> selectAllByUser(User user) {
+		
+		List<Item> items = new ArrayList<Item>();
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_ALL_BY_USER);
+			pStmt.setInt(1, user.getIdUser());
+			
+			ResultSet rs = pStmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				Item item = new Item();
+				item.setIdItem(rs.getInt("idItem"));
+				
+				items.add(item);
+			}
+			
+		} catch (SQLException sqle) {
+			System.out.println("ERROR WHEN SELECTING ALL ITEMS OF USER id=" + user.getIdUser());
 			sqle.printStackTrace();
 		}
 		

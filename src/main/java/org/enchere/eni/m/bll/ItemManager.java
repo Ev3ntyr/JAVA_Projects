@@ -63,7 +63,10 @@ public class ItemManager {
 	public void updateWithdraw(Withdraw withdraw) {
 		DAOFactory.getItemSoldDAO().updateWithdraw(withdraw);
 	}
-	public List<Item> selectAllByUser(User user) {
+	public List<Item> selectAllOpenByUser(User user) {
 		return DAOFactory.getItemSoldDAO().selectAllOpenByUser(user);
+	}
+	public List<Item> selectAllByUser(User user) {
+		return DAOFactory.getItemSoldDAO().selectAllByUser(user);
 	}
 }
