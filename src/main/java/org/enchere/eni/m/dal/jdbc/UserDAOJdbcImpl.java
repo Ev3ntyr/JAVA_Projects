@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tomcat.dbcp.dbcp2.SQLExceptionList;
+import org.enchere.eni.m.bll.BidManager;
+import org.enchere.eni.m.bo.Bid;
 import org.enchere.eni.m.bo.User;
 import org.enchere.eni.m.dal.UserDAO;
 import org.enchere.eni.m.security.BCrypt;
@@ -301,5 +303,9 @@ public class UserDAOJdbcImpl implements UserDAO {
 		
 		return users;
 	}
+	
+
+	
+	
   
 }

@@ -26,28 +26,48 @@ public class DeleteAccount extends HttpServlet {
 		
 		// CHECK IF USER HAS PENDING SELLS
 		List<Item> pendingSells = ItemManager.getInstance().selectAllByUser(user);
+		List<Bid> pendingBids = BidManager.getInstance().selectUserWinningBids(user);
 		BusinessException be = new BusinessException();
 		
 		if (pendingSells.size() > 0) {
-			
 			be.addErrorCode(ErrorCodesBLL.ACCOUNT_DELETION_PENDING_SELLS);
 			request.setAttribute("errorCodesList", be.getErrorCodeList());
+			
+			if (pendingBids.size() > 0) {
+				be.addErrorCode(ErrorCodesBLL.ACCOUNT_DELETION_WINNING_BIDS);
+				request.setAttribute("pendingBids", pendingBids);
+			}
+			
 			request.setAttribute("pendingSells", pendingSells);
+			
 			request.setAttribute("user", user);
+			request.setAttribute("errorCodesList", be.getErrorCodeList());
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/userProfile.jsp");
 			rd.forward(request, response);
 			
 		} else {
 			
+			if (pendingBids.size() > 0) {
+				
+				be.addErrorCode(ErrorCodesBLL.ACCOUNT_DELETION_WINNING_BIDS);
+				request.setAttribute("errorCodesList", be.getErrorCodeList());
+				request.setAttribute("pendingBids", pendingBids);
+				request.setAttribute("user", user);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/userProfile.jsp");
+				rd.forward(request, response);
+				
+			} else {
+				
 			BidManager.getInstance().deleteUserBids(user);
 			UserManager.getInstance().delete(idUser);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("logout");
 			rd.forward(request, response);
+				
+			}
 			
 		}
-		
-		
 		
 	}
 
