@@ -94,10 +94,8 @@
 	
 		<c:if test="${sessionScope.idUser != null }">
 
-
 <form action="" method="POST">
     <div class="row justify-content-center">
-        <!-- Centrer le formulaire -->
         <div class="col-12 col-md-8 col-lg-6">
             <div class="row">
                 <div class="col-6">

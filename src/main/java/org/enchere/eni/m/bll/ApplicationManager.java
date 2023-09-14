@@ -18,4 +18,7 @@ public class ApplicationManager {
 	public void initDB() {
 		DAOFactory.getApplicationDAO().initDB();
 	}
+	public void initDataset() {
+		DAOFactory.getApplicationDAO().initDataset();
+	}
 }
