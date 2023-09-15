@@ -20,14 +20,11 @@ public class LoggedUser extends HttpFilter implements Filter {
 	private static final long serialVersionUID = 1L;
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
-		chain.doFilter(request, response);
-		/*
+		
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession();
 		
 		String accessedURL = httpRequest.getServletPath();
-		System.out.println(accessedURL);
 		
 		if (session.getAttribute("idUser") != null 
 			|| accessedURL.toLowerCase().contains("home") 
@@ -38,12 +35,10 @@ public class LoggedUser extends HttpFilter implements Filter {
 			|| accessedURL.toLowerCase().contains("creation")) {
 			chain.doFilter(request, response);
 		} else {
-			System.out.println("filtered");
 			HttpServletResponse httpResponse = (HttpServletResponse) response;
 			httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
-		} */
+		} 
 		
-
 	}
 
 

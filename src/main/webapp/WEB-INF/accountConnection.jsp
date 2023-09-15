@@ -75,7 +75,7 @@
 		<div class="form-row">
 			<div class="form-group mx-auto col-md-5">
 				<label for="passwordUser">Mot de passe</label> <input
-					type="password" maxlength="128" class="form-control"
+					type="password" maxlength="20" class="form-control"
 					name="passwordUser" id="passwordUser" placeholder="Votre mot de passe" required>
 			</div>
 		</div>
