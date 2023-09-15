@@ -93,7 +93,8 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 	}
 
 	public static final String INSERT = """
-			INSERT INTO SOLD_ITEMS (nameItem, descriptionItem, bidStartDate, bidEndDate, initialPrice, sellingPrice, stateItem, idUser, idCategory)
+			INSERT INTO SOLD_ITEMS (nameItem, descriptionItem, bidStartDate, bidEndDate, 
+			initialPrice, sellingPrice, stateItem, idUser, idCategory)
 			VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
 			""";
 
@@ -124,7 +125,6 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			System.out.println("ERROR WHEN INSERTING ITEM");
 			sqle.printStackTrace();
 		}
-
 	}
 
 	public static final String INSERT_WITHDRAW = """
