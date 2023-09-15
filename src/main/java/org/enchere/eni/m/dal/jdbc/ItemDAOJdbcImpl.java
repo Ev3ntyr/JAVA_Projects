@@ -310,12 +310,9 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 
 				Withdraw withdraw = new Withdraw();
 				if (ItemManager.getInstance().hasWithdraw(currentItem)) {
-					System.out.println("has withdraw");
 					withdraw = ItemManager.getInstance().selectWithdraw(currentItem);
 					currentItem.setWithdraw(withdraw);
 				} else {
-					System.out.println("has no withdraw");
-
 					withdraw.setCity(user.getCity());
 					withdraw.setStreet(user.getStreet());
 					withdraw.setZipCode(user.getZipCode());
