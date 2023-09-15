@@ -139,7 +139,7 @@
 		<div class="mb-2 col-lg-6 col-md-6 col-sm-6 col-xs-11 mx-auto text-left ">
 			<h3>${requestScope.item.withdraw.street}</h3>
 			<h3>${requestScope.item.withdraw.zipCode}
-				${requestScope.item.withdraw.street}</h3>
+				${requestScope.item.withdraw.city}</h3>
 		</div>
 	</div>
 

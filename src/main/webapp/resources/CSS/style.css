@@ -175,3 +175,11 @@ label {
 .cardtxt{
 	color: black;
 }
+
+.cardhome:hover{
+	box-shadow: 3px 3px 3px 2px rgb(0, 128, 255);
+	border:solid 1px;
+	font-size:110%;
+	transition :0.3s;
+	
+}

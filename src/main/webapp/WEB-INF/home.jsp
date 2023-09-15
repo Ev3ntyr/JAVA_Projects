@@ -153,7 +153,7 @@
 				<div class="container">
 					<div class="row justify-content-center">
 						<c:forEach items="${requestScope.listItem }" var="itemSold">
-							<div class="card m-3 col-lg-3 col-md-4 col-sm-8 col-xs-10" style="width: 18rem;display:block" name="${pageScope.itemSold.category.idCategory}">
+							<div class="card m-3 col-lg-3 col-md-4 col-sm-8 col-xs-10 cardhome" style="width: 18rem;display:block" name="${pageScope.itemSold.category.idCategory}">
 								<input type="hidden" value="itemSold.user.idUser">
 								<img class="card-img-top" src="..." alt="">
 								<div class="card-body">
