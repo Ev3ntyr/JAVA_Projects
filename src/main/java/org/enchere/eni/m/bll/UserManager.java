@@ -25,10 +25,10 @@ public class UserManager {
 		
 		BusinessException be = new BusinessException();
 		
-		// Email duplicity check
+		// EMAIL DUPLICITY CHECK
 		emailCheck(newUser.getEmail(), be);				
 		
-		// Alias duplicity check	
+		// ALIAS DUPLICITY CHECK	
 		aliasCheck(newUser.getAlias(), be);
 		if(be.hasErreur()) {
 			throw be;

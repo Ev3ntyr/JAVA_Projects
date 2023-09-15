@@ -125,20 +125,20 @@
 			</div>
 		</div>
 		<br>
-		<div class="container border m-2 p-2" max-width=60%>
-			<div class="row justify-content-md-center">
+		<div class="container border m-2 p-2 justify-content-center mx-auto" >
+			<div class="row justify-content-center">
 				<label class="col col-lg-2" for="street">Rue :</label> <input
 					type="text" maxlength="30" class="col col-lg-2" id="street"
 					name="street" value="${requestScope.item.withdraw.street}" required>
 			</div>
 			<br>
-			<div class="row justify-content-md-center">
+			<div class="row justify-content-center">
 				<label class="col col-lg-2" for="bidEndDate">Code postal :</label> <input
 					type="text" maxlength="15" class="col col-lg-2" id="zipCode"
 					name="zipCode" value="${requestScope.item.withdraw.zipCode}" required>
 			</div>
 			<br>
-			<div class="row justify-content-md-center">
+			<div class="row justify-content-center">
 				<label class="col col-lg-2" for="city">Ville :</label> <input
 					type="text" maxlength="30" class="col col-lg-2" id="city"
 					name="city" value="${requestScope.item.withdraw.city}" required>
