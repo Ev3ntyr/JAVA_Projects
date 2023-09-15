@@ -8,24 +8,17 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import org.enchere.eni.m.bll.ApplicationManager;
 import org.enchere.eni.m.bll.CategoryManager;
 import org.enchere.eni.m.bll.ItemManager;
 import org.enchere.eni.m.bo.Category;
 import org.enchere.eni.m.bo.Item;
-import org.enchere.eni.m.bo.User;
 
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-//	@Override
-//	public void init() throws ServletException {		
-//		ApplicationManager.getInstance().initDB();
-//		ApplicationManager.getInstance().initDataset();
-//	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		if (request.getAttribute("listItem") != null) {
 			@SuppressWarnings("unchecked")
 			List<Item> listItem = (List<Item>) request.getAttribute("listItem");
@@ -36,32 +29,25 @@ public class Home extends HttpServlet {
 		} else {
 			List<Item> listItem = ItemManager.getInstance().selectAll();
 			request.setAttribute("listItem", listItem);
-		}	
-		
+		}
+
 		List<Category> listCategory = CategoryManager.getInstance().select();
 		request.setAttribute("listCategory", listCategory);
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
 		rd.forward(request, response);
-		
+
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
 		String itemName = request.getParameter("itemName");
-				
+
 		List<Item> listItem = ItemManager.getInstance().selectAllByName(itemName);
 		request.setAttribute("listItem", listItem);
 		doGet(request, response);
-		// ramener liste des SOLD_ITEMS de la bdd dont le nom contient itemName
-		
-		
-		
-		
-		
-		
+
 	}
 
 }

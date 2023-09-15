@@ -15,17 +15,19 @@ import org.enchere.eni.m.bo.User;
 public class AdminUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		List<User> users = UserManager.getInstance().selectAll();
 		request.setAttribute("users", users);
-				
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/adminUser.jsp");
 		rd.forward(request, response);
-		
+
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String idRequest = request.getParameter("userID");
 		int idUser = 0;
 		try {
@@ -34,26 +36,25 @@ public class AdminUser extends HttpServlet {
 			System.out.println("ERROR WHEN PARSING USER ID");
 			nfe.printStackTrace();
 		}
-		
-		
+
 		if (request.getParameter("deactivate") != null) {
-			
+
 			User user = UserManager.getInstance().selectById(idUser);
 			user.setIsActive(false);
 			UserManager.getInstance().update(user);
-			
+
 		} else if (request.getParameter("activate") != null) {
 
 			User user = UserManager.getInstance().selectById(idUser);
 			user.setIsActive(true);
 			UserManager.getInstance().update(user);
-			
+
 		} else {
-			
+
 			UserManager.getInstance().adminDelete(idUser);
-			
+
 		}
-		
+
 		doGet(request, response);
 	}
 

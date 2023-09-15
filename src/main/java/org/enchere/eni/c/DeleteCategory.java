@@ -9,12 +9,11 @@ import java.io.IOException;
 
 import org.enchere.eni.m.bll.CategoryManager;
 
-
 public class DeleteCategory extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		int idCategory = 0;
 		try {
@@ -23,15 +22,16 @@ public class DeleteCategory extends HttpServlet {
 			System.out.println("ERROR WHEN GETTING ID PARAMETER");
 			nfe.printStackTrace();
 		}
-		
+
 		CategoryManager.getInstance().deleteById(idCategory);
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/categories");
 		rd.forward(request, response);
-		
+
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

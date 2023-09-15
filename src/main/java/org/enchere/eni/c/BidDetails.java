@@ -51,12 +51,8 @@ public class BidDetails extends HttpServlet {
 		request.setAttribute("bid", bid);
 		
 		
-		System.out.println(item);
 		
-		// COLLECTING WITHDRAW AND CHANGING ITEM STATUS
-		
-		System.out.println(item.getWithdraw());
-		
+		// COLLECTING WITHDRAW AND CHANGING ITEM STATUS		
 		item.getStateItem();
 
 		request.setAttribute("item", item);

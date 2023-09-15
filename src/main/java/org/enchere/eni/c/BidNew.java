@@ -55,7 +55,8 @@ public class BidNew extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
 
@@ -110,8 +111,8 @@ public class BidNew extends HttpServlet {
 
 				// CREATING NEW ITEM
 
-				Item newItem = new Item(enteredName, enteredDescript, bidStartDate, 
-						bidEndDate, enteredInitialPrice, 0, statut, currentUser, currentCategory);
+				Item newItem = new Item(enteredName, enteredDescript, bidStartDate, bidEndDate, enteredInitialPrice, 0,
+						statut, currentUser, currentCategory);
 
 				try {
 					ItemManager.getInstance().insert(newItem);
@@ -122,7 +123,8 @@ public class BidNew extends HttpServlet {
 					doGet(request, response);
 				}
 
-				// COMPARING USER ADRESS VS FORM WITHDRAW ADRESSE TO CREATE A NEW WITHDRAW IF NEEDED
+				// COMPARING USER ADRESS VS FORM WITHDRAW ADRESSE TO CREATE A NEW WITHDRAW IF
+				// NEEDED
 
 				String enteredStreet = request.getParameter("street");
 				String enteredZipCode = request.getParameter("zipCode");

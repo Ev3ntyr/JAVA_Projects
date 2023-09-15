@@ -16,22 +16,23 @@ import org.enchere.eni.m.bo.Category;
 public class UpdateCategory extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String wording = request.getParameter("oldCategoryLabel");
 		String newWording = request.getParameter("newCategoryLabel");
 		Category category = CategoryManager.getInstance().selectByWording(wording);
 		category.setWording(newWording);
-		
+
 		CategoryManager.getInstance().update(category);
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/categories");
 		rd.forward(request, response);
 	}

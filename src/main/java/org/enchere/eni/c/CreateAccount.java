@@ -17,21 +17,21 @@ import org.enchere.eni.m.bo.User;
  */
 public class CreateAccount extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/accountCreation.jsp");
 		rd.forward(request, response);
-		
+
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
-		
+
 		// COLLECTING VALUES FROM THE JSP FORM
-		
 		String enteredEmail = request.getParameter("email");
 		String enteredAlias = request.getParameter("alias");
 		String enteredPassword = request.getParameter("passwordUser");
@@ -43,9 +43,9 @@ public class CreateAccount extends HttpServlet {
 		String enteredPhone = request.getParameter("phone");
 
 		// CREATING USER
-		
-		User newUser = new User(enteredAlias,enteredSurname, enteredFirstName, enteredEmail,enteredPhone, 
-								enteredStreet, enteredZipCode, enteredCity, enteredPassword);
+
+		User newUser = new User(enteredAlias, enteredSurname, enteredFirstName, enteredEmail, enteredPhone,
+				enteredStreet, enteredZipCode, enteredCity, enteredPassword);
 		try {
 			UserManager.getInstance().createUser(newUser);
 			session.setAttribute("idUser", newUser.getIdUser());
@@ -56,7 +56,7 @@ public class CreateAccount extends HttpServlet {
 			request.setAttribute("errorCodesList", e.getErrorCodeList());
 			doGet(request, response);
 		}
-		
+
 	}
 
 }
