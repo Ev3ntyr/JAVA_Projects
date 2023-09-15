@@ -14,46 +14,45 @@ import org.enchere.eni.m.bo.User;
 
 public class UpdateAccount extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
 		if (session.getAttribute("idUser") == null) {
 			RequestDispatcher rd = request.getRequestDispatcher("home");
 			rd.forward(request, response);
 		} else {
-			
+
 			int idUser = (int) session.getAttribute("idUser");
-			
+
 			User user = UserManager.getInstance().selectById(idUser);
-			
+
 			request.setAttribute("user", user);
-			
+
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/accountUpdate.jsp");
 			rd.forward(request, response);
-			
+
 		}
-		
-	
+
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
-		
+
 		if (session.getAttribute("idUser") == null) {
-			
+
 			RequestDispatcher rd = request.getRequestDispatcher("home");
 			rd.forward(request, response);
-			
+
 		} else {
-			
+
 			int idUser = (int) session.getAttribute("idUser");
-			
+
 			User user = UserManager.getInstance().selectById(idUser);
-			
+
 			String alias = request.getParameter("alias");
 			String surname = request.getParameter("surname");
 			String firstName = request.getParameter("firstName");
@@ -63,7 +62,7 @@ public class UpdateAccount extends HttpServlet {
 			String zipCode = request.getParameter("zipCode");
 			String city = request.getParameter("city");
 			String newPasswordUser = request.getParameter("newPasswordUser");
-			
+
 			if (!alias.isBlank()) {
 				user.setAlias(alias);
 			}
@@ -91,14 +90,14 @@ public class UpdateAccount extends HttpServlet {
 			if (!newPasswordUser.isBlank()) {
 				user.setPasswordUser(newPasswordUser);
 			}
-			
+
 			UserManager.getInstance().update(user);
-			
+
 			RequestDispatcher rd = request.getRequestDispatcher("userProfile");
 			rd.forward(request, response);
-			
+
 		}
-		
+
 	}
 
 }

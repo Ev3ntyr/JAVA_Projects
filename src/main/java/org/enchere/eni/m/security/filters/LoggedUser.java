@@ -19,27 +19,24 @@ public class LoggedUser extends HttpFilter implements Filter {
 
 	private static final long serialVersionUID = 1L;
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession();
-		
+
 		String accessedURL = httpRequest.getServletPath();
-		
-		if (session.getAttribute("idUser") != null 
-			|| accessedURL.toLowerCase().contains("home") 
-			|| accessedURL.toLowerCase().contains("error")
-			|| accessedURL.toLowerCase().contains("resources")
-			|| accessedURL.toLowerCase().contains("...")
-			|| accessedURL.toLowerCase().contains("connection")
-			|| accessedURL.toLowerCase().contains("creation")) {
+
+		if (session.getAttribute("idUser") != null || accessedURL.toLowerCase().contains("home")
+				|| accessedURL.toLowerCase().contains("error") || accessedURL.toLowerCase().contains("resources")
+				|| accessedURL.toLowerCase().contains("...") || accessedURL.toLowerCase().contains("connection")
+				|| accessedURL.toLowerCase().contains("creation")) {
 			chain.doFilter(request, response);
 		} else {
 			HttpServletResponse httpResponse = (HttpServletResponse) response;
 			httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
-		} 
-		
-	}
+		}
 
+	}
 
 }

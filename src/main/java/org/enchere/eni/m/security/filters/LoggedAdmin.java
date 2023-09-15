@@ -16,20 +16,16 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 
-
 public class LoggedAdmin extends HttpFilter implements Filter {
 
 	private static final long serialVersionUID = 1L;
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 
-		
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession();
-	
-		System.out.println("filtered admin");
-		
-		
+
 		if (session.getAttribute("idUser") != null) {
 			int idUser = (int) session.getAttribute("idUser");
 			User user = UserManager.getInstance().selectById(idUser);
@@ -39,16 +35,12 @@ public class LoggedAdmin extends HttpFilter implements Filter {
 				HttpServletResponse httpResponse = (HttpServletResponse) response;
 				httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
 			}
-			
+
 		} else {
 			HttpServletResponse httpResponse = (HttpServletResponse) response;
 			httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
 		}
-		
-		
-		
+
 	}
-
-
 
 }

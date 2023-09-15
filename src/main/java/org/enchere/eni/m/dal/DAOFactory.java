@@ -11,19 +11,19 @@ public class DAOFactory {
 	public static ApplicationDAO getApplicationDAO() {
 		return new ApplicationDAOJdbcImpl();
 	}
-	
+
 	public static UserDAO getUserDAO() {
 		return new UserDAOJdbcImpl();
 	}
-	
+
 	public static BidDAO getBidDAO() {
 		return new BidDAOJdbcImpl();
 	}
-	
+
 	public static ItemDAO getItemSoldDAO() {
 		return new ItemDAOJdbcImpl();
 	}
-	
+
 	public static CategoryDAO getCategoryDAO() {
 		return new CategoryDAOJdbcImpl();
 	}

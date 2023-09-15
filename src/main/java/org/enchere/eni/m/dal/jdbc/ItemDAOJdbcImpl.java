@@ -93,7 +93,7 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 	}
 
 	public static final String INSERT = """
-			INSERT INTO SOLD_ITEMS (nameItem, descriptionItem, bidStartDate, bidEndDate, 
+			INSERT INTO SOLD_ITEMS (nameItem, descriptionItem, bidStartDate, bidEndDate,
 			initialPrice, sellingPrice, stateItem, idUser, idCategory)
 			VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
 			""";
@@ -304,7 +304,7 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 
 				int stateItem = rs.getInt("stateItem");
 				currentItem.setStateItem(stateItem);
-				
+
 				User user = UserManager.getInstance().selectById(rs.getInt("idUser"));
 				currentItem.setUser(user);
 
@@ -321,11 +321,10 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 					withdraw.setZipCode(user.getZipCode());
 					currentItem.setWithdraw(withdraw);
 				}
-				
+
 				Category category = CategoryManager.getInstance().selectById(rs.getInt("idCategory"));
 				currentItem.setCategory(category);
 
-				
 				List<Bid> bids = BidManager.getInstance().selectAllByItem(currentItem);
 				if (!bids.isEmpty()) {
 					currentItem.setBids(bids);
@@ -342,55 +341,56 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 	}
 
 	public static final String UPDATE_SELLING_PRICE = """
-	UPDATE SOLD_ITEMS SET sellingPrice = ? WHERE idItem = ?;
-	""";
-	
+			UPDATE SOLD_ITEMS SET sellingPrice = ? WHERE idItem = ?;
+			""";
+
 	@Override
 	public void updateSellingPrice(Item item) {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			
+
 			PreparedStatement pStmt = cnx.prepareStatement(UPDATE_SELLING_PRICE);
 			pStmt.setInt(1, item.getSellingPrice());
-			pStmt.setInt(2, item.getIdItem());		
+			pStmt.setInt(2, item.getIdItem());
 			pStmt.executeUpdate();
-			
+
 		} catch (SQLException sqle) {
 			System.out.println("ERROR WHEN UPDATING SELLING PRICE");
 			sqle.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public static final String DELETE_WITHDRAW = "DELETE FROM WITHDRAW WHERE idItem = ?;";
 	public static final String DELETE = "DELETE FROM SOLD_ITEMS WHERE idItem = ?;";
-	
+
 	@Override
 	public void delete(int idItem) {
 		Item item = selectById(idItem);
 		PreparedStatement pStmt = null;
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			
-			// If deleted item has a withdraw in db, this withdraw is also deleted beforehand (FK constraint)
+
+			// If deleted item has a withdraw in db, this withdraw is also deleted
+			// beforehand (FK constraint)
 			if (hasWithdraw(item)) {
 				pStmt = cnx.prepareStatement(DELETE_WITHDRAW);
 				pStmt.setInt(1, idItem);
-			
+
 				pStmt.executeUpdate();
 			}
 			pStmt = cnx.prepareStatement(DELETE);
 			pStmt.setInt(1, idItem);
-			
+
 			pStmt.executeUpdate();
-			
+
 		} catch (SQLException sqle) {
 			System.out.println("ERROR WHEN DELETING ITEM AND/OR WITHDRAW FROM DB");
 			sqle.printStackTrace();
 		}
 	}
-	
+
 	public static final String UPDATE = """
-			UPDATE SOLD_ITEMS SET 
-			nameItem = ?, 
+			UPDATE SOLD_ITEMS SET
+			nameItem = ?,
 			descriptionItem = ?,
 			bidStartDate = ?,
 			bidEndDate = ?,
@@ -400,11 +400,12 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			idCategory = ?
 			WHERE idItem = ?;
 			""";
+
 	@Override
 	public void update(Item item) {
-		
+
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			
+
 			PreparedStatement pStmt = cnx.prepareStatement(UPDATE);
 			pStmt.setString(1, item.getNameItem());
 			pStmt.setString(2, item.getDescriptionItem());
@@ -415,16 +416,16 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			pStmt.setInt(7, item.getStateItem());
 			pStmt.setInt(8, item.getCategory().getIdCategory());
 			pStmt.setInt(9, item.getIdItem());
-			
+
 			pStmt.executeUpdate();
-			
+
 		} catch (SQLException sqle) {
 			System.out.println("ERROR WHEN UPDATING ITEM");
 			sqle.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public static final String UPDATE_WITHDRAW = """
 			UPDATE WITHDRAW SET
 			street = ?,
@@ -432,86 +433,87 @@ public class ItemDAOJdbcImpl implements ItemDAO {
 			city = ?
 			WHERE idItem = ?;
 			""";
+
 	@Override
 	public void updateWithdraw(Withdraw withdraw) {
-		
+
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			
+
 			PreparedStatement pStmt = cnx.prepareStatement(UPDATE_WITHDRAW);
 			pStmt.setString(1, withdraw.getStreet());
 			pStmt.setString(2, withdraw.getZipCode());
 			pStmt.setString(3, withdraw.getCity());
 			pStmt.setInt(4, withdraw.getItemSold().getIdItem());
-			
+
 			pStmt.executeUpdate();
-			
+
 		} catch (SQLException sqle) {
 			System.out.println("ERROR WHEN UPDATING WITHDRAW");
 			sqle.printStackTrace();
 		}
 	}
-	
+
 	public static final String SELECT_ALL_OPEN_BY_USER = """
 			SELECT idItem, nameItem FROM SOLD_ITEMS WHERE idUser = ? AND bidStartDate < GETDATE() AND bidEndDate > GETDATE();
 			""";
-	
+
 	public List<Item> selectAllOpenByUser(User user) {
-		
+
 		List<Item> items = new ArrayList<Item>();
-		
+
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			
+
 			PreparedStatement pStmt = cnx.prepareStatement(SELECT_ALL_OPEN_BY_USER);
 			pStmt.setInt(1, user.getIdUser());
-			
+
 			ResultSet rs = pStmt.executeQuery();
-			
+
 			while (rs.next()) {
 				Item item = new Item();
 				int idItem = rs.getInt("idItem");
 				String nameItem = rs.getString("nameItem");
-				
+
 				item.setIdItem(idItem);
 				item.setNameItem(nameItem);
-				
+
 				items.add(item);
 			}
-			
+
 		} catch (SQLException sqle) {
 			System.out.println("ERROR WHEN SELECTING OPEN SELL FOR USER");
 			sqle.printStackTrace();
 		}
-		
+
 		return items;
 	}
-	
+
 	public static final String SELECT_ALL_BY_USER = "SELECT idItem FROM SOLD_ITEMS WHERE idUser = ?;";
-	
+
 	@Override
 	public List<Item> selectAllByUser(User user) {
-		
+
 		List<Item> items = new ArrayList<Item>();
-		
+
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			
+
 			PreparedStatement pStmt = cnx.prepareStatement(SELECT_ALL_BY_USER);
 			pStmt.setInt(1, user.getIdUser());
-			
+
 			ResultSet rs = pStmt.executeQuery();
-			
+
 			while (rs.next()) {
-				
+
 				Item item = new Item();
 				item.setIdItem(rs.getInt("idItem"));
-				
+
 				items.add(item);
 			}
-			
+
 		} catch (SQLException sqle) {
 			System.out.println("ERROR WHEN SELECTING ALL ITEMS OF USER id=" + user.getIdUser());
 			sqle.printStackTrace();
 		}
-		
+
 		return items;
 	}
 }

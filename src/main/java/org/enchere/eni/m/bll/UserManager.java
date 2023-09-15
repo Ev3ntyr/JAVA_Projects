@@ -77,6 +77,7 @@ public class UserManager {
 	public void deactivate(int idUser) {
 		DAOFactory.getUserDAO().deactivate(idUser);
 	}
+	
 	public List<User> selectAll() {
 		return DAOFactory.getUserDAO().selectAll();
 	}

@@ -9,16 +9,28 @@ import org.enchere.eni.m.bo.Withdraw;
 public interface ItemDAO {
 
 	List<Item> selectAllByName(String itemName);
+
 	List<Item> selectAll();
+
 	void insert(Item item);
-	void insertWithdraw (Withdraw withdraw);
+
+	void insertWithdraw(Withdraw withdraw);
+
 	boolean hasWithdraw(Item item);
+
 	Withdraw selectWithdraw(Item item);
-	Item selectById (int idItem);
-	void updateSellingPrice (Item item);
+
+	Item selectById(int idItem);
+
+	void updateSellingPrice(Item item);
+
 	void delete(int idItem);
+
 	void update(Item item);
+
 	void updateWithdraw(Withdraw withdraw);
+
 	List<Item> selectAllOpenByUser(User user);
+
 	List<Item> selectAllByUser(User user);
 }
